@@ -147,6 +147,8 @@ mark{background:#fff3b0;color:inherit;border-radius:2px;padding:0 1px}
 .ctile-linkedin{background:#0a66c2;color:#fff}
 footer{max-width:1180px;margin:0 auto;padding:1.25rem 1.25rem 2.5rem;border-top:1px solid var(--rule);color:var(--slate);font-size:.8rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 footer a{color:var(--ink-soft);text-decoration:underline;text-underline-offset:2px}
+.f4f-contact-btn{display:inline-block;background:var(--brand);color:#fff!important;text-decoration:none!important;font-family:"IBM Plex Sans",system-ui,sans-serif;font-weight:600;font-size:.82rem;padding:.5rem 1.1rem;border-radius:4px;transition:background .16s ease}
+.f4f-contact-btn:hover{background:var(--ink)}
 @media(prefers-reduced-motion:no-preference){.entry{animation:fade .25s ease both}@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}}
 </style>
 </head>
@@ -201,22 +203,22 @@ footer a{color:var(--ink-soft);text-decoration:underline;text-underline-offset:2
   <h2>Stay connected</h2>
   <p>The full dataset, a weekly digest, and a running conversation about how to fund graduate work.</p>
   <div class="connect-tiles">
-    <a href="https://jonathanlindavis.com" target="_blank" rel="noopener" class="ctile ctile-web">
+    <a href="https://jonathanlindavis.com/projects.html" target="_blank" rel="noopener" class="ctile ctile-web">
       <span class="ctile-icon">&#127760;</span>
       <span class="ctile-body">
-        <span class="ctile-title">jonathanlindavis.com</span>
-        <span class="ctile-sub">More projects by Jonathan Lin Davis</span>
+        <span class="ctile-title">More projects</span>
+        <span class="ctile-sub">See what else is built and coming</span>
       </span>
       <span class="ctile-arrow">&#8599;</span>
     </a>
-    <span class="ctile ctile-mail" role="note" aria-label="Mailchimp weekly newsletter, coming soon">
+    <a href="https://jonathanlindavis.com/newsletters.html" target="_blank" rel="noopener" class="ctile ctile-mail">
       <span class="ctile-icon">&#9993;</span>
       <span class="ctile-body">
-        <span class="ctile-title">Mailchimp weekly newsletter</span>
-        <span class="ctile-sub">New fellowships every week, straight to your inbox</span>
+        <span class="ctile-title">Newsletter signup</span>
+        <span class="ctile-sub">Get updates in your inbox</span>
       </span>
-      <span class="ctile-badge">Coming soon</span>
-    </span>
+      <span class="ctile-arrow">&#8599;</span>
+    </a>
     <a href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7476506679509999617" target="_blank" rel="noopener" class="ctile ctile-linkedin">
       <span class="ctile-icon">&#128101;</span>
       <span class="ctile-body">
@@ -231,6 +233,7 @@ footer a{color:var(--ink-soft);text-decoration:underline;text-underline-offset:2
 <footer>
   <span>Fellowships4Free &middot; A Project by Jonathan Lin Davis &middot; CC-BY-4.0 data, MIT code</span>
   <span><a href="data/fellowships.json">fellowships.json</a> &middot; <a href="data/fellowships.csv">fellowships.csv</a></span>
+  <a class="f4f-contact-btn" href="https://jonathanlindavis.com/contact.html">Contact Us</a>
 </footer>
 
 <script>
