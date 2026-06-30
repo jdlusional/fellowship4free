@@ -19,10 +19,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#f4efe2; --wash:#8fb3d6; --paper:#1b3a6b; --well:#1e3e74;
-  --rule:#2a4a80; --rule-soft:rgba(255,255,255,0.10);
-  --accent:#409ad1;
-  --ok:#4aad73; --warn:#e07a48; --urgent:#e05060;
+  --ink:#1b3a6b; --wash:#5a7a9a; --paper:#f4efe2; --well:#fffdf8;
+  --rule:#c8d5e5; --rule-soft:rgba(27,58,107,0.10);
+  --accent:#1f5fa8;
+  --ok:#2a7a4a; --warn:#b85a10; --urgent:#b52020;
   --serif:'Spectral',Georgia,'Times New Roman',serif;
   --mono:'JetBrains Mono','Courier New',monospace;
 }
@@ -40,6 +40,12 @@ a{color:var(--ink);text-decoration:none}
 .manifest .stat{font-family:var(--mono);font-size:.76rem;color:var(--wash);letter-spacing:.02em}
 .manifest .stat strong{color:var(--ink);font-weight:500}
 .manifest .grow{flex:1}
+.manifest{background:#1b3a6b;border-bottom-color:#1b3a6b}
+.manifest .brand{color:#f4efe2}
+.manifest .brand b{color:#6fb1ec}
+.manifest .stat{color:rgba(244,239,226,0.6)}
+.manifest .stat strong,.manifest .stat b{color:#f4efe2;font-weight:500}
+.manifest .sortsel{background:rgba(255,255,255,0.08);color:#f4efe2;border-color:rgba(244,239,226,0.25)}
 
 /* ---- Hero ---- */
 .hero{max-width:1180px;margin:0 auto;padding:2.6rem 1.25rem 1rem;text-align:center}
@@ -109,7 +115,7 @@ a{color:var(--ink);text-decoration:none}
 .tag.area{border-color:var(--ink);color:var(--ink);background:var(--well)}
 
 /* highlighted search match */
-mark{background:#2a527a;color:#f4efe2;border-radius:0;padding:0 1px}
+mark{background:rgba(27,58,107,0.15);color:var(--ink);border-radius:0;padding:0 1px}
 
 /* sidebox */
 .sidebox{
@@ -182,7 +188,7 @@ footer a{color:var(--wash);text-decoration:underline;text-underline-offset:2px}
 </div>
 
 <header class="hero">
-  <img class="hero-lockup" src="assets/f4f-lockup-dark.svg" alt="Fellowships4Free">
+  <img class="hero-lockup" src="assets/f4f-lockup.svg" alt="Fellowships4Free">
   <p class="pledge-strip">
 
     <span>&#10003; Open data</span>
