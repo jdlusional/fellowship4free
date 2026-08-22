@@ -1,37 +1,458 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-08J22J0DXL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-08J22J0DXL');
+</script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Fellowships4Free has moved to jonathanlindavis.com/f4f</title>
-<meta name="description" content="Fellowships4Free has moved. The live site, dataset, and all future updates now live at jonathanlindavis.com/f4f." />
-<link rel="canonical" href="https://jonathanlindavis.com/f4f" />
-<meta http-equiv="refresh" content="0; url=https://jonathanlindavis.com/f4f" />
-<meta name="robots" content="noindex, follow" />
+<title>F4F — Jonathan Lin Davis</title>
+<meta name="description" content="Fellowships4Free: a free, open-data index of 400+ verified graduate and early-career fellowships. Because finding money shouldn't cost you money. No login, no paywall." />
+<meta property="og:type" content="website">
+<meta property="og:title" content="F4F — Jonathan Lin Davis">
+<meta property="og:description" content="Fellowships4Free: a free, open-data index of 400+ verified graduate and early-career fellowships. Because finding money shouldn't cost you money. No login, no paywall.">
+<meta property="og:url" content="https://fellowship4free.com/">
+<meta property="og:image" content="https://jonathanlindavis.com/Assets/og-image.png">
+<meta property="og:image:width" content="2400">
+<meta property="og:image:height" content="1260">
+<meta property="og:image:alt" content="Jonathan Lin Davis: the business of thinking for a living.">
+<meta property="og:site_name" content="Jonathan Lin Davis">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="F4F — Jonathan Lin Davis">
+<meta name="twitter:description" content="Fellowships4Free: a free, open-data index of 400+ verified graduate and early-career fellowships. Because finding money shouldn't cost you money. No login, no paywall.">
+<meta name="twitter:image" content="https://jonathanlindavis.com/Assets/og-image.png">
+
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://fellowship4free.com/">
+<meta name="referrer" content="no-referrer" />
+<link rel="icon" type="image/png" href="assets/f4f-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="open-data-shared.css?v=0c00355c56">
 <style>
-  html,body{margin:0;padding:0;height:100%}
-  body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    background:#f4efe2;color:#1b3a6b;display:flex;align-items:center;justify-content:center;
-    text-align:center;padding:24px;box-sizing:border-box;
-  }
-  .card{max-width:480px}
-  h1{font-size:1.4rem;margin:0 0 12px}
-  p{color:#5a6b82;line-height:1.5;margin:0 0 20px}
-  a.btn{
-    display:inline-block;background:#1b3a6b;color:#f4efe2;text-decoration:none;
-    padding:12px 24px;border-radius:6px;font-weight:600;
-  }
-  a.btn:hover{background:#2f7fd1}
+:root{
+  /* Family tokens live in open-data-shared.css (the warm print palette the whole
+     Open Data family shares); this page sets only its accent pair plus the legacy
+     --accent alias its components reference. F4F's accent stays the blue baked
+     into its lockup art. */
+  --od-accent:#2f7fd1; --od-hilite:#bcd0eb; --accent:var(--od-accent);
+  --rule-soft:#ddd5c3;
+}
+/* Base/reset, masthead, headings, search shell, count, states, and footer shell
+   all come from open-data-shared.css. */
+a{color:var(--ink);text-decoration:none}
+
+/* ---- Hero ---- */
+.hero{max-width:1180px;margin:0 auto;padding:2.6rem 1.25rem 1rem;text-align:center;display:flex;flex-direction:column;align-items:center}
+.hero .logo{width:100%;max-width:620px;height:auto;margin:0 auto;display:block}
+/* pledge strip: shared .od-pledge convention */
+
+/* ---- Layout ---- */
+.layout{max-width:1180px;margin:0 auto;padding:1.5rem 1.25rem 4rem;display:grid;grid-template-columns:260px 1fr;gap:2rem;align-items:start}
+.layout>aside,.layout>main{min-width:0}
+@media(max-width:820px){.layout{grid-template-columns:1fr;gap:1rem}}
+.rail{position:sticky;top:66px;font-size:.9rem}
+@media(max-width:820px){.rail{position:static}}
+.search{width:100%;padding:.65rem .75rem;border:1.5px solid var(--ink);border-radius:0;font-family:var(--serif);font-size:.95rem;background:var(--well);color:var(--ink);margin-bottom:1rem;outline:none}
+.search:focus{outline:2px solid var(--ink);outline-offset:0}
+.facet{margin-bottom:1.1rem;border-top:1px solid var(--rule);padding-top:.85rem}
+.facet h3{font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--wash);margin:0 0 .55rem}
+.opt{display:flex;align-items:center;gap:.5rem;padding:.18rem 0;cursor:pointer;color:var(--wash);font-size:.88rem;font-family:var(--serif)}
+.opt:hover{color:var(--ink)}
+.opt input{accent-color:var(--ink);width:15px;height:15px;flex-shrink:0}
+.opt .n{margin-left:auto;font-family:var(--mono);font-size:.72rem;color:var(--wash)}
+.clearbtn{font-family:var(--mono);font-size:.74rem;color:var(--ink);background:none;border:none;cursor:pointer;padding:0;margin-top:.35rem}
+.clearbtn:hover{text-decoration:underline}
+
+.resbar{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:.75rem;flex-wrap:wrap}
+.resbar .count{font-family:var(--mono);font-size:.84rem;color:var(--wash)}
+.resbar .count b{color:var(--ink)}
+.sortsel{font-family:var(--mono);font-size:.84rem;padding:.32rem .45rem;border:1px solid var(--rule);border-radius:0;background:var(--well);color:var(--ink)}
+
+/* ---- Entry cards ---- */
+.entry{
+  background:transparent;
+  border-radius:0;
+  border-left:none;
+  border-bottom:1px solid var(--rule-soft);
+  box-shadow:none;
+  margin-bottom:0;
+  padding:1.1rem 0;
+  display:block;
+}
+.entry .head{display:flex;flex-direction:column;gap:.12rem}
+.entry .org{font-family:var(--mono);font-size:.82rem;text-transform:uppercase;letter-spacing:.07em;color:var(--wash)}
+.entry .name{font-family:var(--serif);font-size:1.45rem;font-weight:500;line-height:1.18;color:var(--ink)}
+.entry .name a{color:var(--ink)}
+.entry .name a:hover{color:var(--wash);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
+
+/* Symmetric Q&A rows - every entry gets the same 7 labeled fields in the same order */
+.qa-grid{display:flex;flex-direction:column;gap:.55rem;margin-top:.6rem}
+.qa-row{display:grid;grid-template-columns:170px 1fr;gap:.6rem 1rem;align-items:baseline}
+@media(max-width:580px){.qa-row{grid-template-columns:1fr;gap:.15rem}}
+.qa-label{font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.07em;color:var(--wash);white-space:nowrap}
+.qa-value{font-family:var(--serif);font-size:.98rem;color:var(--ink);line-height:1.5}
+
+/* flags shown inline within the "For Who?" row */
+.flags-row{display:flex;flex-wrap:wrap;gap:.35rem .45rem;margin-top:.35rem}
+.flag-chip{font-family:var(--mono);font-size:.76rem;padding:.18rem .48rem;border:1px solid var(--warn);border-radius:0;color:var(--warn);background:var(--well);white-space:normal;line-height:1.4}
+.aud-row{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.35rem}
+.aud-chip{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;padding:.14rem .45rem;border:1px solid var(--accent);border-radius:0;color:var(--accent);background:var(--well);white-space:nowrap}
+
+/* highlighted search match */
+mark{background:var(--od-hilite);color:var(--ink);border-radius:0;padding:0 1px}
+
+/* deadline urgency color-coding, used within the "By When?" row */
+.deadline-val{color:var(--ink)}
+.deadline-val.rolling{color:var(--wash);font-style:italic}
+.deadline-val.urgent{color:var(--urgent);font-weight:600}
+.deadline-val.soon{color:var(--warn);font-weight:500}
+
+.empty{padding:3rem 1rem;text-align:center;color:var(--wash)}
+.empty b{display:block;font-family:var(--serif);font-size:1.35rem;color:var(--ink);margin-bottom:.35rem}
+
+/* ---- Subscribe + Footer ---- */
+.connect{max-width:1180px;margin:0 auto;padding:2.5rem 1.25rem 3.5rem;border-top:2px solid var(--ink);text-align:center}
+.connect h2{font-family:var(--serif);font-weight:700;font-size:1.55rem;margin:0 0 .35rem}
+.connect p{color:var(--wash);font-size:.96rem;max-width:54ch;margin:0 auto 1.6rem}
+.connect-tiles{display:flex;flex-direction:column;gap:.55rem;max-width:480px;margin:0 auto}
+.ctile{display:flex;align-items:center;gap:.9rem;padding:.95rem 1.2rem;border-radius:0;text-decoration:none;font-family:var(--serif);transition:opacity .15s;cursor:pointer;border:1.5px solid var(--ink)}
+.ctile:hover{opacity:.88}
+.ctile-icon{font-size:22px;flex-shrink:0;line-height:1}
+.ctile-body{flex:1;min-width:0;text-align:left}
+.ctile-title{display:block;font-size:1rem;font-weight:600;line-height:1.25}
+.ctile-sub{display:block;font-size:.82rem;opacity:.78;margin-top:.1rem}
+.ctile-arrow{font-size:16px;flex-shrink:0;opacity:.7}
+.ctile-badge{flex-shrink:0;font-family:var(--mono);font-size:.67rem;padding:.22rem .6rem;border-radius:0;letter-spacing:.03em;font-weight:600}
+.ctile-web{background:var(--ink);color:var(--paper)}
+.ctile-mail{background:var(--well);color:var(--ink);border-color:var(--rule)}
+.ctile-mail .ctile-icon{color:var(--wash)}
+.ctile-mail .ctile-arrow{color:var(--wash)}
+.ctile-mail .ctile-badge{background:var(--paper);color:var(--warn);border:1px solid var(--rule)}
+.ctile-linkedin{background:#0a66c2;color:#fff;border-color:#0a66c2}
+@media(prefers-reduced-motion:no-preference){.entry{animation:fade .25s ease both}@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}}
 </style>
-<script>window.location.replace("https://jonathanlindavis.com/f4f");</script>
 </head>
 <body>
-  <div class="card">
-    <h1>Fellowships4Free has moved</h1>
-    <p>This project is now maintained at jonathanlindavis.com/f4f. You should be
-      redirected automatically — if not, use the link below.</p>
-    <a class="btn" href="https://jonathanlindavis.com/f4f">Go to jonathanlindavis.com/f4f &rarr;</a>
+<!-- writing-convention: general -->
+
+<header class="masthead" data-mast-tier="mid">
+  <div class="inner">
+    <a class="mark">Fellowships4<span>Free</span></a>
+    <button type="button" class="mast-toggle" hidden aria-hidden="true">Menu</button>
+    <div class="mast-menu">
+      <span class="mast-note"><strong id="m-count">948</strong> fellowships in full repository, only 50 displayed &middot; updated <strong id="m-updated">Jun 2026</strong></span>
+      <a class="mast-home" href="https://jonathanlindavis.com/">&larr; jonathanlindavis.com</a>
+    </div>
   </div>
+</header>
+
+<header class="hero">
+  <img class="logo" src="Assets/f4f-lockup.png" alt="Fellowships4Free — the open fellowship index" width="1440" height="600">
+  <p class="od-pledge" style="margin-top:1.4rem">
+    <span>Open data</span>
+    <span>Open source</span>
+    <span>Verified links &amp; amounts</span>
+    <span>Refreshed weekly</span>
+  </p>
+</header>
+
+<div class="layout">
+  <aside class="rail" id="rail">
+    <input class="search" id="search" type="search" placeholder="Search org, name, keyword&#8230;" aria-label="Search fellowships" />
+    <div id="facets"></div>
+    <button class="clearbtn" id="clear">Clear all filters</button>
+  </aside>
+  <main>
+    <div class="resbar">
+      <span class="count"><b id="r-count">0</b> matching fellowships</span>
+      <select class="sortsel" id="sort" aria-label="Sort">
+        <option value="deadline" selected>Sort: Deadline (soonest first)</option>
+        <option value="org">Sort: Organization (A&#8211;Z)</option>
+        <option value="name">Sort: Fellowship name (A&#8211;Z)</option>
+        <option value="area">Sort: Area</option>
+      </select>
+    </div>
+    <div id="results"></div>
+  </main>
+</div>
+
+<section class="connect">
+  <h2>Stay connected</h2>
+  <p>The full dataset, a weekly digest, and a running conversation about how to fund graduate work.</p>
+  <div class="connect-tiles">
+    <a href="https://jonathanlindavis.com/projects.html" target="_blank" rel="noopener" class="ctile ctile-web">
+      <span class="ctile-icon">&#127760;</span>
+      <span class="ctile-body">
+        <span class="ctile-title">More projects</span>
+        <span class="ctile-sub">See what else is built and coming</span>
+      </span>
+      <span class="ctile-arrow">&#8599;</span>
+    </a>
+    <a href="https://jonathanlindavis.com/contact.html" target="_blank" rel="noopener" class="ctile ctile-mail">
+      <span class="ctile-icon">&#9993;</span>
+      <span class="ctile-body">
+        <span class="ctile-title">Get in touch</span>
+        <span class="ctile-sub">Contact or sign up for updates</span>
+      </span>
+      <span class="ctile-arrow">&#8599;</span>
+    </a>
+  </div>
+</section>
+
+<footer><div class="wrap">
+  <p>Fellowships4Free is an independent public good built by Jonathan Lin Davis. A free, open index of verified graduate and early-career fellowships: no login, no paywall, links and amounts checked against the source.</p>
+  <p>Data &middot; <a href="data/fellowships.json">fellowships.json</a> &middot; <a href="data/fellowships.csv">fellowships.csv</a> &middot; License &middot; CC BY 4.0 data, MIT code &middot; <a href="https://jonathanlindavis.com/contact.html">Get in Touch</a></p>
+  <p class="footer-improvements-wrap"><a class="footer-improvements" href="https://jonathanlindavis.com/system-change-log">System change log</a></p>
+</div></footer>
+
+<script>
+const state={data:[],pool:[],filtered:[],facets:{area:new Set(),restricted:false},q:"",sort:"deadline"};
+const NOW=Date.now();
+
+/* ---- Utilities ---- */
+function esc(s){return(s||"").replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function isRolling(v){return/rolling/i.test(v||"");}
+
+/* ---- Area bucket ----
+   Faceting on the raw `area` field is impossible (~1,440 distinct strings). Every record now
+   carries an authoritative `area_bucket` (exactly one of the 14 core-taxonomy names), applied to
+   the data from area_collapse_proposal_v1.json. bucketOf() reads that field; the specific
+   free-text `area` stays visible on each card as the granular detail. */
+function bucketOf(r){return r.area_bucket||"Open Field";}
+
+/* Parse a deadline string to a Date for sorting/urgency.
+   Handles: "Oct 29, 2026", "~Nov 10, 2026", "Jun 1, 2026 at 5 PM ET", "Rolling", "TBD".
+   Requires an explicit day-of-month - without one, JS's Date() will silently default to
+   Jan 1 for vague strings like "Fall 2026" or "Jan 2027", making them look falsely urgent. */
+function parseDeadline(s){
+  if(!s||isRolling(s)||/tbd|verify|biannual|continuous/i.test(s))return null;
+  const clean=s.replace(/[~\u2019]/g,"").replace(/\bat\b.*/i,"").replace(/,\s*\d{1,2}:\d{2}.*$/,"").trim();
+  if(!/^[A-Za-z]{3,9}\.?\s+\d{1,2},?\s+\d{4}$/.test(clean))return null;
+  const d=new Date(clean);
+  return isNaN(d)?null:d;
+}
+
+/* Like parseDeadline, but returns null for dates already in the past.
+   Used anywhere we're sorting/selecting by "soonest upcoming deadline" - a raw ascending
+   date sort would otherwise treat an expired deadline as more "soon" than a future one,
+   since a past timestamp is numerically smaller. Past deadlines get the same treatment
+   as undated/rolling entries: sorted last, not first. */
+function futureDeadline(s){
+  const d=parseDeadline(s);
+  if(!d)return null;
+  return d<NOW?null:d;
+}
+
+function deadlineClass(s){
+  const d=parseDeadline(s);
+  if(!d)return isRolling(s)?'deadline-val rolling':'deadline-val';
+  const days=(d-NOW)/86400000;
+  if(days<0)return'deadline-val rolling'; // past
+  if(days<=30)return'deadline-val urgent';
+  if(days<=90)return'deadline-val soon';
+  return'deadline-val';
+}
+
+/* Highlight search query in a string */
+function highlight(text,q){
+  if(!q||!text)return esc(text);
+  const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
+  return esc(text).replace(re,'<mark>$1</mark>');
+}
+
+/* ---- Load ---- */
+async function load(){
+  const res=await fetch('data/fellowships.json',{cache:'no-store'});
+  state.data=await res.json();
+
+  /* The working universe is the DISPLAY_CAP fellowships with the soonest UPCOMING concrete
+     deadline. Computed ONCE here: keep only future-dated entries, sort ascending by that date,
+     take the first 50. Search, facets, sort, and facet options all operate within this pool -
+     never the full repository. Kept fixed (apply() always filters a fresh copy, never aliases). */
+  state.pool=state.data
+    .filter(r=>r.grad_eligible!==false) // public display: hide out-of-scope (non current/prospective grad-student) fellowships; they stay in the data and in the total count below
+    .filter(r=>futureDeadline(r.deadline))
+    .sort((a,b)=>futureDeadline(a.deadline)-futureDeadline(b.deadline))
+    .slice(0,DISPLAY_CAP);
+
+  document.getElementById('m-count').textContent=state.data.length; // full repository length (ALL fellowships, incl. out-of-scope, per owner instruction)
+  document.getElementById('m-updated').textContent=new Date().toLocaleDateString(undefined,{year:'numeric',month:'short'});
+  buildFacets();apply();
+}
+
+/* ---- Facets ----
+   Facet counts reflect the currently DISPLAYED set (state.filtered). The Area checkbox list
+   is built ONCE from the categories present in the fixed 50-item pool (not the full repository
+   and not the full taxonomy), so options don't appear/disappear as filters change; only their
+   counts update. */
+function catCounts(source){
+  const m=new Map();
+  source.forEach(r=>{const v=bucketOf(r);m.set(v,(m.get(v)||0)+1);});
+  return m;
+}
+
+function buildFacets(){
+  const host=document.getElementById('facets');host.innerHTML="";
+
+  // Area filter - the 14 core-taxonomy buckets (area_bucket). Options are built ONCE from the
+  // fixed 50-item POOL (not the full repository), so a bucket with zero fellowships in the
+  // current display pool never gets a dead-end "0" checkbox in the first place. Still built
+  // once at load, not on every apply(), so options don't appear/disappear as OTHER filters
+  // toggle mid-interaction - only their counts, reflecting the currently displayed set, update
+  // live via updateFacetCounts(). Ordered by pool count (desc) then name.
+  const areaWrap=document.createElement('div');areaWrap.className='facet';areaWrap.innerHTML='<h3>Area</h3>';
+  const dataCats=catCounts(state.pool);
+  const areaValues=[...dataCats.keys()].sort((a,b)=>(dataCats.get(b)-dataCats.get(a))||a.localeCompare(b));
+  areaValues.forEach(val=>{
+    const row=document.createElement('label');row.className='opt';
+    row.innerHTML=`<input type="checkbox" data-key="area" value="${esc(val)}"><span>${esc(val)}</span><span class="n" data-area-count="${esc(val)}">0</span>`;
+    row.querySelector('input').addEventListener('change',e=>{
+      const s=state.facets.area;e.target.checked?s.add(val):s.delete(val);apply();
+    });
+    areaWrap.appendChild(row);
+  });
+  host.appendChild(areaWrap);
+
+  // Restrictions filter
+  const rWrap=document.createElement('div');rWrap.className='facet';rWrap.innerHTML='<h3>Eligibility</h3>';
+  const rRow=document.createElement('label');rRow.className='opt';
+  rRow.innerHTML=`<input type="checkbox" id="restrict-filter"><span>No restrictions only</span><span class="n" data-restrict-count>0</span>`;
+  rRow.querySelector('input').addEventListener('change',e=>{state.facets.restricted=e.target.checked;apply();});
+  rWrap.appendChild(rRow);
+  host.appendChild(rWrap);
+}
+
+function updateFacetCounts(){
+  const areaCounts=catCounts(state.filtered);
+  document.querySelectorAll('[data-area-count]').forEach(el=>{
+    el.textContent=areaCounts.get(el.getAttribute('data-area-count'))||0;
+  });
+  const restrictedInDisplay=state.filtered.filter(r=>r.flags&&r.flags.trim()).length;
+  const rEl=document.querySelector('[data-restrict-count]');
+  if(rEl)rEl.textContent=state.filtered.length-restrictedInDisplay;
+}
+
+/* ---- Filter + Sort ---- */
+const DISPLAY_CAP=50; // the working universe is the 50 soonest-upcoming-deadline fellowships,
+                       // computed once in load(). Search/facets/sort all operate WITHIN this pool.
+
+function apply(){
+  const q=state.q.toLowerCase().trim();
+
+  // Filter within the fixed 50-item pool (never the full repository). .filter() returns a
+  // fresh array, so state.pool itself is never mutated or aliased.
+  const base=state.pool.filter(r=>{
+    if(state.facets.area.size&&!state.facets.area.has(bucketOf(r)))return false;
+    if(state.facets.restricted&&r.flags&&r.flags.trim())return false;
+    if(q){
+      const hay=`${r.organization} ${r.name} ${r.eligibility} ${r.area} ${r.notes} ${r.flags} ${r.amount} ${r.other_benefits}`.toLowerCase();
+      if(!hay.includes(q))return false;
+    }
+    return true;
+  });
+
+  state.filtered=base;
+  updateFacetCounts();
+  sortRows();render();
+}
+
+function sortRows(){
+  const k=state.sort;
+  state.filtered.sort((a,b)=>{
+    if(k==='name')return(a.name||"").localeCompare(b.name||"");
+    if(k==='area')return bucketOf(a).localeCompare(bucketOf(b))||(a.organization||"").localeCompare(b.organization||"");
+    if(k==='deadline'){
+      const da=futureDeadline(a.deadline);const db=futureDeadline(b.deadline);
+      if(!da&&!db)return 0;if(!da)return 1;if(!db)return -1;
+      return da-db;
+    }
+    return(a.organization||"").localeCompare(b.organization||"");
+  });
+}
+
+/* ---- Render ---- */
+function render(){
+  const q=state.q.toLowerCase().trim();
+  document.getElementById('r-count').textContent=state.filtered.length;
+  const host=document.getElementById('results');
+  if(!state.filtered.length){
+    host.innerHTML='<div class="empty"><b>No matches</b>Try removing a filter or broadening your search.</div>';
+    return;
+  }
+
+  const AUD_LABELS={grad:'Grad',undergrad:'Undergrad',professional:'Professional',postdoc:'Postdoc'};
+  host.innerHTML=state.filtered.map(r=>{
+    const nameHtml=r.url
+      ?`<a href="${esc(r.url)}" target="_blank" rel="noopener">${highlight(r.name,q)}</a>`
+      :highlight(r.name,q);
+
+    // Symmetric Q&A rows - every entry shows the same 7 labeled fields, always,
+    // regardless of whether a given field has data ("Not specified" fallback for
+    // duration/location, since those are only partially populated across the dataset).
+    const dl=r.deadline||"TBD";
+    const dlClass=deadlineClass(dl);
+    const dlDisplay=isRolling(dl)?'Rolling':esc(dl);
+
+    const showOpens=r.opens&&!isRolling(r.opens)&&!/verify|biannual|continuous/i.test(r.opens);
+    const opensDisplay=showOpens?esc(r.opens):(isRolling(r.opens)?'Rolling':'Not specified');
+
+    const flagsInline=(r.flags&&r.flags.trim())
+      ?r.flags.split(';').map(f=>f.trim()).filter(Boolean).map(f=>`<span class="flag-chip">&#9888; ${esc(f)}</span>`).join('')
+      :'';
+
+    const audChips=(Array.isArray(r.audience)&&r.audience.length)
+      ?r.audience.map(a=>`<span class="aud-chip">${AUD_LABELS[a]||esc(a)}</span>`).join('')
+      :'';
+
+    const qaRows=[
+      ['How Much?',esc(r.amount)||'Not specified'],
+      ['How Long?',esc(r.duration)||'Not specified'],
+      ['For Who?',`${highlight(r.eligibility,q)||'Not specified'}${flagsInline?`<div class="flags-row">${flagsInline}</div>`:''}`],
+      ['For What?',highlight(r.notes,q)||'Not specified'],
+      ['In What Field?',highlight(r.area,q)||'Not specified'],
+      ['For Where?',esc(r.location)||'Not specified'],
+      ['Opens/Opened When?',opensDisplay],
+      ['By When?',`<span class="${dlClass}">${dlDisplay}</span>`],
+      ['Checked When?',`Added ${esc(r.date_added)||'—'} &middot; Verified ${esc(r.last_verified)||'—'}`],
+    ].map(([label,value])=>`<div class="qa-row"><div class="qa-label">${label}</div><div class="qa-value">${value}</div></div>`).join('');
+
+    return `<article class="entry">
+      <div class="head">
+        <span class="org">${highlight(r.organization,q)}</span>
+        <span class="name">${nameHtml}</span>
+      </div>
+      ${audChips?`<div class="aud-row">${audChips}</div>`:''}
+      <div class="qa-grid">${qaRows}</div>
+    </article>`;
+  }).join('');
+}
+
+
+
+
+/* ---- Events ---- */
+document.getElementById('search').addEventListener('input',e=>{state.q=e.target.value;apply();});
+document.getElementById('sort').addEventListener('change',e=>{state.sort=e.target.value;sortRows();render();});
+
+document.getElementById('clear').addEventListener('click',()=>{
+  state.q="";state.facets={area:new Set(),restricted:false};
+  document.getElementById('search').value="";
+  document.querySelectorAll('#facets input').forEach(i=>i.checked=false);
+  apply();
+});
+
+
+load().catch(()=>{
+  document.getElementById('results').innerHTML='<div class="empty"><b>Could not load the index</b>Make sure data/fellowships.json is present.</div>';
+});
+</script>
 </body>
 </html>

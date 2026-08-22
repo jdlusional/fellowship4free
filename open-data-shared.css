@@ -1,0 +1,161 @@
+/* ===== open-data-shared.css — the Open Data family's shared layer =====
+   Counterpart to tool-shared.css for the paid products (owner order, 2026-07-24):
+   one file for the family's tokens and shell chrome, linked by all three product
+   pages (GIFT, Interlock, F4F). Same design world as the products — Spectral and
+   JetBrains Mono on the cream paper, sharp corners, mono uppercase labels — with a
+   deliberately distinct identity: the warm print ink/wash palette, 2px ink rules,
+   and a per-product accent. Each page sets its own two accent tokens after this
+   file loads:
+     --od-accent : the product's accent color (GIFT green, Interlock teal, F4F blue)
+     --od-hilite : the row-hover / highlight tint derived from that accent
+   Shared-layer changes start HERE and reach all three pages in the same push;
+   signature components stay on their owning pages, extracted into the pattern
+   books at build time. This file supersedes Sweep Rules 20 and 24 (reconciliation
+   by convention and caps) — the family now shares a real layer, same structure as
+   the enterprise products. Shadow-bug discipline applies: never promote a rule
+   here while a same-selector inline rule survives on a page. */
+
+:root{
+  --ink:#1c1a17; --paper:#f4efe2; --well:#fffdf7;
+  --rule:#c9c0ab; --rule-soft:#ddd5c3; --wash:#6b6456;
+  --ok:#286644; --warn:#8a5218; --urgent:#8a2828;
+  --od-accent:#3f7d4e; --od-hilite:#a8f0a8;
+  --serif:'Spectral',Georgia,'Times New Roman',serif;
+  --mono:'JetBrains Mono','Courier New',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased}
+::selection{background:var(--ink);color:var(--paper)}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 32px}
+.wrap-narrow{max-width:880px;margin:0 auto;padding:0 32px}
+.hidden{display:none!important}
+
+/* ---- masthead: sticky wordmark bar, 2px ink rule ----
+   Masthead/header convention (2026-08-18, GIFT Family Header Convention ultra plan). Governs
+   .masthead .inner across all five pages that link this file with a <header class="masthead">:
+   open-data-gift.html, gift-enterprise.html, gift-enterprise-portal.html,
+   open-data-interlock.html, open-data-f4f.html. Policy lives in
+   Portfolios\Performance\Conventions\Web\Web Conventions — Public Data Vertical.md; this is the
+   mechanical implementation. Replaces an earlier, incomplete same-day draft that touched only
+   .masthead .inner's own flex-wrap and left .mast-nav's separate flex-wrap:wrap rule untouched
+   -- the actual root cause had two wrap points, not one, confirmed by empirical re-verification
+   before this version shipped. */
+:root{
+  --mast-cap: none;           /* Requirement: no desktop width limit on .masthead .inner */
+  --mast-tier-mid: 860px;     /* stack breakpoint, open-data-f4f.html; provisional, re-verify per the spec's own note */
+  --mast-tier-dense: 1000px;  /* stack breakpoint, open-data-gift.html and gift-enterprise-portal.html; provisional, re-verify per the spec's own note */
+}
+.masthead{border-bottom:2px solid var(--ink);position:sticky;top:0;background:var(--paper);z-index:50}
+.masthead .inner{max-width:var(--mast-cap);margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:nowrap;padding:18px 32px}
+.masthead .inner>:not(.mark){min-width:0}
+.mark{font-size:28px;font-weight:700;line-height:1;text-decoration:none;color:var(--ink);flex-shrink:0}
+.mark span{color:var(--od-accent)}
+.mark .ent-badge{display:inline-block;vertical-align:middle;margin-left:10px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;background:var(--od-accent);color:var(--paper);padding:3px 8px;border-radius:2px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:140px}
+.mast-menu{display:flex;align-items:center;gap:22px;min-width:0}
+.mast-nav{font-family:var(--mono);font-size:12px;letter-spacing:.04em;display:flex;align-items:center;gap:22px;flex-wrap:nowrap;min-width:0}
+.mast-nav>*{flex-shrink:0}
+.mast-nav a{color:var(--ink);text-decoration:none;padding-bottom:2px;border-bottom:1px solid transparent;cursor:pointer}
+.mast-nav a:hover,.mast-nav a.on{border-bottom-color:var(--od-accent);color:var(--od-accent)}
+.mast-note{font-family:var(--mono);font-size:12px;color:var(--wash);letter-spacing:.02em;min-width:0}
+.mast-note strong{color:var(--ink);font-weight:500}
+.mast-home{flex-shrink:0;font-family:var(--mono);font-size:12px;border-left:1px solid var(--rule-soft);padding-left:22px;color:var(--wash);text-decoration:none}
+.mast-home:hover{color:var(--od-accent)}
+
+/* Enterprise disclosure group (open-data-gift.html only): folds Enterprise / Enterprise Login /
+   Have a code? behind one toggle so the public page's longer nav has room to stay on one row
+   further down the width range. W3C APG disclosure pattern (button + aria-expanded/
+   aria-controls, never role="menu"); JS in open-data-gift.html's own <script>. */
+.mast-ent-group{position:relative;flex-shrink:0}
+.mast-ent-toggle{font:inherit;background:none;border:none;cursor:pointer;color:inherit;display:inline-flex;align-items:center;gap:4px}
+.mast-ent-panel{position:absolute;top:100%;right:0;margin-top:8px;background:var(--paper);border:1px solid var(--rule-soft);padding:8px 0;display:flex;flex-direction:column;min-width:180px;box-shadow:0 4px 16px rgba(0,0,0,.12);z-index:20}
+.mast-ent-panel a,.mast-ent-panel button{padding:8px 16px;text-align:left;background:none;border:none;font:inherit;color:inherit;cursor:pointer;white-space:nowrap}
+.mast-ent-panel[hidden]{display:none}
+
+/* Mobile toggle button: ships inert this rollout (static markup only, no JS un-hides it -- see
+   the ultra plan's Section 3.3 for the follow-up that wires it up). Costs nothing to add now
+   and removes an HTML-only step from that future build. */
+.mast-toggle{flex-shrink:0;font:inherit;background:none;border:1px solid var(--rule-soft);border-radius:4px;padding:6px 10px;cursor:pointer}
+
+/* ---- headings and context lines ---- */
+h1{font-weight:700;letter-spacing:-.01em;line-height:1.14}
+.crumb{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--wash)}
+.crumb a{color:var(--wash);text-decoration:none;cursor:pointer}
+.crumb a:hover{color:var(--od-accent)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--wash)}
+
+/* ---- free-and-public pledge strip: the family's identity marker, one per hero ---- */
+.od-pledge{font-family:var(--mono);font-size:12px;color:var(--wash);letter-spacing:.01em;display:flex;justify-content:center;gap:8px 22px;flex-wrap:wrap;list-style:none}
+.od-pledge span::before{content:"\2713\00a0";color:var(--od-accent);font-weight:700}
+
+/* ---- search, toggle, count ---- */
+.search{display:flex;border:1.5px solid var(--ink);background:var(--well);max-width:600px;margin-left:auto;margin-right:auto}
+.search input{flex:1;border:0;background:transparent;padding:15px 18px;font-family:var(--serif);font-size:17px;color:var(--ink);outline:none;min-width:0}
+.search input::placeholder{color:#b3a98f}
+.search .icon{display:flex;align-items:center;padding:0 16px 0 0;font-family:var(--mono);font-size:13px;color:var(--wash)}
+.toggle{display:flex;border:1.5px solid var(--ink);width:fit-content;margin:0 auto}
+.toggle button{font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-transform:uppercase;background:transparent;border:0;color:var(--wash);padding:11px 22px;cursor:pointer;transition:all .12s}
+.toggle button:not(:last-child){border-right:1.5px solid var(--ink)}
+.toggle button.on{background:var(--ink);color:var(--paper)}
+.count{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--wash)}
+.count b{color:var(--ink);font-weight:700}
+.count .hint{color:var(--wash);text-transform:none;letter-spacing:.02em}
+
+/* ---- loading and empty states ---- */
+.loading,.empty{padding:50px 0;font-family:var(--mono);font-size:13px;color:var(--wash);letter-spacing:.03em;text-align:center}
+.loading::after{content:'';display:inline-block;width:1em;text-align:left;animation:dots 1.2s steps(4,end) infinite}
+@keyframes dots{0%{content:''}25%{content:'.'}50%{content:'..'}75%{content:'...'}}
+
+/* ---- About-page accordion ---- */
+.asections details{border-bottom:1px solid var(--rule-soft)}
+.asections summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:18px 0}
+.asections summary::-webkit-details-marker{display:none}
+.s-title{font-size:19px;font-weight:600}
+.s-meta{font-family:var(--mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--wash);display:flex;align-items:center;gap:14px}
+.chev{font-family:var(--mono);font-size:14px;color:var(--wash);transition:transform .2s}
+details[open] .chev{transform:rotate(90deg)}
+
+/* ---- footer: the family variant of the sitewide stacked footer convention (matched
+   to the enterprise pages 2026-07-24, owner order: stacked 12px wash lines and the
+   bordered mono Improvement-log chip, replacing the retired note/meta flex split and
+   the pill link row; the 2px ink rule stays as the family's print identity) ---- */
+/* Footer link-row convention (owner order, 2026-07-30): footer content (credit line,
+   link rows, improvement-log link) is centered, not left-aligned, across every page
+   that shares this stylesheet. */
+footer{border-top:2px solid var(--ink);padding:2.4rem 0 3.2rem;margin-top:50px;color:var(--wash);font-family:var(--serif);font-size:12px;font-weight:400;text-align:center}
+footer p{max-width:none;margin:.4rem 0}
+footer a{color:var(--wash);text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+footer a:hover{color:var(--ink)}
+.footer-improvements{display:inline-block;margin-top:.4rem;font-family:var(--mono);font-size:12px;color:var(--wash);text-decoration:none;padding:.15rem .5rem;border:1px solid var(--rule)}
+.footer-improvements:hover{color:var(--ink)}
+
+/* Three-tier stack fallback (replaces a single shared 680px breakpoint, 2026-08-18). Every
+   masthead sets data-mast-tier explicitly (light/mid/dense); the :not([data-mast-tier]) rule
+   is a safety net only, never the intended path. Light keeps the original 680px unchanged
+   (gift-enterprise.html, open-data-interlock.html -- neither measured broken at any tested
+   width down to 375px). Mid and dense raise the handoff point far enough that no page shows a
+   partial, broken multi-row wrap; see the ultra plan's Section 7 for the mandatory re-test that
+   confirms or adjusts these three pixel values against the real built markup. */
+@media (max-width:680px){
+  .masthead:not([data-mast-tier]) .inner,
+  .masthead[data-mast-tier="light"] .inner{flex-direction:column;gap:10px;align-items:flex-start}
+  .masthead:not([data-mast-tier]) .mast-nav,
+  .masthead:not([data-mast-tier]) .mast-menu,
+  .masthead[data-mast-tier="light"] .mast-nav,
+  .masthead[data-mast-tier="light"] .mast-menu{font-size:11px;gap:16px;flex-wrap:wrap}
+}
+@media (max-width:860px){
+  .masthead[data-mast-tier="mid"] .inner{flex-direction:column;gap:10px;align-items:flex-start}
+  .masthead[data-mast-tier="mid"] .mast-nav,
+  .masthead[data-mast-tier="mid"] .mast-menu{font-size:11px;gap:16px;flex-wrap:wrap}
+}
+@media (max-width:1000px){
+  .masthead[data-mast-tier="dense"] .inner{flex-direction:column;gap:10px;align-items:flex-start}
+  .masthead[data-mast-tier="dense"] .mast-nav,
+  .masthead[data-mast-tier="dense"] .mast-menu{font-size:11px;gap:16px;flex-wrap:wrap}
+}
+@media (max-width:680px){
+  .toggle{max-width:100%;overflow-x:auto}
+  .toggle button{padding:11px 15px}
+}
