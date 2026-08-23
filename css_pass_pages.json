@@ -1,0 +1,12 @@
+{
+  "comment": "Tier 4 (ungoverned) sidecar for css-pass, this repo's own local roster.json equivalent, per the css-pass skill's own row shape (roster.json fields, minus pattern-book-specific ones: generated/generator/extracted/icon_family don't apply to a single-page repo with no pattern-book presence of its own). Written on css-pass's first touch of this repo (2026-08-23). This repo is NOT one of the pattern-book-governed repos (Jonathanlindavis.com, Microgroup.info) and has no roster.json row of its own; style_invariants.py's mechanical floor does not run against it. Its roster.json SIBLING mirror page, open-data-f4f.html on Jonathanlindavis.com (group 'public-data', convention ['general']), is the register precedent this page's own audience declaration below matches.",
+  "pages": [
+    {
+      "path": "index.html",
+      "family": "f4f",
+      "group": "public-data",
+      "convention": ["general"],
+      "audience": "Prospective and current graduate students (and, secondarily, undergraduates/postdocs/professionals per the site's own multi-audience eligibility tags) browsing a free, open, public fellowship index. General/Web register, matching the writing-convention:general comment already present in index.html and the roster.json sibling mirror page open-data-f4f.html's own group/convention."
+    }
+  ]
+}

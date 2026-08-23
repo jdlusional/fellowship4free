@@ -71,7 +71,8 @@ a{color:var(--ink);text-decoration:none}
 .clearbtn{font-family:var(--mono);font-size:.74rem;color:var(--ink);background:none;border:none;cursor:pointer;padding:0;margin-top:.35rem}
 .clearbtn:hover{text-decoration:underline}
 .more-wrap{display:flex;justify-content:center;margin:1.5rem 0}
-.morebtn{font-family:var(--mono);font-size:.82rem;color:var(--accent);background:var(--well);border:1.5px solid var(--accent);border-radius:0;padding:.55rem 1.1rem;cursor:pointer}
+#m-updated{white-space:nowrap} /* keep "Aug 2026" from breaking mid-date now the mast-note text is longer (Phase 2 pool-count addition) */
+.morebtn{font-family:var(--mono);font-size:.82rem;color:var(--accent);background:var(--well);border:1.5px solid var(--accent);border-radius:0;padding:.55rem 1.1rem;min-height:44px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
 .morebtn:hover{background:var(--accent);color:var(--well)}
 
 .resbar{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:.75rem;flex-wrap:wrap}
@@ -158,7 +159,7 @@ mark{background:var(--od-hilite);color:var(--ink);border-radius:0;padding:0 1px}
 </header>
 
 <header class="hero">
-  <img class="logo" src="Assets/f4f-lockup.png" alt="Fellowships4Free — the open fellowship index" width="1440" height="600">
+  <img class="logo" src="assets/f4f-lockup.svg" alt="Fellowships4Free — the open fellowship index" width="1440" height="600">
   <p class="od-pledge" style="margin-top:1.4rem">
     <span>Open data</span>
     <span>Open source</span>
@@ -213,7 +214,7 @@ mark{background:var(--od-hilite);color:var(--ink);border-radius:0;padding:0 1px}
 
 <footer><div class="wrap">
   <p>Fellowships4Free is an independent public good built by Jonathan Lin Davis. A free, open index of verified graduate and early-career fellowships: no login, no paywall, links and amounts checked against the source.</p>
-  <p>Data &middot; <a href="data/fellowships.json">fellowships.json</a> &middot; <a href="data/fellowships.csv">fellowships.csv</a> &middot; License &middot; CC BY 4.0 data, MIT code &middot; <a href="https://jonathanlindavis.com/contact.html">Get in Touch</a></p>
+  <p>Data &middot; <a href="data/fellowships.json">fellowships.json</a> &middot; <a href="data/fellowships.csv">fellowships.csv</a> &middot; License &middot; CC BY 4.0 data, MIT code &middot; <a href="https://jonathanlindavis.com/contact.html">Get in touch</a></p>
   <p class="footer-improvements-wrap"><a class="footer-improvements" href="https://jonathanlindavis.com/system-change-log">System change log</a></p>
 </div></footer>
 
