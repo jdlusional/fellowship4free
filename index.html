@@ -272,6 +272,10 @@ function highlight(text,q){
 async function load(){
   const res=await fetch('data/fellowships.json',{cache:'no-store'});
   state.data=await res.json();
+  /* flags is normally a semicolon-joined string, but some records store it as a list; every
+     .trim()/.split() call site below assumes a string, so coerce once here rather than at each
+     call site (SITE-1 crash fix, 2026-08-22 ultra plan Section 2.3/3.2). */
+  state.data.forEach(r=>{if(Array.isArray(r.flags))r.flags=r.flags.filter(Boolean).join('; ');});
 
   /* The working universe is the DISPLAY_CAP fellowships with the soonest UPCOMING concrete
      deadline. Computed ONCE here: keep only future-dated entries, sort ascending by that date,
