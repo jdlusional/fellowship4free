@@ -70,6 +70,9 @@ a{color:var(--ink);text-decoration:none}
 .opt .n{margin-left:auto;font-family:var(--mono);font-size:.72rem;color:var(--wash)}
 .clearbtn{font-family:var(--mono);font-size:.74rem;color:var(--ink);background:none;border:none;cursor:pointer;padding:0;margin-top:.35rem}
 .clearbtn:hover{text-decoration:underline}
+.more-wrap{display:flex;justify-content:center;margin:1.5rem 0}
+.morebtn{font-family:var(--mono);font-size:.82rem;color:var(--accent);background:var(--well);border:1.5px solid var(--accent);border-radius:0;padding:.55rem 1.1rem;cursor:pointer}
+.morebtn:hover{background:var(--accent);color:var(--well)}
 
 .resbar{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:.75rem;flex-wrap:wrap}
 .resbar .count{font-family:var(--mono);font-size:.84rem;color:var(--wash)}
@@ -148,7 +151,7 @@ mark{background:var(--od-hilite);color:var(--ink);border-radius:0;padding:0 1px}
     <a class="mark">Fellowships4<span>Free</span></a>
     <button type="button" class="mast-toggle" hidden aria-hidden="true">Menu</button>
     <div class="mast-menu">
-      <span class="mast-note"><strong id="m-count">948</strong> fellowships in full repository, only 50 displayed &middot; updated <strong id="m-updated">Jun 2026</strong></span>
+      <span class="mast-note"><strong id="m-count">948</strong> fellowships in full repository &middot; <strong id="m-pool-count">50</strong> in the open pool (upcoming deadline or Rolling), 50 shown at a time &middot; updated <strong id="m-updated">Jun 2026</strong></span>
       <a class="mast-home" href="https://jonathanlindavis.com/">&larr; jonathanlindavis.com</a>
     </div>
   </div>
@@ -181,6 +184,7 @@ mark{background:var(--od-hilite);color:var(--ink);border-radius:0;padding:0 1px}
       </select>
     </div>
     <div id="results"></div>
+    <div id="more-wrap" class="more-wrap"></div>
   </main>
 </div>
 
@@ -214,7 +218,7 @@ mark{background:var(--od-hilite);color:var(--ink);border-radius:0;padding:0 1px}
 </div></footer>
 
 <script>
-const state={data:[],pool:[],filtered:[],facets:{area:new Set(),restricted:false},q:"",sort:"deadline"};
+const state={data:[],pool:[],filtered:[],facets:{area:new Set(),restricted:false},q:"",sort:"deadline",visibleCount:0};
 const NOW=Date.now();
 
 /* ---- Utilities ---- */
@@ -277,17 +281,29 @@ async function load(){
      call site (SITE-1 crash fix, 2026-08-22 ultra plan Section 2.3/3.2). */
   state.data.forEach(r=>{if(Array.isArray(r.flags))r.flags=r.flags.filter(Boolean).join('; ');});
 
-  /* The working universe is the DISPLAY_CAP fellowships with the soonest UPCOMING concrete
-     deadline. Computed ONCE here: keep only future-dated entries, sort ascending by that date,
-     take the first 50. Search, facets, sort, and facet options all operate within this pool -
-     never the full repository. Kept fixed (apply() always filters a fresh copy, never aliases). */
+  /* The working universe is every grad-eligible fellowship with either a concrete UPCOMING
+     deadline or a Rolling deadline (2026-08-23 Phase 2 widening: real deadline-typed data
+     (DA-5/DA-10) hasn't landed yet, so Rolling inclusion via the existing isRolling() check is
+     an explicit, narrow acceleration of the F4F ultra plan's SITE-7, owner-approved ahead of its
+     original Stage-6 gate - see the F4F Project Context File). Computed ONCE here: dated-future
+     entries sort ascending by deadline first, Rolling entries follow (stable secondary sort by
+     organization). Search, facets, sort, and facet options all operate within this pool - never
+     the full repository. Kept fixed (apply() always filters a fresh copy, never aliases). The
+     pool itself is no longer capped to 50; DISPLAY_CAP now governs how many are shown at once
+     via "Show 50 more" pagination (see render()). */
   state.pool=state.data
     .filter(r=>r.grad_eligible!==false) // public display: hide out-of-scope (non current/prospective grad-student) fellowships; they stay in the data and in the total count below
-    .filter(r=>futureDeadline(r.deadline))
-    .sort((a,b)=>futureDeadline(a.deadline)-futureDeadline(b.deadline))
-    .slice(0,DISPLAY_CAP);
+    .filter(r=>futureDeadline(r.deadline)||isRolling(r.deadline))
+    .sort((a,b)=>{
+      const da=futureDeadline(a.deadline),db=futureDeadline(b.deadline);
+      if(da&&db)return da-db;
+      if(da&&!db)return-1;
+      if(!da&&db)return 1;
+      return(a.organization||"").localeCompare(b.organization||"");
+    });
 
   document.getElementById('m-count').textContent=state.data.length; // full repository length (ALL fellowships, incl. out-of-scope, per owner instruction)
+  document.getElementById('m-pool-count').textContent=state.pool.length; // open pool size (dated-future + Rolling, grad-eligible)
   document.getElementById('m-updated').textContent=new Date().toLocaleDateString(undefined,{year:'numeric',month:'short'});
   buildFacets();apply();
 }
@@ -364,6 +380,7 @@ function apply(){
   });
 
   state.filtered=base;
+  state.visibleCount=DISPLAY_CAP; // a new filter/search/facet change re-pages from the top
   updateFacetCounts();
   sortRows();render();
 }
@@ -389,11 +406,26 @@ function render(){
   const host=document.getElementById('results');
   if(!state.filtered.length){
     host.innerHTML='<div class="empty"><b>No matches</b>Try removing a filter or broadening your search.</div>';
+    document.getElementById('more-wrap').innerHTML='';
     return;
   }
 
+  // Pagination: show state.visibleCount of the current filtered/sorted set at a time
+  // (Phase 2 widening, 2026-08-23 - the pool itself can now hold 200+ eligible records).
+  const shown=state.filtered.slice(0,state.visibleCount);
+  const moreWrap=document.getElementById('more-wrap');
+  if(state.filtered.length>state.visibleCount){
+    const remaining=state.filtered.length-state.visibleCount;
+    moreWrap.innerHTML=`<button type="button" class="morebtn" id="show-more">Show ${Math.min(DISPLAY_CAP,remaining)} more (${remaining} not shown)</button>`;
+    document.getElementById('show-more').addEventListener('click',()=>{
+      state.visibleCount+=DISPLAY_CAP;render();
+    });
+  }else{
+    moreWrap.innerHTML='';
+  }
+
   const AUD_LABELS={grad:'Grad',undergrad:'Undergrad',professional:'Professional',postdoc:'Postdoc'};
-  host.innerHTML=state.filtered.map(r=>{
+  host.innerHTML=shown.map(r=>{
     const nameHtml=r.url
       ?`<a href="${esc(r.url)}" target="_blank" rel="noopener">${highlight(r.name,q)}</a>`
       :highlight(r.name,q);
