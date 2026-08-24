@@ -152,7 +152,12 @@ mark{background:var(--od-hilite);color:var(--ink);border-radius:0;padding:0 1px}
     <a class="mark">Fellowships4<span>Free</span></a>
     <button type="button" class="mast-toggle" hidden aria-hidden="true">Menu</button>
     <div class="mast-menu">
-      <span class="mast-note"><strong id="m-count">948</strong> fellowships in full repository &middot; <strong id="m-pool-count">50</strong> in the open pool (upcoming deadline or Rolling), 50 shown at a time &middot; updated <strong id="m-updated">Jun 2026</strong></span>
+      <!-- Static values are deliberately neutral placeholders, not numbers. Every figure here is
+           filled from data/fellowships.json on load. A hardcoded number drifts silently the moment
+           the corpus changes: this line read "948" against a real 3,721 and "Jun 2026" against a
+           July-to-August verification range, both wrong, both invisible because JS overwrote them
+           before anyone looked. A placeholder cannot be wrong; a stale number can. -->
+      <span class="mast-note"><strong id="m-count">&hellip;</strong> fellowships in full repository &middot; <strong id="m-pool-count">&hellip;</strong> in the open pool (upcoming deadline or Rolling), 50 shown at a time &middot; verified <strong id="m-updated">&hellip;</strong></span>
       <a class="mast-home" href="https://jonathanlindavis.com/">&larr; jonathanlindavis.com</a>
     </div>
   </div>
@@ -233,6 +238,26 @@ function isRolling(v){return/rolling/i.test(v||"");}
    free-text `area` stays visible on each card as the granular detail. */
 function bucketOf(r){return r.area_bucket||"Open Field";}
 
+/* Freshness stamp, derived from the DATA rather than from the reader's clock.
+   This previously read `new Date()`, which rendered "updated <the current month>" on every
+   page load no matter how old the records were. That is a provenance claim manufactured from
+   the viewer's system time, and it actively hid staleness: on 2026-08-24 this page was
+   presenting itself as freshly updated while publishing a NAEd/Spencer deadline that had been
+   verified in July and was wrong by six days.
+
+   Reports the RANGE, not the maximum. The maximum alone is just as misleading in practice:
+   as of 2026-08-24, 94 of 3,721 records were verified in August and 3,627 in July, so "Aug
+   2026" would imply the whole corpus was August-fresh. A reader deciding whether to trust a
+   deadline needs the oldest bound, which is what the low end supplies. */
+function verifiedRange(rows){
+  const ds=(rows||[]).map(r=>r.last_verified).filter(v=>/^\d{4}-\d{2}-\d{2}$/.test(v||"")).sort();
+  if(!ds.length)return"verification dates unavailable";
+  const fmt=v=>{const[y,m]=v.split("-");
+    return new Date(Date.UTC(+y,+m-1,1)).toLocaleDateString("en-US",{year:'numeric',month:'short',timeZone:'UTC'});};
+  const lo=fmt(ds[0]),hi=fmt(ds[ds.length-1]);
+  return lo===hi?lo:lo+" to "+hi;
+}
+
 /* Parse a deadline string to a Date for sorting/urgency.
    Handles: "Oct 29, 2026", "~Nov 10, 2026", "Jun 1, 2026 at 5 PM ET", "Rolling", "TBD".
    Requires an explicit day-of-month - without one, JS's Date() will silently default to
@@ -305,7 +330,7 @@ async function load(){
 
   document.getElementById('m-count').textContent=state.data.length; // full repository length (ALL fellowships, incl. out-of-scope, per owner instruction)
   document.getElementById('m-pool-count').textContent=state.pool.length; // open pool size (dated-future + Rolling, grad-eligible)
-  document.getElementById('m-updated').textContent=new Date().toLocaleDateString(undefined,{year:'numeric',month:'short'});
+  document.getElementById('m-updated').textContent=verifiedRange(state.data);
   buildFacets();apply();
 }
 
