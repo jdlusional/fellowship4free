@@ -207,6 +207,7 @@ mark{background:var(--od-hilite);color:var(--ink);border-radius:0;padding:0 1px}
          both invisible because JS overwrote them before anyone looked. A placeholder cannot be wrong;
          a stale number can. -->
     <p class="f4f-scope"><strong id="m-count">&hellip;</strong> fellowships in full repository &middot; <strong id="m-pool-count">&hellip;</strong> in the open pool (upcoming deadline or Rolling), 50 shown at a time &middot; verified <strong id="m-updated">&hellip;</strong></p>
+    <p id="f4f-skipped" class="f4f-scope" hidden></p>
     <div class="resbar">
       <!-- Neutral placeholder until the data resolves (UI-18): a static "0" read as "no results". -->
       <span class="f4f-count" role="status"><b id="r-count">&hellip;</b> matching fellowships</span>
@@ -349,12 +350,46 @@ function highlight(text,q){
 }
 
 /* ---- Load ---- */
+/* A record the render needs: an object with a non-empty string name, text fields that are strings
+   (or absent), flags as a string or a list, audience as a list or a string. */
+const TEXT_FIELDS=['name','organization','url','amount','duration','eligibility','notes','area','area_bucket','location','deadline','opens','date_added','last_verified','other_benefits'];
+function recordProblem(r){
+  if(!r||typeof r!=='object'||Array.isArray(r))return'record';
+  if(typeof r.name!=='string'||!r.name.trim())return'name';
+  for(const k of TEXT_FIELDS)if(r[k]!=null&&typeof r[k]!=='string')return k;
+  if(r.flags!=null&&typeof r.flags!=='string'&&!Array.isArray(r.flags))return'flags';
+  if(r.audience!=null&&typeof r.audience!=='string'&&!Array.isArray(r.audience))return'audience';
+  return null;
+}
+function loadFailed(kind,cause,title,detail){
+  console.error(`F4F: the index failed to load (${kind})`,cause);
+  document.getElementById('r-count').textContent='0';
+  document.getElementById('results').innerHTML=`<div class="f4f-empty"><b>${title}</b>${detail} The raw data is also available as <a href="data/fellowships.csv">fellowships.csv</a>.</div>`;
+}
+
 async function load(){
   // Default cache mode (UI-28, interim): a repeat visit sends a conditional request and gets a 304
   // from the file's ETag instead of re-downloading about 1.15 MB. The pinned, integrity-checked
   // fetch is STR-10's.
-  const res=await fetch('data/fellowships.json');
-  state.data=await res.json();
+  /* Four distinct failure branches (UI-19), each logging its cause with console.error and naming
+     the problem on the page with a link to the raw CSV: network failure, a non-200 status, a file
+     that does not parse, and individual malformed records, which are skipped and counted rather
+     than allowed to blank the page. An integrity-mismatch branch joins these when STR-10 lands. */
+  let res;
+  try{res=await fetch('data/fellowships.json');}
+  catch(e){return loadFailed('network',e,'Could not reach the index','Check your connection and reload the page.');}
+  if(!res.ok)return loadFailed('status',res.status,'The index is unavailable right now',`The server answered with status ${res.status}. Try again in a few minutes.`);
+  let raw;
+  try{raw=await res.json();if(!Array.isArray(raw))throw new Error('the top level is not a list');}
+  catch(e){return loadFailed('parse',e,'The index file could not be read','It may be incomplete or damaged.');}
+  const skipped=[];
+  state.data=raw.filter(r=>{const p=recordProblem(r);if(p)skipped.push({id:r&&r.id,field:p});return!p;});
+  if(skipped.length){
+    console.error(`F4F: skipped ${skipped.length} malformed record(s)`,skipped);
+    const note=document.getElementById('f4f-skipped');
+    note.textContent=`${skipped.length} record${skipped.length===1?'':'s'} could not be shown because a field was malformed.`;
+    note.hidden=false;
+  }
   /* flags is normally a semicolon-joined string, but some records store it as a list; every
      .trim()/.split() call site below assumes a string, so coerce once here rather than at each
      call site (SITE-1 crash fix, 2026-08-22 ultra plan Section 2.3/3.2). */
@@ -618,9 +653,8 @@ document.getElementById('clear').addEventListener('click',()=>{
 });
 
 
-load().catch(()=>{
-  document.getElementById('results').innerHTML='<div class="f4f-empty"><b>Could not load the index</b>Make sure data/fellowships.json is present.</div>';
-});
+// Last resort for an error none of the branches above anticipated: log it, never a blank page.
+load().catch(e=>loadFailed('unexpected',e,'Something went wrong while showing the index','Reload the page to try again.'));
 </script>
 </body>
 </html>
