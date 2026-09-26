@@ -293,12 +293,20 @@ function verifiedRange(rows){
 }
 
 /* Parse a deadline string to a Date for sorting/urgency.
-   Handles: "Oct 29, 2026", "~Nov 10, 2026", "Jun 1, 2026 at 5 PM ET", "Rolling", "TBD".
+   Handles: "Oct 29, 2026", "~Nov 10, 2026", "Jun 1, 2026 at 5 PM ET", "2026-10-29", "Rolling", "TBD".
    Requires an explicit day-of-month - without one, JS's Date() will silently default to
-   Jan 1 for vague strings like "Fall 2026" or "Jan 2027", making them look falsely urgent. */
+   Jan 1 for vague strings like "Fall 2026" or "Jan 2027", making them look falsely urgent.
+   Interim (UI-14, retired when STR-8's typed deadline field lands): an ISO YYYY-MM-DD string is
+   read as a LOCAL calendar date. new Date("2026-10-29") would read it as UTC midnight, which is
+   the evening before in US time zones. */
 function parseDeadline(s){
   if(!s||isRolling(s)||/tbd|verify|biannual|continuous/i.test(s))return null;
   const clean=s.replace(/[~\u2019]/g,"").replace(/\bat\b.*/i,"").replace(/,\s*\d{1,2}:\d{2}.*$/,"").trim();
+  const iso=/^(\d{4})-(\d{2})-(\d{2})$/.exec(clean);
+  if(iso){
+    const d=new Date(+iso[1],+iso[2]-1,+iso[3]);
+    return (isNaN(d)||d.getMonth()!==+iso[2]-1)?null:d;
+  }
   if(!/^[A-Za-z]{3,9}\.?\s+\d{1,2},?\s+\d{4}$/.test(clean))return null;
   const d=new Date(clean);
   return isNaN(d)?null:d;
