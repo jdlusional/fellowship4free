@@ -72,6 +72,9 @@
 .facet legend{float:left;width:100%;padding:0;font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--wash);margin:0 0 .55rem}
 .facet legend+*{clear:both}
 .f4f-h1{margin:0;font-size:inherit;line-height:0;width:100%}
+/* Skip link: the first tab stop, off-screen until focused (UI-23). */
+.f4f-skip{position:absolute;left:.5rem;top:-4rem;z-index:100;background:var(--ink);color:var(--paper);padding:.6rem .9rem;font-family:var(--mono);font-size:.85rem;text-decoration:none}
+.f4f-skip:focus{top:.5rem}
 .f4f-vh{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .opt{display:flex;align-items:center;gap:.5rem;padding:.18rem 0;cursor:pointer;color:var(--wash);font-size:.88rem;font-family:var(--serif)}
 .opt:hover{color:var(--ink)}
@@ -164,6 +167,7 @@ mark{background:var(--od-hilite);color:var(--ink);border-radius:0;padding:0 1px}
 </head>
 <body>
 <!-- writing-convention: general -->
+<a class="f4f-skip" href="#results-heading">Skip to results</a>
 
 <header class="masthead" data-mast-tier="mid">
   <div class="inner">
@@ -485,6 +489,12 @@ function render(append){
   if(append){
     const already=host.querySelectorAll('article.entry').length;
     host.insertAdjacentHTML('beforeend',state.filtered.slice(already,state.visibleCount).map(r=>cardHtml(r,q)).join(''));
+    // Keyboard focus moves to the first new card's link rather than falling back to BODY (UI-23).
+    const firstNew=host.querySelectorAll('article.entry')[already];
+    if(firstNew){
+      const link=firstNew.querySelector('a[href]');
+      if(link)link.focus();else{firstNew.setAttribute('tabindex','-1');firstNew.focus();}
+    }
   }else{
     host.innerHTML=state.filtered.slice(0,state.visibleCount).map(r=>cardHtml(r,q)).join('');
   }
