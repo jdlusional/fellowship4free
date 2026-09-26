@@ -350,7 +350,10 @@ function highlight(text,q){
 
 /* ---- Load ---- */
 async function load(){
-  const res=await fetch('data/fellowships.json',{cache:'no-store'});
+  // Default cache mode (UI-28, interim): a repeat visit sends a conditional request and gets a 304
+  // from the file's ETag instead of re-downloading about 1.15 MB. The pinned, integrity-checked
+  // fetch is STR-10's.
+  const res=await fetch('data/fellowships.json');
   state.data=await res.json();
   /* flags is normally a semicolon-joined string, but some records store it as a list; every
      .trim()/.split() call site below assumes a string, so coerce once here rather than at each
