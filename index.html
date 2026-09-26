@@ -99,6 +99,10 @@
   margin-bottom:0;
   padding:1.1rem 0;
   display:block;
+  /* Off-screen cards skip layout and paint until scrolled near (UI-4); the size is an estimate
+     of a typical card so the scrollbar does not jump. */
+  content-visibility:auto;
+  contain-intrinsic-size:auto 640px;
 }
 .entry .head{display:flex;flex-direction:column;gap:.12rem}
 .entry .org{font-family:var(--mono);font-size:.82rem;text-transform:uppercase;letter-spacing:.07em;color:var(--wash)}
@@ -444,8 +448,11 @@ function sortRows(){
   });
 }
 
-/* ---- Render ---- */
-function render(){
+/* ---- Render ----
+   render() rebuilds the list after a filter, search or sort change. render(true), used by
+   "Show more", APPENDS only the new cards, so cards already on the page are never replaced
+   (UI-4): their DOM nodes, scroll position and focus survive. */
+function render(append){
   const q=state.q.toLowerCase().trim();
   document.getElementById('r-count').textContent=state.filtered.length;
   const host=document.getElementById('results');
@@ -457,20 +464,28 @@ function render(){
 
   // Pagination: show state.visibleCount of the current filtered/sorted set at a time
   // (Phase 2 widening, 2026-08-23 - the pool itself can now hold 200+ eligible records).
-  const shown=state.filtered.slice(0,state.visibleCount);
   const moreWrap=document.getElementById('more-wrap');
   if(state.filtered.length>state.visibleCount){
     const remaining=state.filtered.length-state.visibleCount;
     moreWrap.innerHTML=`<button type="button" class="morebtn" id="show-more">Show ${Math.min(DISPLAY_CAP,remaining)} more (${remaining} not shown)</button>`;
     document.getElementById('show-more').addEventListener('click',()=>{
-      state.visibleCount+=DISPLAY_CAP;render();
+      state.visibleCount+=DISPLAY_CAP;render(true);
     });
   }else{
     moreWrap.innerHTML='';
   }
 
-  const AUD_LABELS={grad:'Grad',undergrad:'Undergrad',professional:'Professional',postdoc:'Postdoc'};
-  host.innerHTML=shown.map(r=>{
+  if(append){
+    const already=host.querySelectorAll('article.entry').length;
+    host.insertAdjacentHTML('beforeend',state.filtered.slice(already,state.visibleCount).map(r=>cardHtml(r,q)).join(''));
+  }else{
+    host.innerHTML=state.filtered.slice(0,state.visibleCount).map(r=>cardHtml(r,q)).join('');
+  }
+}
+
+const AUD_LABELS={grad:'Grad',undergrad:'Undergrad',professional:'Professional',postdoc:'Postdoc'};
+function cardHtml(r,q){
+  {
     const nameHtml=r.url
       ?`<a href="${esc(r.url)}" target="_blank" rel="noopener">${highlight(r.name,q)}</a>`
       :highlight(r.name,q);
@@ -513,7 +528,7 @@ function render(){
       ${audChips?`<div class="aud-row">${audChips}</div>`:''}
       <div class="qa-grid">${qaRows}</div>
     </article>`;
-  }).join('');
+  }
 }
 
 
