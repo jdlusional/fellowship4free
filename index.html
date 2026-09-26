@@ -44,6 +44,8 @@
      into its lockup art. */
   --od-accent:#2f7fd1; --od-hilite:#bcd0eb; --accent:var(--od-accent);
   --rule-soft:#ddd5c3;
+  /* Sticky-masthead offset for in-page jumps and focus (UI-2); 96px until measured. */
+  scroll-padding-top:var(--f4f-mast-h,96px);
 }
 /* Base/reset, masthead, headings, search shell, count, states, and footer shell
    all come from open-data-shared.css. */
@@ -71,7 +73,12 @@
 .clearbtn{font-family:var(--mono);font-size:.74rem;color:var(--ink);background:none;border:none;cursor:pointer;padding:0;margin-top:.35rem}
 .clearbtn:hover{text-decoration:underline}
 .more-wrap{display:flex;justify-content:center;margin:1.5rem 0}
-#m-updated{white-space:nowrap} /* keep "Aug 2026" from breaking mid-date now the mast-note text is longer (Phase 2 pool-count addition) */
+#m-updated{white-space:nowrap} /* keep "Aug 2026" from breaking mid-date */
+/* Counts sentence, moved out of the sticky masthead into the results column (UI-2). */
+.f4f-scope{font-family:var(--mono);font-size:.78rem;color:var(--wash);margin:0 0 .6rem;line-height:1.5}
+.f4f-scope strong{color:var(--ink);font-weight:500}
+/* The masthead's live height (--f4f-mast-h, measured on load and on resize by the script below)
+   drives the scroll offset set in :root above (UI-2) and the rail's sticky top (UI-5). */
 .morebtn{font-family:var(--mono);font-size:.82rem;color:var(--accent);background:var(--well);border:1.5px solid var(--accent);border-radius:0;padding:.55rem 1.1rem;min-height:44px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
 .morebtn:hover{background:var(--accent);color:var(--well)}
 
@@ -152,12 +159,6 @@ mark{background:var(--od-hilite);color:var(--ink);border-radius:0;padding:0 1px}
     <a class="mark">Fellowships4<span>Free</span></a>
     <button type="button" class="mast-toggle" hidden aria-hidden="true">Menu</button>
     <div class="mast-menu">
-      <!-- Static values are deliberately neutral placeholders, not numbers. Every figure here is
-           filled from data/fellowships.json on load. A hardcoded number drifts silently the moment
-           the corpus changes: this line read "948" against a real 3,721 and "Jun 2026" against a
-           July-to-August verification range, both wrong, both invisible because JS overwrote them
-           before anyone looked. A placeholder cannot be wrong; a stale number can. -->
-      <span class="mast-note"><strong id="m-count">&hellip;</strong> fellowships in full repository &middot; <strong id="m-pool-count">&hellip;</strong> in the open pool (upcoming deadline or Rolling), 50 shown at a time &middot; verified <strong id="m-updated">&hellip;</strong></span>
       <a class="mast-home" href="https://jonathanlindavis.com/">&larr; jonathanlindavis.com</a>
     </div>
   </div>
@@ -180,6 +181,14 @@ mark{background:var(--od-hilite);color:var(--ink);border-radius:0;padding:0 1px}
     <button class="clearbtn" id="clear">Clear all filters</button>
   </aside>
   <main>
+    <!-- The counts sentence lives here, in the results bar, not in the sticky masthead (UI-2), so the
+         phone masthead holds only the wordmark and one link. Static values are deliberately neutral
+         placeholders, not numbers. Every figure here is filled from data/fellowships.json on load. A
+         hardcoded number drifts silently the moment the corpus changes: this line once read "948"
+         against a real 3,721 and "Jun 2026" against a July-to-August verification range, both wrong,
+         both invisible because JS overwrote them before anyone looked. A placeholder cannot be wrong;
+         a stale number can. -->
+    <p class="f4f-scope"><strong id="m-count">&hellip;</strong> fellowships in full repository &middot; <strong id="m-pool-count">&hellip;</strong> in the open pool (upcoming deadline or Rolling), 50 shown at a time &middot; verified <strong id="m-updated">&hellip;</strong></p>
     <div class="resbar">
       <span class="f4f-count"><b id="r-count">0</b> matching fellowships</span>
       <select class="sortsel" id="sort" aria-label="Sort">
@@ -224,6 +233,14 @@ mark{background:var(--od-hilite);color:var(--ink);border-radius:0;padding:0 1px}
 </div></footer>
 
 <script>
+/* Publish the sticky masthead's real height as --f4f-mast-h (UI-2, UI-5): the scroll offset and the
+   rail's sticky top follow it instead of a hand-set 66px. */
+(function(){
+  const m=document.querySelector('header.masthead');if(!m)return;
+  const set=()=>document.documentElement.style.setProperty('--f4f-mast-h',Math.round(m.getBoundingClientRect().height)+'px');
+  set();
+  if('ResizeObserver'in window)new ResizeObserver(set).observe(m);else addEventListener('resize',set);
+})();
 const state={data:[],pool:[],filtered:[],facets:{area:new Set(),restricted:false},q:"",sort:"deadline",visibleCount:0};
 const NOW=Date.now();
 
