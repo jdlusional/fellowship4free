@@ -369,7 +369,7 @@ async function load(){
 }
 
 /* ---- Facets ----
-   Facet counts reflect the currently DISPLAYED set (state.filtered). The Area checkbox list
+   Facet counts are disjunctive (see passes() and updateFacetCounts() below). The Area checkbox list
    is built ONCE from the categories present in the fixed 50-item pool (not the full repository
    and not the full taxonomy), so options don't appear/disappear as filters change; only their
    counts update. */
@@ -410,14 +410,27 @@ function buildFacets(){
   host.appendChild(rWrap);
 }
 
+/* Disjunctive counting (UI-6): each facet's option counts come from the pool filtered by the query
+   and every OTHER facet, never by that facet's own selection. Counting state.filtered instead made
+   every unticked Area read 0 the moment one Area was ticked, although ticking it adds results. */
+function passes(r,q,skip){
+  if(skip!=='area'&&state.facets.area.size&&!state.facets.area.has(bucketOf(r)))return false;
+  if(skip!=='restricted'&&state.facets.restricted&&r.flags&&r.flags.trim())return false;
+  if(q){
+    const hay=`${r.organization} ${r.name} ${r.eligibility} ${r.area} ${r.notes} ${r.flags} ${r.amount} ${r.other_benefits}`.toLowerCase();
+    if(!hay.includes(q))return false;
+  }
+  return true;
+}
+
 function updateFacetCounts(){
-  const areaCounts=catCounts(state.filtered);
+  const q=state.q.toLowerCase().trim();
+  const areaCounts=catCounts(state.pool.filter(r=>passes(r,q,'area')));
   document.querySelectorAll('[data-area-count]').forEach(el=>{
     el.textContent=areaCounts.get(el.getAttribute('data-area-count'))||0;
   });
-  const restrictedInDisplay=state.filtered.filter(r=>r.flags&&r.flags.trim()).length;
   const rEl=document.querySelector('[data-restrict-count]');
-  if(rEl)rEl.textContent=state.filtered.length-restrictedInDisplay;
+  if(rEl)rEl.textContent=state.pool.filter(r=>passes(r,q,'restricted')&&!(r.flags&&r.flags.trim())).length;
 }
 
 /* ---- Filter + Sort ---- */
@@ -429,15 +442,7 @@ function apply(){
 
   // Filter within the fixed 50-item pool (never the full repository). .filter() returns a
   // fresh array, so state.pool itself is never mutated or aliased.
-  const base=state.pool.filter(r=>{
-    if(state.facets.area.size&&!state.facets.area.has(bucketOf(r)))return false;
-    if(state.facets.restricted&&r.flags&&r.flags.trim())return false;
-    if(q){
-      const hay=`${r.organization} ${r.name} ${r.eligibility} ${r.area} ${r.notes} ${r.flags} ${r.amount} ${r.other_benefits}`.toLowerCase();
-      if(!hay.includes(q))return false;
-    }
-    return true;
-  });
+  const base=state.pool.filter(r=>passes(r,q,null));
 
   state.filtered=base;
   state.visibleCount=DISPLAY_CAP; // a new filter/search/facet change re-pages from the top
