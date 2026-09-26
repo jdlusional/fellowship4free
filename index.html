@@ -258,7 +258,7 @@ mark{background:var(--od-hilite);color:var(--ink);border-radius:0;padding:0 1px}
   set();
   if('ResizeObserver'in window)new ResizeObserver(set).observe(m);else addEventListener('resize',set);
 })();
-const state={data:[],pool:[],filtered:[],facets:{area:new Set(),restricted:false},q:"",sort:"deadline",visibleCount:0};
+const state={data:[],pool:[],filtered:[],facets:{area:new Set(),audience:new Set(),restricted:false},q:"",sort:"deadline",visibleCount:0};
 const NOW=Date.now();
 
 /* ---- Utilities ---- */
@@ -401,6 +401,21 @@ function buildFacets(){
   });
   host.appendChild(areaWrap);
 
+  // Audience filter (UI-10): the four list tags, plus "Unspecified" only while the pool still holds
+  // records whose audience is free text.
+  const audWrap=document.createElement('fieldset');audWrap.className='facet';audWrap.innerHTML='<legend>Audience</legend>';
+  const audOpts=AUD_FACET.slice();
+  if(state.pool.some(r=>!Array.isArray(r.audience)))audOpts.push(['unspecified','Unspecified']);
+  audOpts.forEach(([val,label])=>{
+    const row=document.createElement('label');row.className='opt';
+    row.innerHTML=`<input type="checkbox" data-key="audience" value="${val}"><span>${label}</span><span class="n" data-aud-count="${val}">0</span>`;
+    row.querySelector('input').addEventListener('change',e=>{
+      const s=state.facets.audience;e.target.checked?s.add(val):s.delete(val);apply();
+    });
+    audWrap.appendChild(row);
+  });
+  host.appendChild(audWrap);
+
   // Restrictions filter
   const rWrap=document.createElement('fieldset');rWrap.className='facet';rWrap.innerHTML='<legend>Eligibility</legend>';
   const rRow=document.createElement('label');rRow.className='opt';
@@ -413,8 +428,14 @@ function buildFacets(){
 /* Disjunctive counting (UI-6): each facet's option counts come from the pool filtered by the query
    and every OTHER facet, never by that facet's own selection. Counting state.filtered instead made
    every unticked Area read 0 the moment one Area was ticked, although ticking it adds results. */
+/* Audience tags (UI-10): the list vocabulary grad, postdoc, professional, undergrad. A record whose
+   audience is still free text (a string, until STR-7 repairs it) counts as "unspecified". */
+const AUD_FACET=[['grad','Graduate'],['postdoc','Postdoc'],['professional','Professional'],['undergrad','Undergraduate']];
+function audTags(r){return Array.isArray(r.audience)?r.audience:['unspecified'];}
+
 function passes(r,q,skip){
   if(skip!=='area'&&state.facets.area.size&&!state.facets.area.has(bucketOf(r)))return false;
+  if(skip!=='audience'&&state.facets.audience.size&&!audTags(r).some(t=>state.facets.audience.has(t)))return false;
   if(skip!=='restricted'&&state.facets.restricted&&r.flags&&r.flags.trim())return false;
   if(q){
     const hay=`${r.organization} ${r.name} ${r.eligibility} ${r.area} ${r.notes} ${r.flags} ${r.amount} ${r.other_benefits}`.toLowerCase();
@@ -428,6 +449,11 @@ function updateFacetCounts(){
   const areaCounts=catCounts(state.pool.filter(r=>passes(r,q,'area')));
   document.querySelectorAll('[data-area-count]').forEach(el=>{
     el.textContent=areaCounts.get(el.getAttribute('data-area-count'))||0;
+  });
+  const audCounts=new Map();
+  state.pool.filter(r=>passes(r,q,'audience')).forEach(r=>audTags(r).forEach(t=>audCounts.set(t,(audCounts.get(t)||0)+1)));
+  document.querySelectorAll('[data-aud-count]').forEach(el=>{
+    el.textContent=audCounts.get(el.getAttribute('data-aud-count'))||0;
   });
   const rEl=document.querySelector('[data-restrict-count]');
   if(rEl)rEl.textContent=state.pool.filter(r=>passes(r,q,'restricted')&&!(r.flags&&r.flags.trim())).length;
@@ -526,9 +552,10 @@ function cardHtml(r,q){
       ?r.flags.split(';').map(f=>f.trim()).filter(Boolean).map(f=>`<span class="flag-chip">&#9888; ${esc(f)}</span>`).join('')
       :'';
 
+    // A free-text audience (a string) renders its own text instead of no chip at all (UI-10).
     const audChips=(Array.isArray(r.audience)&&r.audience.length)
       ?r.audience.map(a=>`<span class="aud-chip">${AUD_LABELS[a]||esc(a)}</span>`).join('')
-      :'';
+      :((typeof r.audience==='string'&&r.audience.trim())?`<span class="aud-chip">${esc(r.audience)}</span>`:'');
 
     const qaRows=[
       ['How Much?',esc(r.amount)||'Not specified'],
@@ -565,7 +592,7 @@ document.getElementById('search').addEventListener('input',e=>{state.q=e.target.
 document.getElementById('sort').addEventListener('change',e=>{state.sort=e.target.value;sortRows();render();});
 
 document.getElementById('clear').addEventListener('click',()=>{
-  state.q="";state.facets={area:new Set(),restricted:false};
+  state.q="";state.facets={area:new Set(),audience:new Set(),restricted:false};
   document.getElementById('search').value="";
   document.querySelectorAll('#facets input').forEach(i=>i.checked=false);
   apply();
