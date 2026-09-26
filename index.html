@@ -121,6 +121,7 @@
 .entry .org{font-family:var(--mono);font-size:.82rem;text-transform:uppercase;letter-spacing:.07em;color:var(--wash)}
 .entry .name{font-family:var(--serif);font-size:1.45rem;font-weight:500;line-height:1.18;color:var(--ink)}
 .entry .name a{color:var(--ink);text-decoration:none}
+.f4f-ext{font-size:.7em;margin-left:.3em;color:var(--wash);vertical-align:.15em}
 .entry .name a:hover{color:var(--wash);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
 
 /* Symmetric Q&A rows - every entry gets the same 7 labeled fields in the same order */
@@ -177,7 +178,7 @@ mark{background:var(--od-hilite);color:var(--ink);border-radius:0;padding:0 1px}
 
 <header class="masthead" data-mast-tier="mid">
   <div class="inner">
-    <a class="mark">Fellowships4<span class="f4f-mark-accent">Free</span></a>
+    <a class="mark" href="/">Fellowships4<span class="f4f-mark-accent">Free</span></a>
     <button type="button" class="mast-toggle" hidden aria-hidden="true">Menu</button>
     <div class="mast-menu">
       <a class="mast-home" href="https://jonathanlindavis.com/">&larr; jonathanlindavis.com</a>
@@ -233,27 +234,27 @@ mark{background:var(--od-hilite);color:var(--ink);border-radius:0;padding:0 1px}
   <p>The full dataset, a weekly digest, and a running conversation about how to fund graduate work.</p>
   <div class="connect-tiles">
     <a href="https://jonathanlindavis.com/projects.html" target="_blank" rel="noopener" class="ctile ctile-web">
-      <span class="ctile-icon">&#127760;</span>
+      <span class="ctile-icon" aria-hidden="true">&#127760;</span>
       <span class="ctile-body">
         <span class="ctile-title">More projects</span>
         <span class="ctile-sub">See what else is built and coming</span>
       </span>
-      <span class="ctile-arrow">&#8599;</span>
+      <span class="ctile-arrow" aria-hidden="true">&#8599;</span><span class="f4f-vh"> (opens in a new tab)</span>
     </a>
     <a href="https://jonathanlindavis.com/contact.html" target="_blank" rel="noopener" class="ctile ctile-mail">
-      <span class="ctile-icon">&#9993;</span>
+      <span class="ctile-icon" aria-hidden="true">&#9993;</span>
       <span class="ctile-body">
         <span class="ctile-title">Get in touch</span>
         <span class="ctile-sub">Contact or sign up for updates</span>
       </span>
-      <span class="ctile-arrow">&#8599;</span>
+      <span class="ctile-arrow" aria-hidden="true">&#8599;</span><span class="f4f-vh"> (opens in a new tab)</span>
     </a>
   </div>
 </section>
 
 <footer><div class="wrap">
   <p>Fellowships4Free is an independent public good built by Jonathan Lin Davis. A free, open index of verified graduate and early-career fellowships: no login, no paywall, links and amounts checked against the source.</p>
-  <p>Data &middot; <a href="data/fellowships.json">fellowships.json</a> &middot; <a href="data/fellowships.csv">fellowships.csv</a> &middot; License &middot; CC BY 4.0 data, MIT code &middot; <a href="https://jonathanlindavis.com/contact.html">Get in touch</a></p>
+  <p>Data &middot; <a href="data/fellowships.json">fellowships.json</a> &middot; <a href="data/fellowships.csv">fellowships.csv</a> &middot; License &middot; <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> data, <a href="https://opensource.org/license/mit">MIT</a> code &middot; <a href="https://jonathanlindavis.com/contact.html">Get in touch</a></p>
   <p class="footer-improvements-wrap"><a class="footer-improvements" href="https://jonathanlindavis.com/system-change-log">System change log</a></p>
 </div></footer>
 
@@ -594,7 +595,8 @@ const AUD_LABELS={grad:'Grad',undergrad:'Undergrad',professional:'Professional',
 function cardHtml(r,q){
   {
     const nameHtml=r.url
-      ?`<a href="${esc(r.url)}" target="_blank" rel="noopener">${highlight(r.name,q)}</a>`
+      // Outbound link: a visible arrow (hidden from screen readers) plus hidden text (UI-27).
+      ?`<a href="${esc(r.url)}" target="_blank" rel="noopener">${highlight(r.name,q)}<span class="f4f-ext" aria-hidden="true">&#8599;</span><span class="f4f-vh"> (opens in a new tab)</span></a>`
       :highlight(r.name,q);
 
     // Symmetric Q&A rows - every entry shows the same 7 labeled fields, always,
