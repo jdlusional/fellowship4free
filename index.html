@@ -60,8 +60,10 @@
 .layout{max-width:1180px;margin:0 auto;padding:1.5rem 1.25rem 4rem;display:grid;grid-template-columns:260px 1fr;gap:2rem;align-items:start}
 .layout>aside,.layout>main{min-width:0}
 @media(max-width:820px){.layout{grid-template-columns:1fr;gap:1rem}}
-.rail{position:sticky;top:66px;font-size:.9rem}
-@media(max-width:820px){.rail{position:static}}
+/* The rail sticks directly under the masthead's measured height and scrolls on its own when it is
+   taller than the space left, so "Clear all filters" stays reachable on a 768 px laptop (UI-5). */
+.rail{position:sticky;top:var(--f4f-mast-h,66px);max-height:calc(100vh - var(--f4f-mast-h,66px));overflow-y:auto;overscroll-behavior:contain;font-size:.9rem;padding:3px 3px .75rem} /* 3px inset keeps focus outlines inside the scroll box */
+@media(max-width:820px){.rail{position:static;max-height:none;overflow:visible}}
 .f4f-search{width:100%;padding:.65rem .75rem;border:1.5px solid var(--ink);border-radius:0;font-family:var(--serif);font-size:.95rem;background:var(--well);color:var(--ink);margin-bottom:1rem;outline:none}
 .f4f-search:focus{outline:2px solid var(--ink);outline-offset:0}
 .facet{margin-bottom:1.1rem;border-top:1px solid var(--rule);padding-top:.85rem}
