@@ -325,11 +325,17 @@ function deadlineClass(s){
   return'deadline-val';
 }
 
-/* Highlight search query in a string */
+/* Highlight search query in a string (UI-7). Match ranges are found on the RAW text, then each
+   segment is escaped on its own and only matched segments are wrapped in <mark>. Escaping first
+   and matching after split entities: the query "amp" turned "&amp;" into "&<mark>amp</mark>;". */
 function highlight(text,q){
   if(!q||!text)return esc(text);
-  const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
-  return esc(text).replace(re,'<mark>$1</mark>');
+  const lo=text.toLowerCase();let out="",i=0,j;
+  while((j=lo.indexOf(q,i))!==-1){
+    out+=esc(text.slice(i,j))+'<mark>'+esc(text.slice(j,j+q.length))+'</mark>';
+    i=j+q.length;
+  }
+  return out+esc(text.slice(i));
 }
 
 /* ---- Load ---- */
