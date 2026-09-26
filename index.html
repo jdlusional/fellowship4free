@@ -12,10 +12,10 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>F4F — Jonathan Lin Davis</title>
-<meta name="description" content="Fellowships4Free: a free, open-data index of 400+ verified graduate and early-career fellowships. Because finding money shouldn't cost you money. No login, no paywall." />
+<meta name="description" content="Fellowships4Free: a free, open-data index of graduate and early-career fellowships. Because finding money shouldn't cost you money. No login, no paywall." />
 <meta property="og:type" content="website">
 <meta property="og:title" content="F4F — Jonathan Lin Davis">
-<meta property="og:description" content="Fellowships4Free: a free, open-data index of 400+ verified graduate and early-career fellowships. Because finding money shouldn't cost you money. No login, no paywall.">
+<meta property="og:description" content="Fellowships4Free: a free, open-data index of graduate and early-career fellowships. Because finding money shouldn't cost you money. No login, no paywall.">
 <meta property="og:url" content="https://fellowship4free.com/">
 <meta property="og:image" content="https://jonathanlindavis.com/Assets/og-image.png">
 <meta property="og:image:width" content="2400">
@@ -25,7 +25,7 @@
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="F4F — Jonathan Lin Davis">
-<meta name="twitter:description" content="Fellowships4Free: a free, open-data index of 400+ verified graduate and early-career fellowships. Because finding money shouldn't cost you money. No login, no paywall.">
+<meta name="twitter:description" content="Fellowships4Free: a free, open-data index of graduate and early-career fellowships. Because finding money shouldn't cost you money. No login, no paywall.">
 <meta name="twitter:image" content="https://jonathanlindavis.com/Assets/og-image.png">
 
 <meta name="robots" content="index, follow" />
@@ -191,8 +191,7 @@ mark{background:var(--od-hilite);color:var(--ink);border-radius:0;padding:0 1px}
   <p class="od-pledge" style="margin-top:1.4rem">
     <span>Open data</span>
     <span>Open source</span>
-    <span>Verified links &amp; amounts</span>
-    <span>Refreshed weekly</span>
+    <span>Verification date on every record</span>
   </p>
 </div>
 
@@ -212,7 +211,7 @@ mark{background:var(--od-hilite);color:var(--ink);border-radius:0;padding:0 1px}
          against a real 3,721 and "Jun 2026" against a July-to-August verification range, both wrong,
          both invisible because JS overwrote them before anyone looked. A placeholder cannot be wrong;
          a stale number can. -->
-    <p class="f4f-scope"><strong id="m-count">&hellip;</strong> fellowships in full repository &middot; <strong id="m-pool-count">&hellip;</strong> in the open pool (upcoming deadline or Rolling), 50 shown at a time &middot; verified <strong id="m-updated">&hellip;</strong></p>
+    <p class="f4f-scope"><strong id="m-pool-count">&hellip;</strong> open fellowships for graduate students, from an index of <strong id="m-count">&hellip;</strong> &middot; verified <strong id="m-updated">&hellip;</strong></p>
     <p id="f4f-skipped" class="f4f-scope" hidden></p>
     <div class="resbar">
       <!-- Neutral placeholder until the data resolves (UI-18): a static "0" read as "no results". -->
@@ -231,7 +230,7 @@ mark{background:var(--od-hilite);color:var(--ink);border-radius:0;padding:0 1px}
 
 <section class="connect">
   <h2>Stay connected</h2>
-  <p>The full dataset, a weekly digest, and a running conversation about how to fund graduate work.</p>
+  <p>The full dataset and a running conversation about how to fund graduate work.</p>
   <div class="connect-tiles">
     <a href="https://jonathanlindavis.com/projects.html" target="_blank" rel="noopener" class="ctile ctile-web">
       <span class="ctile-icon" aria-hidden="true">&#127760;</span>
@@ -275,9 +274,10 @@ function esc(s){return(s||"").replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':
 function isRolling(v){return/rolling/i.test(v||"");}
 
 /* ---- Area bucket ----
-   Faceting on the raw `area` field is impossible (~1,440 distinct strings). Every record now
-   carries an authoritative `area_bucket` (exactly one of the 14 core-taxonomy names), applied to
-   the data from area_collapse_proposal_v1.json. bucketOf() reads that field; the specific
+   Faceting on the raw `area` field is impossible (~1,440 distinct strings). Every record carries
+   an `area_bucket`, applied from area_collapse_proposal_v1.json and meant to be one of the 14
+   core-taxonomy names; the data also holds some values outside those 14 until STR-7 repairs them,
+   so the Area facet can list more than 14 options. bucketOf() reads that field; the specific
    free-text `area` stays visible on each card as the granular detail. */
 function bucketOf(r){return r.area_bucket||"Open Field";}
 
@@ -430,9 +430,9 @@ async function load(){
 
 /* ---- Facets ----
    Facet counts are disjunctive (see passes() and updateFacetCounts() below). The Area checkbox list
-   is built ONCE from the categories present in the fixed 50-item pool (not the full repository
-   and not the full taxonomy), so options don't appear/disappear as filters change; only their
-   counts update. */
+   is built ONCE from the categories present in the open pool (not the full repository and not
+   the full taxonomy), so options don't appear/disappear as filters change; only their counts
+   update. */
 function catCounts(source){
   const m=new Map();
   source.forEach(r=>{const v=bucketOf(r);m.set(v,(m.get(v)||0)+1);});
@@ -442,12 +442,11 @@ function catCounts(source){
 function buildFacets(){
   const host=document.getElementById('facets');host.innerHTML="";
 
-  // Area filter - the 14 core-taxonomy buckets (area_bucket). Options are built ONCE from the
-  // fixed 50-item POOL (not the full repository), so a bucket with zero fellowships in the
-  // current display pool never gets a dead-end "0" checkbox in the first place. Still built
-  // once at load, not on every apply(), so options don't appear/disappear as OTHER filters
-  // toggle mid-interaction - only their counts, reflecting the currently displayed set, update
-  // live via updateFacetCounts(). Ordered by pool count (desc) then name.
+  // Area filter - the area_bucket values present in the open pool. Options are built ONCE from
+  // the POOL (not the full repository), so a bucket with zero fellowships in the pool never gets
+  // a dead-end "0" checkbox in the first place. Still built once at load, not on every apply(),
+  // so options don't appear/disappear as OTHER filters toggle mid-interaction - only their
+  // disjunctive counts update live via updateFacetCounts(). Ordered by pool count (desc) then name.
   const areaWrap=document.createElement('fieldset');areaWrap.className='facet';areaWrap.innerHTML='<legend>Area</legend>';
   const dataCats=catCounts(state.pool);
   const areaValues=[...dataCats.keys()].sort((a,b)=>(dataCats.get(b)-dataCats.get(a))||a.localeCompare(b));
@@ -520,13 +519,14 @@ function updateFacetCounts(){
 }
 
 /* ---- Filter + Sort ---- */
-const DISPLAY_CAP=50; // the working universe is the 50 soonest-upcoming-deadline fellowships,
-                       // computed once in load(). Search/facets/sort all operate WITHIN this pool.
+const DISPLAY_CAP=50; // how many cards render at once; "Show more" adds this many again. The
+                       // working universe is the open pool computed once in load(), which is not
+                       // capped. Search/facets/sort all operate WITHIN that pool.
 
 function apply(){
   const q=state.q.toLowerCase().trim();
 
-  // Filter within the fixed 50-item pool (never the full repository). .filter() returns a
+  // Filter within the open pool (never the full repository). .filter() returns a
   // fresh array, so state.pool itself is never mutated or aliased.
   const base=state.pool.filter(r=>passes(r,q,null));
 
