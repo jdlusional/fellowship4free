@@ -1,2 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+# STR-3 (F4F re-plan): the served data files are stored and checked out with LF, so the CSV
+# fellowship4free serves hashes the same as canon's copy before any checksum is published.
+data/*.json text eol=lf
+data/*.csv text eol=lf
