@@ -83,7 +83,8 @@
 .opt:hover{color:var(--ink)}
 .opt input{accent-color:var(--ink);width:15px;height:15px;flex-shrink:0}
 .opt .n{margin-left:auto;font-family:var(--mono);font-size:.72rem;color:var(--wash)}
-.clearbtn{font-family:var(--mono);font-size:.74rem;color:var(--ink);background:none;border:none;cursor:pointer;padding:0;margin-top:.35rem}
+/* At least a 24 by 24 CSS px hit area (UI-25, WCAG 2.2 2.5.8); it rendered 121 by 16. */
+.clearbtn{font-family:var(--mono);font-size:.74rem;color:var(--ink);background:none;border:none;cursor:pointer;padding:.3rem 0;margin-top:.35rem;min-height:28px;min-width:24px;display:inline-flex;align-items:center}
 .clearbtn:hover{text-decoration:underline}
 .more-wrap{display:flex;justify-content:center;margin:1.5rem 0}
 #m-updated{white-space:nowrap} /* keep "Aug 2026" from breaking mid-date */
