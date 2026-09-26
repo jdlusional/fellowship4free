@@ -552,7 +552,11 @@ function cardHtml(r,q){
 
 
 /* ---- Events ---- */
-document.getElementById('search').addEventListener('input',e=>{state.q=e.target.value;apply();});
+/* Search is debounced (UI-8): typing updates state.q at once, but the filter and render run once,
+   200 ms after the last keystroke, in the next animation frame, so fast typing never queues a
+   full re-render per key. */
+let searchTimer=0;
+document.getElementById('search').addEventListener('input',e=>{state.q=e.target.value;clearTimeout(searchTimer);searchTimer=setTimeout(()=>requestAnimationFrame(apply),200);});
 document.getElementById('sort').addEventListener('change',e=>{state.sort=e.target.value;sortRows();render();});
 
 document.getElementById('clear').addEventListener('click',()=>{
