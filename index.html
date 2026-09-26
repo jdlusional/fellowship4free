@@ -44,6 +44,9 @@
      into its lockup art. */
   --od-accent:#2f7fd1; --od-hilite:#bcd0eb; --accent:var(--od-accent);
   --rule-soft:#ddd5c3;
+  /* Page-local text token for accent-coloured TEXT (UI-24): 5.76:1 on --well and 5.11:1 on --paper,
+     where --od-accent reads 4.07:1 and 3.6:1. --od-accent stays for artwork and borders. */
+  --f4f-accent-text:#2566ad;
   /* Sticky-masthead offset for in-page jumps and focus (UI-2); 96px until measured. */
   scroll-padding-top:var(--f4f-mast-h,96px);
 }
@@ -89,8 +92,9 @@
 .f4f-scope strong{color:var(--ink);font-weight:500}
 /* The masthead's live height (--f4f-mast-h, measured on load and on resize by the script below)
    drives the scroll offset set in :root above (UI-2) and the rail's sticky top (UI-5). */
-.morebtn{font-family:var(--mono);font-size:.82rem;color:var(--accent);background:var(--well);border:1.5px solid var(--accent);border-radius:0;padding:.55rem 1.1rem;min-height:44px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
-.morebtn:hover{background:var(--accent);color:var(--well)}
+.morebtn{font-family:var(--mono);font-size:.82rem;color:var(--f4f-accent-text);background:var(--well);border:1.5px solid var(--f4f-accent-text);border-radius:0;padding:.55rem 1.1rem;min-height:44px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+.morebtn:hover{background:var(--f4f-accent-text);color:var(--well)}
+.mark .f4f-mark-accent{color:var(--f4f-accent-text)}
 
 .resbar{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:.75rem;flex-wrap:wrap}
 .resbar .f4f-count{font-family:var(--mono);font-size:.84rem;color:var(--wash)}
@@ -129,7 +133,7 @@
 .flags-row{display:flex;flex-wrap:wrap;gap:.35rem .45rem;margin-top:.35rem}
 .flag-chip{font-family:var(--mono);font-size:.76rem;padding:.18rem .48rem;border:1px solid var(--warn);border-radius:0;color:var(--warn);background:var(--well);white-space:normal;line-height:1.4}
 .aud-row{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.35rem}
-.aud-chip{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;padding:.14rem .45rem;border:1px solid var(--accent);border-radius:0;color:var(--accent);background:var(--well);white-space:nowrap}
+.aud-chip{font-family:var(--mono);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;padding:.14rem .45rem;border:1px solid var(--accent);border-radius:0;color:var(--f4f-accent-text);background:var(--well);white-space:nowrap}
 
 /* highlighted search match */
 mark{background:var(--od-hilite);color:var(--ink);border-radius:0;padding:0 1px}
@@ -172,7 +176,7 @@ mark{background:var(--od-hilite);color:var(--ink);border-radius:0;padding:0 1px}
 
 <header class="masthead" data-mast-tier="mid">
   <div class="inner">
-    <a class="mark">Fellowships4<span>Free</span></a>
+    <a class="mark">Fellowships4<span class="f4f-mark-accent">Free</span></a>
     <button type="button" class="mast-toggle" hidden aria-hidden="true">Menu</button>
     <div class="mast-menu">
       <a class="mast-home" href="https://jonathanlindavis.com/">&larr; jonathanlindavis.com</a>
