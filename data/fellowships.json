@@ -91545,5 +91545,769 @@
     "professional"
   ],
   "url_check_note": "Direct GET returned 200."
+},
+{
+  "id": "canadian-statistical-sciences-institute-canssi-canssi-distinguished-postdoctoral-fellowship",
+  "organization": "Canadian Statistical Sciences Institute (CANSSI)",
+  "name": "CANSSI Distinguished Postdoctoral Fellowship",
+  "url": "https://canssi.ca/program/distinguished-postdoctoral-fellowships/",
+  "opens": "2026-11-21",
+  "deadline": "2027-01-16",
+  "amount": "Up to CAD $70,000/year plus benefits (7-14% of salary), plus teaching compensation of CAD $8,000-$16,000 over two years, plus up to CAD $3,000/year research expenses",
+  "other_benefits": "Co-mentoring partnership between two researchers at different institutions; teaching experience equivalent to 1-2 courses over two years",
+  "eligibility": "PhD in statistics, biostatistics, actuarial science, or data science (thesis defended by 2026-09-30); completed doctorate within two years of application deadline (extensions available for industry/government employment, clinical residency, career interruption, or primary caregiver status); no prior postdoctoral funding from SSHRC/NSERC/CIHR/CANSSI; page does not state a citizenship/residency restriction on applicants",
+  "area": "Statistics, biostatistics, actuarial science, and data science postdoctoral research",
+  "area_bucket": "Data Analysis",
+  "flags": [
+    "Hosted at Canadian universities; supervisors must be at Canadian institutions, so this is international relocation for a US applicant",
+    "Page does not explicitly confirm US citizens/residents are eligible to apply -- could not find an explicit citizenship restriction either; recommend a direct confirmation email to CANSSI before publishing"
+  ],
+  "notes": "Verified via WebFetch of canssi.ca program page. Real organization (Canadian Statistical Sciences Institute, a national research institute), genuine cash stipend up to CAD $70,000/year, 2-year duration, next cycle recruitment window explicitly 2026-11-21 to 2027-01-16 (future and confirmed), program start late Aug/early Sept 2027.",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "2 years",
+  "location": "Host university in Canada (site depends on matched faculty supervisor)",
+  "grad_eligible": false,
+  "audience": [
+    "postdoc"
+  ]
+},
+{
+  "id": "association-for-slavic-east-european-and-eurasian-studies-aseees-cohen-tucker-dissertation-completion-fellowship",
+  "organization": "Association for Slavic, East European, and Eurasian Studies (ASEEES)",
+  "name": "Cohen-Tucker Dissertation Completion Fellowship",
+  "url": "https://aseees.org/award/cohen-tucker-dissertation-fellowship-program/",
+  "opens": "Not specified",
+  "deadline": "December 1, 2026, 11:59pm Hawaii Time",
+  "amount": "Up to $25,000",
+  "other_benefits": "None specified beyond stipend",
+  "eligibility": "Current ASEEES student members; doctoral students at US or Canadian universities who are US or Canadian citizens/permanent residents, completing a dissertation in Russian/Soviet historical studies",
+  "area": "Russian/Soviet Historical Studies",
+  "area_bucket": "Dissertation Completion",
+  "flags": [
+    "Requires paid ASEEES membership",
+    "Citizenship/residency restricted to US/Canada"
+  ],
+  "notes": "Verified via WebSearch snippets of aseees.org and h-net.org, 2026-09-26. Deadline Dec 1, 2026 confirmed as upcoming/future. Distinct program from the already-live 'ASEEES Dissertation Research Grant Program' (different URL, different award: research vs. completion). Not found in live_urls.txt (checked 'cohen-tucker' and full URL) or fellowships.json (checked 'Cohen-Tucker').",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "Not specified (annual completion award)",
+  "location": "US or Canada (any university)",
+  "grad_eligible": true,
+  "audience": [
+    "grad"
+  ]
+},
+{
+  "id": "university-of-cincinnati-graduate-college-dean-s-dissertation-completion-fellowship",
+  "organization": "University of Cincinnati, Graduate College",
+  "name": "Dean's Dissertation Completion Fellowship",
+  "url": "https://www.grad.uc.edu/student-life/awards/dissertation-completion.html",
+  "opens": "Not specified",
+  "deadline": "Not specified on page (annual cycle for 2026-27 academic year)",
+  "amount": "$25,000 annual stipend (two semesters); $12,500 for a single-semester award",
+  "other_benefits": "None specified beyond stipend",
+  "eligibility": "PhD candidates in their final year of dissertation writing; institution-internal (University of Cincinnati students only); Graduate College anticipates awarding 4 two-semester fellowships (or equivalent mix) for 2026-27",
+  "area": "All disciplines (University of Cincinnati PhD programs)",
+  "area_bucket": "Dissertation Completion",
+  "flags": [
+    "Institution-internal (University of Cincinnati students only)"
+  ],
+  "notes": "Verified via WebSearch snippets of grad.uc.edu, 2026-09-26. $25,000/$12,500 stipend and 2026-27 cycle confirmed as currently active. Not found in live_urls.txt or fellowships.json (checked 'Cincinnati').",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "One or two semesters",
+  "location": "Cincinnati, OH (University of Cincinnati)",
+  "grad_eligible": true,
+  "audience": [
+    "grad"
+  ]
+},
+{
+  "id": "the-california-wellness-foundation-be-well-lead-well-sabbatical-award",
+  "organization": "The California Wellness Foundation",
+  "name": "Be Well, Lead Well Sabbatical Award",
+  "url": "https://www.calwellness.org/news/be-well-lead-well-a-new-sabbatical-award-program/",
+  "opens": "Historically opens in spring (2025 cycle opened April 28, 2025); 2026 cycle dates not yet published as of 2026-09-26",
+  "deadline": "2025 cycle closed June 20, 2025; next cycle expected to open spring 2026 -- confirm exact date directly with Cal Wellness before advising an applicant",
+  "amount": "Up to eight $60,000 grants per cycle; at least $45,000 must go to the leader's salary/expenses during the sabbatical, remainder (up to $15,000) toward professional development and interim leadership",
+  "other_benefits": "Interim leadership/staff capacity support during the sabbatical period",
+  "eligibility": "Senior-level leaders (executive directors/CEOs) of California-based nonprofit organizations advancing health equity and wellness in historically underserved communities",
+  "area": "Executive sabbatical for health-equity nonprofit leaders, California",
+  "area_bucket": "Nonprofit Governance",
+  "flags": [
+    "2026 application window not yet posted as of check date; program is recurring (run since 2003, most recent full cycle closed June 2025) so treat as confirmed recurring rather than a fixed date"
+  ],
+  "notes": "Verified via calwellness.org news release and Cal Wellness sabbatical program pages (fetched 2026-09-26). Program has run annually/biennially since 2003 under varying names (Cal Wellness Sabbatical Program Award, now 'Be Well, Lead Well'); 2025 cycle received 140 applicants and awarded honorees by September 2025. Confirm current-year deadline via BeWellSabbatical@calwellness.org before advising an applicant.",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "Minimum 3 months recommended",
+  "location": "California",
+  "grad_eligible": false,
+  "audience": [
+    "professional"
+  ]
+},
+{
+  "id": "experience-matters-arizona-encore-fellowship-program-maricopa-county",
+  "organization": "Experience Matters (Arizona)",
+  "name": "Encore Fellowship Program (Maricopa County)",
+  "url": "https://experiencemattersaz.org/skilled-talent/get-engaged-now/encore-fellow-program/",
+  "opens": "Rolling -- candidates first complete an Experience Profile, then are matched to host nonprofits",
+  "deadline": "Rolling",
+  "amount": "Stipend of approximately $15,000-$25,000 for roughly 1,000 hours of work",
+  "other_benefits": "Placement/matching support with a host nonprofit, part of the national Encore Fellowships Network (CoGenerate/Encore.org)",
+  "eligibility": "Experienced professionals transitioning from for-profit careers who want to apply their skills to nonprofit capacity-building work in Maricopa County, Arizona",
+  "area": "Encore-career fellowship placing experienced professionals inside nonprofit organizations to build capacity, Maricopa County AZ",
+  "area_bucket": "Nonprofit Governance",
+  "flags": [
+    "Stipend is described as 'modest' and a range rather than a fixed figure -- confirm current amount before advising an applicant",
+    "Regional (Maricopa County, AZ) chapter of the national Encore Fellowships Network; the network's NY/Silicon Valley/TX chapters are already in the live dataset under separate URLs -- this is the distinct Arizona chapter URL"
+  ],
+  "notes": "Verified via experiencemattersaz.org program page and encore.org/CoGenerate network pages (fetched 2026-09-26). Program has run continuously since Experience Matters pioneered the Encore Fellow model's expansion to Maricopa County; application is rolling via an Experience Profile intake rather than a fixed-date cycle.",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "6-12 months (approximately 1,000 hours)",
+  "location": "Maricopa County, Arizona",
+  "grad_eligible": false,
+  "audience": [
+    "professional"
+  ]
+},
+{
+  "id": "university-of-konstanz-zukunftskolleg-zukunftskolleg-postdoctoral-fellowship",
+  "organization": "University of Konstanz - Zukunftskolleg",
+  "name": "Zukunftskolleg Postdoctoral Fellowship",
+  "url": "https://www.uni-konstanz.de/zukunftskolleg/fellowships/postdoctoral-fellowship/",
+  "opens": "Confirmed open as of research date (2026-09-26)",
+  "deadline": "12 October 2026, 11:00am CET (per current call)",
+  "amount": "Full-time 2-year employment contract at E13 TV-L (German public-sector academic salary scale); exact euro figure varies by prior work experience",
+  "other_benefits": "30 days paid annual leave; research freedom without administrative constraints; access to interdisciplinary community of junior and senior researchers",
+  "eligibility": "Non-tenured researchers (postdoctoral researchers, junior professors, research group leaders); any academic field/discipline",
+  "area": "Cross-disciplinary postdoctoral research institute, any field",
+  "area_bucket": "Open Field",
+  "flags": [],
+  "notes": "Verified via WebFetch of uni-konstanz.de/zukunftskolleg/ (current call text: 'New call for applications for four 2-year Postdoctoral Fellowships', deadline 12 October, 11:00am CET) and WebSearch confirming E13 TV-L salary scale. Deadline is after 2026-09-26, so currently plausible. Not found in live_urls.txt or fellowships.json.",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "2 years",
+  "location": "Konstanz, Germany",
+  "grad_eligible": false,
+  "audience": [
+    "postdoc",
+    "professional"
+  ]
+},
+{
+  "id": "nordic-institutes-for-advanced-study-nias-network-novo-nordisk-foundation-via-helsinki-collegium-for-advanced-studies-nnf-ias-fellowship-on-health-and-sustainability",
+  "organization": "Nordic Institutes for Advanced Study (NIAS network) / Novo Nordisk Foundation, via Helsinki Collegium for Advanced Studies",
+  "name": "NNF-IAS Fellowship on Health and Sustainability",
+  "url": "https://www.helsinki.fi/en/helsinki-collegium-advanced-studies/apply/apply-nnf-ias-fellowship-health-and-sustainability-nordic-institutes-advanced-studies",
+  "opens": "Open as of research date (2026-09-26)",
+  "deadline": "1 October 2026, 12:00 noon CEST / 13:00 EEST",
+  "amount": "Full-time salary based on seniority per host-country collective agreement, plus a research budget of up to EUR 20,000",
+  "other_benefits": "Relocation expenses covered; placement at one of four Nordic partner institutes (Denmark, Finland, Norway, Sweden)",
+  "eligibility": "Any nationality, all academic disciplines; 2-10 years post-PhD career experience; must not have resided/worked in the host country more than 12 months in the prior 2 years",
+  "area": "Interdisciplinary research on health and sustainability, open to all academic disciplines",
+  "area_bucket": "Open Field",
+  "flags": [
+    "Themed around health and sustainability but explicitly open to all academic disciplines -- borderline vs a single-topic bucket; included because eligibility text states 'all academic disciplines'"
+  ],
+  "notes": "Verified via WebFetch of the Helsinki Collegium apply page (helsinki.fi): deadline '1 October 2026 at 12.00 (noon) CEST/13.00 EEST', fellowship period 'September 1, 2027, lasting for 23 months until July 2029', 5 positions, salary + EUR 20,000 research budget. Deadline after 2026-09-26 so currently plausible. Not found in live_urls.txt or fellowships.json.",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "23 months",
+  "location": "Denmark, Finland, Norway, or Sweden (4 Nordic partner institutes)",
+  "grad_eligible": false,
+  "audience": [
+    "postdoc",
+    "professional"
+  ]
+},
+{
+  "id": "im-ra-institute-for-advanced-study-aix-marseille-university-im-ra-core-fellowship-2027-2028",
+  "organization": "IMéRA (Institute for Advanced Study, Aix-Marseille University)",
+  "name": "IMéRA Core Fellowship 2027-2028",
+  "url": "https://www.imera.fr/en/applications/core-call-for-applications-for-imera-2027-2028/",
+  "opens": "Open as of research date (2026-09-26)",
+  "deadline": "Monday 19 October 2026, at 1pm (UTC+2)",
+  "amount": "Monthly allowance of EUR 2,000 (junior scientists/artists) or EUR 2,500 (senior scientists, 10+ years post-PhD or professors); artists may receive allowance or salary depending on candidate status",
+  "other_benefits": "Free furnished accommodation on Iméra premises; paid travel expenses; participation in interdisciplinary Community-Building Seminars",
+  "eligibility": "Scholars and artists across four research programs (Arts and Science, Interdisciplinary Dialogues, Mediterranean, Necessary Utopias); must not have lived in France more than 12 months in prior 3 years; active French and/or English required",
+  "area": "Interdisciplinary residency spanning arts, sciences, and humanities -- any field",
+  "area_bucket": "Open Field",
+  "flags": [],
+  "notes": "Verified via WebFetch of imera.fr core call page (deadline '19 October 2026, at 1pm (UTC+2)', residency periods Sept 2027-June 2028) plus WebSearch for stipend figures (EUR 2,000/2,500 monthly allowance, confirmed via multiple program-description sources referencing imera.fr hosting terms). Deadline after 2026-09-26. Not found in live_urls.txt or fellowships.json.",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "5 to 10 months",
+  "location": "Marseille, France",
+  "grad_eligible": false,
+  "audience": [
+    "postdoc",
+    "professional"
+  ]
+},
+{
+  "id": "santa-fe-institute-sfi-complexity-postdoctoral-fellowship-incl-omidyar-fellowship",
+  "organization": "Santa Fe Institute",
+  "name": "SFI Complexity Postdoctoral Fellowship (incl. Omidyar Fellowship)",
+  "url": "https://apply-sfi.smapply.org/prog/complexity_postdoctoral_fellowship_/",
+  "opens": "Jul 26 2026 10:00 PM (MDT)",
+  "deadline": "Sep 30 2026 11:59 PM (MDT)",
+  "amount": "Competitive salary with generous benefits package including paid family leave (exact figure not published on the general call page)",
+  "other_benefits": "Broad research freedom to pursue transdisciplinary interests for up to three years; J-1 visa sponsorship available",
+  "eligibility": "PhD in any scientific discipline granted within 6 years of the application deadline; strong quantitative/computational skills; demonstrated interest in transdisciplinary research",
+  "area": "Transdisciplinary complexity science spanning any scientific field",
+  "area_bucket": "Open Field",
+  "flags": [
+    "Exact stipend dollar figure not published; described only as 'competitive salary with generous benefit package'"
+  ],
+  "notes": "Verified via WebFetch of the official SFI SmApply posting: deadline 'Sep 30 2026 11:59 PM (MDT)', up to three years, PhD in any scientific discipline. Deadline after 2026-09-26. Not found in live_urls.txt or fellowships.json.",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "Up to 3 years",
+  "location": "Santa Fe, New Mexico",
+  "grad_eligible": false,
+  "audience": [
+    "postdoc",
+    "professional"
+  ]
+},
+{
+  "id": "voqal-media-democracy-fund-voqal-partners-voqal-partners-fellowship-2027",
+  "organization": "Voqal (Media Democracy Fund / Voqal Partners)",
+  "name": "Voqal Partners Fellowship 2027",
+  "url": "https://www.grantinterface.com/Home/Logon?urlkey=mediaideation",
+  "opens": "Open as of research date (2026-09-26); info sessions Sept 18 and Oct 14, 2026",
+  "deadline": "October 31, 2026, 11:59 p.m. Eastern Time",
+  "amount": "$30,000 award plus $1,000 healthcare stipend",
+  "other_benefits": "Fully funded travel to three in-person fellowship convenings; coaching and mentorship; peer support",
+  "eligibility": "18+, based in United States, able to receive funds in the US (no visa sponsorship); early-stage or 'dream-stage' social-justice ideas connected to U.S. communities -- no established organization or business plan required; any professional/academic background",
+  "area": "Social-justice changemaker fellowship, open to any field or background",
+  "area_bucket": "Open Field",
+  "flags": [],
+  "notes": "Verified via WebSearch/WebFetch of opportunitiesforyouth.org coverage citing the official Voqal application portal: deadline 'October 31, 2026, at 11:59 p.m. Eastern Time', award '$30,000' plus '$1,000 healthcare stipend', 8 fellows selected annually. Deadline after 2026-09-26. Not found in live_urls.txt or fellowships.json (checked 'voqal').",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "6 months",
+  "location": "United States (travel required to 3 in-person convenings)",
+  "grad_eligible": false,
+  "audience": [
+    "professional"
+  ]
+},
+{
+  "id": "the-leverhulme-trust-leverhulme-trust-research-fellowships",
+  "organization": "The Leverhulme Trust",
+  "name": "Leverhulme Trust Research Fellowships",
+  "url": "https://www.leverhulme.ac.uk/research-fellowships",
+  "opens": "Open as of research date (2026-09-26)",
+  "deadline": "5 November 2026",
+  "amount": "Up to GBP 70,000 total fellowship value (covers replacement teaching costs and research expenses)",
+  "other_benefits": "Tenable for 3-24 months; intended to free experienced academics from teaching/administrative duties to focus on research",
+  "eligibility": "Experienced researchers in any academic discipline whose research has been constrained by teaching, administrative, or other routine professional duties",
+  "area": "Any academic discipline",
+  "area_bucket": "Open Field",
+  "flags": [
+    "Funding structure primarily covers replacement-teaching costs and research expenses routed via the fellow's institution rather than a direct personal stipend -- verify how much reaches the individual fellow as income before treating as a pure cash award"
+  ],
+  "notes": "Verified via WebSearch of official Leverhulme Trust page (leverhulme.ac.uk/research-fellowships, direct WebFetch blocked by 403) cross-checked against dementiaresearcher.nihr.ac.uk funding notice: deadline '5th November 2026', value 'up to £70,000', 'any academic field'. This is a DIFFERENT, distinct program from the Leverhulme Early Career Fellowships already in the live dataset (different URL: /research-fellowships vs /early-career-fellowships). Deadline after 2026-09-26.",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "3 to 24 months",
+  "location": "United Kingdom (host institution)",
+  "grad_eligible": false,
+  "audience": [
+    "professional"
+  ]
+},
+{
+  "id": "neukom-institute-for-computational-science-dartmouth-college-neukom-postdoctoral-fellows-program",
+  "organization": "Neukom Institute for Computational Science, Dartmouth College",
+  "name": "Neukom Postdoctoral Fellows Program",
+  "url": "https://neukom.dartmouth.edu/funding/faculty/postdoctoral-fellows",
+  "opens": "August 1, 2026 (application site opens)",
+  "deadline": "December 1, 2026 (review begins; continues until positions filled)",
+  "amount": "$70,000 salary for 2027-2028",
+  "other_benefits": "Two-year appointment with option to request a third year; access to Dartmouth's interdisciplinary computational research community",
+  "eligibility": "PhD in any discipline, or DMA/MFA (expected by September 2027); research interests intersecting the theme of computation; demonstrated interest in multidisciplinary research",
+  "area": "Interdisciplinary research intersecting computation, open to PhDs/terminal-degree holders in any discipline",
+  "area_bucket": "Open Field",
+  "flags": [],
+  "notes": "Verified via WebFetch of the official Dartmouth Neukom Institute page: deadline 'December 1, 2026', salary '$70,000 for 2027-2028', eligibility 'PhD in any discipline or DMA or MFA'. Deadline after 2026-09-26. Not found in live_urls.txt or fellowships.json (checked 'neukom').",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "2 years (option for a 3rd)",
+  "location": "Hanover, New Hampshire (Dartmouth College)",
+  "grad_eligible": false,
+  "audience": [
+    "postdoc",
+    "professional"
+  ]
+},
+{
+  "id": "harvard-center-for-population-and-development-studies-hcpds-david-e-bell-postdoctoral-fellowship",
+  "organization": "Harvard Center for Population and Development Studies (HCPDS)",
+  "name": "David E. Bell Postdoctoral Fellowship",
+  "url": "https://popcenter.harvard.edu/postdoctoral-fellowships/",
+  "opens": "Fall (recruitment for 2027-2029 cohort in fall 2026, applications expected early October)",
+  "deadline": "Recurring annually; 2026-2028 cohort deadline was Tuesday, March 3, 2026, 12:00pm ET (now past); next cohort (2027-2029) recruitment begins fall 2026",
+  "amount": "$75,000 annual salary (2026-2028 cohort) plus subsidized health insurance, up to $4,000 relocation funds, and $11,000 research/travel/computer fund over the two years",
+  "other_benefits": "Mentorship from HCPDS/Harvard faculty; weekly Social Demography Seminars; monthly Fellows' meetings with Center Director",
+  "eligibility": "Postdoctoral researchers with strong academic training, research experience, and leadership potential in population and development studies (sociology, public policy, medicine, economics, demography); open to both US and international scholars; full-time residential program, teaching/consulting not permitted unless pre-approved",
+  "area": "Population and development studies (social demography, migration, health transitions, workplace policy)",
+  "area_bucket": "Social Science",
+  "flags": [
+    "2026-2028 cohort deadline (March 3, 2026) already passed; confirmed recurring since 1990 with next cohort (2027-2029) recruitment starting fall 2026 per program's own page"
+  ],
+  "notes": "Verified via search results directly quoting popcenter.harvard.edu's own Terms and Conditions page and multiple population-center partner reposts (csde.washington.edu, iussp.org) confirming stipend, deadline, and recurring structure; the program's own postdoctoral-fellowships page (fetched directly) confirms operation since 1990 and fall-2026 recruitment timing for 2027-2029 cohort. Not yet in live F4F dataset (checked popcenter.harvard.edu against live_urls.txt, no match; fellowships.json has no 'David E. Bell' or 'HCPDS' entry, only unrelated 'Bell Scholarship' name collisions in scholarship lists).",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "Two years, full-time residential",
+  "location": "Cambridge, MA (Harvard University, in-residence)",
+  "grad_eligible": false,
+  "audience": [
+    "postdoc"
+  ]
+},
+{
+  "id": "weatherhead-center-for-international-affairs-harvard-university-program-on-u-s-japan-relations-us-japan-program-postdoctoral-fellowship",
+  "organization": "Weatherhead Center for International Affairs, Harvard University - Program on U.S.-Japan Relations",
+  "name": "US-Japan Program Postdoctoral Fellowship",
+  "url": "https://www.wcfia.harvard.edu/funding/student/us_japan",
+  "opens": "Not specified",
+  "deadline": "2026-27 cycle now past; recurring annually - check us-japan.wcfia.harvard.edu/apply for next cycle",
+  "amount": "$70,000 stipend (General Postdoctoral Fellowship); Japan Foundation Postdoctoral Fellowship track pays $75,000 and includes a teaching component",
+  "other_benefits": "Shared office space at the Weatherhead Center; access to Harvard facilities and the broader Program on U.S.-Japan Relations community",
+  "eligibility": "Recent PhDs working on topics related to U.S.-Japan relations or Japan studies across social science/humanities disciplines",
+  "area": "U.S.-Japan relations / Japan studies",
+  "area_bucket": "Social Science",
+  "flags": [
+    "url returned 403 on direct fetch (likely bot-blocking); details verified via search-result excerpts quoting program pages (academicpositions.harvard.edu, rijs.fas.harvard.edu, higheredjobs.com) rather than a direct page read"
+  ],
+  "notes": "Distinct from the Weatherhead Scholars Program (already live in dataset at wcfia.harvard.edu/funding/weatherhead-scholars-program) - this is the separate Program on U.S.-Japan Relations postdoctoral track. Verified via academicpositions.harvard.edu listing #15476 and rijs.fas.harvard.edu 2026-27 program page excerpts giving matching $70,000/$75,000 stipend figures. Not yet in live F4F dataset (checked wcfia.harvard.edu/funding/student/us_japan and us-japan.wcfia.harvard.edu against live_urls.txt, no match).",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "One academic year (9 months), in residence",
+  "location": "Cambridge, MA (Harvard University)",
+  "grad_eligible": false,
+  "audience": [
+    "postdoc"
+  ]
+},
+{
+  "id": "kellogg-institute-for-international-studies-university-of-notre-dame-hewlett-visiting-fellowship-for-public-policy",
+  "organization": "Kellogg Institute for International Studies, University of Notre Dame",
+  "name": "Hewlett Visiting Fellowship for Public Policy",
+  "url": "https://kellogg.nd.edu/hewlett-visiting-fellow-public-policy",
+  "opens": "2027-28 competition opens August 1, 2026",
+  "deadline": "October 1, 2026 for the 2027-28 fellowship (letters of recommendation due October 7, 2026)",
+  "amount": "Competitive stipend commensurate with experience, plus round-trip travel, medical insurance, and $5,000 in research/travel funds",
+  "other_benefits": "On-campus residence; delivers at least one public lecture during stay; access to Kellogg Institute intellectual community",
+  "eligibility": "Senior practitioners (not necessarily academics) demonstrating leadership, innovation, and impact in the practice, defense, or support of democracy and public policy; scholarly credentials not required; advanced English proficiency required for non-US citizens; foreign nationals need valid passport and J-1 visa eligibility",
+  "area": "Public policy / democracy studies practitioner fellowship",
+  "area_bucket": "Social Science",
+  "flags": [
+    "Aimed at practitioners rather than academic researchers per se (audience marked 'professional'); one fellowship awarded annually - highly selective"
+  ],
+  "notes": "Verified by direct fetch of kellogg.nd.edu/hewlett-visiting-fellow-public-policy, confirming October 1, 2026 deadline (a future, currently-open-or-soon-opening cycle as of today 2026-09-26) and stipend/benefit details. Distinct from Kellogg's postdoctoral Visiting Fellowship track already in the live dataset (kellogg.nd.edu/opportunities/visiting-researchers/about-our-postdoctoral-visiting-fellowships) and its PhD/dissertation-year fellowships. Not yet in live F4F dataset (checked kellogg.nd.edu/hewlett-visiting-fellow-public-policy against live_urls.txt, no match; fellowships.json has no 'Hewlett' entry).",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "Academic year (Aug-May), or one semester (fall Aug-Dec or spring Jan-May)",
+  "location": "Notre Dame, IN (in-residence)",
+  "grad_eligible": false,
+  "audience": [
+    "professional"
+  ]
+},
+{
+  "id": "north-carolina-arts-council-nc-artist-fellowship",
+  "organization": "North Carolina Arts Council",
+  "name": "NC Artist Fellowship",
+  "url": "https://www.ncarts.org/grants-resources/resources/artists/artist-fellowships",
+  "opens": "Not specified (recurring annual cycle)",
+  "deadline": "Not specified on public page for next cycle; program has run annually since 1980 (verify exact date via ncarts.org before applying)",
+  "amount": "$10,000",
+  "other_benefits": "None specified beyond unrestricted cash award",
+  "eligibility": "NC residents 1+ year prior to deadline, 18+, US citizen or permanent resident alien, must remain NC resident during grant period; not eligible if received fellowship in past 5 years or enrolled in a degree-granting program",
+  "area": "Multi-discipline individual artist fellowship (visual, craft, media, performing arts categories rotate)",
+  "area_bucket": "Arts",
+  "flags": [
+    "Exact next-cycle deadline not confirmed on page fetched; verify current deadline directly before relying on timing"
+  ],
+  "notes": "Verified via ncarts.org/grants-resources/resources/artists/artist-fellowships (HTTP 200, fetched 2026-09-26). Recurring since 1980, $10,000 unrestricted award, disciplines rotate by year. Not found in live dataset (grep of live_urls.txt and fellowships.json for 'north carolina arts' returned zero matches).",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "One grant period (typically 1 year)",
+  "location": "North Carolina, USA",
+  "grad_eligible": false,
+  "audience": [
+    "professional"
+  ]
+},
+{
+  "id": "utah-division-of-arts-museums-utah-artist-fellowship-visual-arts-design-performing-arts-literary-arts-rotating",
+  "organization": "Utah Division of Arts & Museums",
+  "name": "Utah Artist Fellowship (Visual Arts & Design / Performing Arts / Literary Arts, rotating)",
+  "url": "https://artsandmuseums.utah.gov/fellowship/",
+  "opens": "Not specified",
+  "deadline": "Most recent cycle deadline was March 6, 2026 (now closed); program runs annually since 1986, so next cycle expected ~March 2027 (unconfirmed exact date)",
+  "amount": "$5,000",
+  "other_benefits": "None specified beyond unrestricted cash award",
+  "eligibility": "Utah residents 25+ living primarily in Utah for 2+ consecutive years before application; not enrolled in undergrad/grad arts degree program; no prior recipients; individual applicants only (no teams)",
+  "area": "Visual Arts & Design (2026 cycle: 8 fellowships); Performing Arts (2026 cycle: Music, 5 fellowships); disciplines rotate by year",
+  "area_bucket": "Arts",
+  "flags": [
+    "Most recent cycle deadline (March 2026) has passed; next cycle date not yet confirmed on site as of this research (2026-09-26)"
+  ],
+  "notes": "Verified via artsandmuseums.utah.gov/fellowship/ (fetched 2026-09-26, page loaded with full program details). Confirmed recurring annual program since 1986. $5,000 unrestricted award. Not found in live dataset (grep of live_urls.txt and fellowships.json for 'utah division'/'utah artist fellowship' returned zero matches).",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "One grant period",
+  "location": "Utah, USA",
+  "grad_eligible": false,
+  "audience": [
+    "professional"
+  ]
+},
+{
+  "id": "maine-arts-commission-maine-artist-fellowship",
+  "organization": "Maine Arts Commission",
+  "name": "Maine Artist Fellowship",
+  "url": "https://mainearts.maine.gov/Pages/Funding/Individual-Artist-Fellowships",
+  "opens": "Not specified",
+  "deadline": "October 14, 2026 (2027 award cycle)",
+  "amount": "$5,000",
+  "other_benefits": "None specified beyond unrestricted cash award",
+  "eligibility": "Current Maine resident (2+ years prior to deadline), 25+ years old by deadline, not enrolled as a student as of Jan 1 2027, never previously received this fellowship, must remain Maine resident throughout fellowship period",
+  "area": "One fellow per discipline: Fine Craft, Literary Arts, Media Arts and Photography, Performing Arts, Traditional Arts, Visual Arts",
+  "area_bucket": "Arts",
+  "flags": [],
+  "notes": "Verified via mainearts.maine.gov/Pages/Funding/Individual-Artist-Fellowships (fetched 2026-09-26); page explicitly shows 2027 cycle with deadline Oct 14, 2026 -- currently open relative to today's date (2026-09-26). $5,000 unrestricted award, one fellow per discipline including Fine Craft, Media Arts, Performing Arts. Not found in live dataset (grep of live_urls.txt and fellowships.json for 'mainearts'/'maine arts commission' returned zero matches).",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "One-year award cycle (Jan 1 - Dec 31, 2027)",
+  "location": "Maine, USA",
+  "grad_eligible": false,
+  "audience": [
+    "professional"
+  ]
+},
+{
+  "id": "south-dakota-arts-council-artist-fellowship-grant",
+  "organization": "South Dakota Arts Council",
+  "name": "Artist Fellowship Grant",
+  "url": "https://artscouncil.sd.gov/grants/artistfellowship.aspx",
+  "opens": "January 1 (annually, via sdac.gosmart.org)",
+  "deadline": "March 1, 2026 (for FY2026-27 funding period July 1, 2026-June 30, 2027)",
+  "amount": "$5,000",
+  "other_benefits": "None specified beyond unrestricted cash award; no match required",
+  "eligibility": "18+, South Dakota resident for at least 1 year, not a full-time student, applies as individual artist submitting own work samples",
+  "area": "Any discipline or medium (established artists with a strong record)",
+  "area_bucket": "Arts",
+  "flags": [
+    "Program page URL redirects (302) to sd.gov/sdac; confirm current direct page before applying"
+  ],
+  "notes": "Verified via search results plus HTTP 200 response (following redirect) on artscouncil.sd.gov/grants/artistfellowship.aspx (fetched 2026-09-26); deadline March 1, 2026 was accurate as found in South Dakota Arts Council public grant announcement (Fry Bread / Brookings Register coverage). Recurring annual program, $5,000 unrestricted award, no match required. Not found in live dataset (grep of live_urls.txt and fellowships.json for 'south dakota arts' returned zero matches).",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "One fellowship/funding period",
+  "location": "South Dakota, USA",
+  "grad_eligible": false,
+  "audience": [
+    "professional"
+  ]
+},
+{
+  "id": "textile-center-administering-the-mcknight-foundation-s-artist-culture-bearers-fellowships-mcknight-fellowships-for-fiber-artists",
+  "organization": "Textile Center (administering the McKnight Foundation's Artist & Culture Bearers Fellowships)",
+  "name": "McKnight Fellowships for Fiber Artists",
+  "url": "https://textilecentermn.org/mcknight/",
+  "opens": "Not specified",
+  "deadline": "2026 cycle already closed (fellowship period was March 1, 2026-Feb 28, 2027); recurring annual program, next cycle expected ~early 2027",
+  "amount": "$25,000 unrestricted award (2 fellowships awarded per cycle)",
+  "other_benefits": "Critiques/studio visits with experts and mentors; $1,500 professional development support for conferences, workshops, marketing, or exhibition assistance",
+  "eligibility": "Minnesota fiber/textile artists beyond emerging career stage with a significant body of work over at least 8 years; demonstrated regional/state/national impact in the field",
+  "area": "Fiber and textile art",
+  "area_bucket": "Arts",
+  "flags": [
+    "Minnesota residents only",
+    "2026 cycle already closed; exact next-cycle deadline not yet confirmed"
+  ],
+  "notes": "Verified via textilecentermn.org/mcknight/ program pages and 2026 fellows announcement (fetched 2026-09-26 via search; direct WebFetch of the page returned HTTP 403, corroborated instead via textilecentermn.org/2026mcknightfiberartfellowships/ and related event pages in search results). Recurring annual program administered by Textile Center on behalf of the McKnight Foundation. Not found in live dataset (grep of live_urls.txt and fellowships.json for 'textilecentermn'/'mcknight fiber' returned zero matches).",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "One-year fellowship period",
+  "location": "Minnesota, USA",
+  "grad_eligible": false,
+  "audience": [
+    "professional"
+  ]
+},
+{
+  "id": "minnesota-center-for-book-arts-administering-the-mcknight-foundation-s-artist-culture-bearers-fellowships-mcknight-fellowships-for-book-artists",
+  "organization": "Minnesota Center for Book Arts (administering the McKnight Foundation's Artist & Culture Bearers Fellowships)",
+  "name": "McKnight Fellowships for Book Artists",
+  "url": "https://mnbookarts.org/mcknight-fellowships",
+  "opens": "Not specified",
+  "deadline": "2026 cycle closed March 9, 2026 (fellows announced May 29, 2026); recurring annual program, next cycle expected ~early 2027",
+  "amount": "$25,000 unrestricted award, plus $1,000 travel stipend and $1,000 educational stipend",
+  "other_benefits": "Residency opportunity with additional stipend",
+  "eligibility": "Beyond-emerging artists living and working in Minnesota with sustained experience in book arts",
+  "area": "Book arts",
+  "area_bucket": "Arts",
+  "flags": [
+    "Minnesota residents only",
+    "2026 cycle already closed; exact next-cycle deadline not yet confirmed"
+  ],
+  "notes": "Verified via mnbookarts.org/mcknight-fellowships (HTTP 200, fetched 2026-09-26, full program details loaded). Recurring annual program administered by Minnesota Center for Book Arts on behalf of the McKnight Foundation, distinct discipline from the already-checked McKnight Fiber Artists and McKnight Composer Fellowships programs. Not found in live dataset (grep of live_urls.txt and fellowships.json for 'mnbookarts'/'minnesota center for book arts' returned zero matches).",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "One-year fellowship period",
+  "location": "Minnesota, USA",
+  "grad_eligible": false,
+  "audience": [
+    "professional"
+  ]
+},
+{
+  "id": "ai-safety-hub-sash-singapore-ai-safety-fellowship",
+  "organization": "AI Safety Hub (SASH)",
+  "name": "Singapore AI Safety Fellowship",
+  "url": "https://www.aisafety.sg/programs/singapore-ai-safety-fellowship",
+  "opens": "Not yet announced for next cohort",
+  "deadline": "Spring/Summer 2027 cohort (exact date not yet posted); prior cohort deadline was July 10, 2026",
+  "amount": "SGD 5,000/month stipend",
+  "other_benefits": "Free accommodation in Singapore, round-trip travel covered, visa assistance, up to USD 30,000 in compute resources per project, mentorship from experienced AI safety/governance researchers",
+  "eligibility": "Emerging researchers with strong technical research ability, commitment to beneficial AI development, and cross-cultural competency; requires full-time, in-person participation in Singapore",
+  "area": "AI safety research fellowship with a dedicated policy pillar (\"Applying research to policy\": translating technical findings into policy recommendations)",
+  "area_bucket": "AI and Tech Policy",
+  "flags": [
+    "Primarily a technical AI-safety research fellowship; policy/governance is one of three program pillars, not the sole focus",
+    "Current (2026) cohort's application window already closed (deadline was July 10, 2026); next cohort explicitly stated as Spring/Summer 2027 on the primary site, but exact dates/stipend for that cohort not yet posted"
+  ],
+  "notes": "Curl-verified directly against the raw HTML of the primary program page (aisafety.sg): page text confirms '$5k SGD/month' stipend, 'Up to $30k USD compute', deadline 'July 10, 2026' for the prior cohort, and the explicit statement 'Applications to the fellowship have now closed. Please check back again for the next cohort in Spring/Summer 2027.' This confirms a recurring, currently-plausible cycle per task rules even though the immediate application window is closed and exact 2027 dates/stipend are not yet posted. Confirmed NOT a duplicate: not present in live_urls.txt (checked \"aisafety.sg\") or in fellowships.json (checked \"Singapore AI Safety\", \"SASH\", \"AI Safety Hub\").",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "3 months (prior cohort ran 21 September - 4 December 2026)",
+  "location": "Singapore (in-person, full-time)",
+  "grad_eligible": true,
+  "audience": [
+    "grad",
+    "postdoc",
+    "professional"
+  ]
+},
+{
+  "id": "simons-institute-for-the-theory-of-computing-uc-berkeley-simons-institute-law-and-society-fellowship",
+  "organization": "Simons Institute for the Theory of Computing, UC Berkeley",
+  "name": "Simons Institute Law and Society Fellowship",
+  "url": "https://simons.berkeley.edu/lawsocietyfellowcall",
+  "opens": "October 1 (for the Fall 2027 program cohort)",
+  "deadline": "Not yet specified on the primary page as of verification; application window opens October 1 for the Fall 2027 program",
+  "amount": "Stipend to cover living expenses (exact figure not published); travel to Berkeley reimbursed",
+  "other_benefits": "Shared office in Calvin Lab at UC Berkeley; embedded in a Simons Institute semester-long technical program alongside computer scientists; expected outputs include a white paper and potential participation in a documentary series",
+  "eligibility": "Junior and senior researchers (postdocs, senior graduate students, assistant professors eligible for 'Law and Society Fellow'; more established researchers eligible for 'Senior Law and Society Fellow')",
+  "area": "Law, ethics, and policy implications of a specific technical research program each cohort (Fall 2027 program topic: Diffusion Generative Modeling); prior cohorts have paired with AI-relevant technical programs",
+  "area_bucket": "AI and Tech Policy",
+  "flags": [
+    "Narrower than a general AI-policy fellowship: each cohort is tied to one specific Simons Institute technical program (the Fall 2027 topic is Diffusion Generative Modeling specifically, not AI governance broadly)",
+    "Exact stipend amount and application deadline (only the October 1 open date) not published on the primary page at time of verification"
+  ],
+  "notes": "Verified via WebFetch of the primary page (simons.berkeley.edu/lawsocietyfellowcall), which explicitly confirms it is paid ('The position comes with a stipend to cover living expenses. Travel to Berkeley will be reimbursed') and describes the program as supporting researchers on 'technologies with profound impacts on human society and with implications for ethics, law, and policy.' Confirmed NOT a duplicate: not present in live_urls.txt (checked \"simons.berkeley\") or in fellowships.json (checked \"Simons Institute\" -- only unrelated \"Simons Foundation\"/\"Heising-Simons Foundation\" entries found).",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "One semester (tied to the Simons Institute program's term)",
+  "location": "Berkeley, California (in-person, shared office at Calvin Lab)",
+  "grad_eligible": true,
+  "audience": [
+    "grad",
+    "postdoc",
+    "professional"
+  ]
+},
+{
+  "id": "constitutional-accountability-center-cac-sponsored-legal-fellowship-2027-2028",
+  "organization": "Constitutional Accountability Center (CAC)",
+  "name": "Sponsored Legal Fellowship 2027-2028",
+  "url": "https://www.theusconstitution.org/sponsored-legal-fellowship-2027-2028/",
+  "opens": "Unknown",
+  "deadline": "Rolling (no hard deadline stated; fellows begin fall 2027)",
+  "amount": "$80,000 total compensation (CAC tops up any external sponsoring fellowship's base salary, e.g. Equal Justice Works/Justice Catalyst/Skadden, to reach this total)",
+  "other_benefits": "DC-based constitutional litigation/appellate work; standard benefits implied as an employed fellow",
+  "eligibility": "Recently completed or soon-to-be-completed JD with excellent academic record; DC Bar membership or ability to obtain by start; completed clerkship preferred not required",
+  "area": "Constitutional law / civil rights litigation (sponsored fellowship host)",
+  "area_bucket": "Law",
+  "flags": [
+    "Functions as a sponsorship/host arrangement rather than a freestanding named award -- CAC guarantees the cash stipend regardless of the external program's base pay",
+    "No hard deadline; rolling admission so timing depends on applicant"
+  ],
+  "notes": "Verified via theusconstitution.org page (confirmed reachable, 301 redirect to /sponsored-legal-fellowship-2027-2028/, 200 OK). Page explicitly states CAC makes up the difference between external fellowship base salary and CAC's own $80,000 Fellow salary, so the cash award is genuine and CAC-funded, not merely an application-assistance service. Checked live_urls.txt (theusconstitution.org not present) and fellowships.json (no Constitutional Accountability Center entry).",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "1-2 years depending on external sponsoring program",
+  "location": "Washington, DC",
+  "grad_eligible": true,
+  "audience": [
+    "grad",
+    "professional"
+  ]
+},
+{
+  "id": "california-department-of-justice-office-of-the-attorney-general-attorney-general-s-honors-program",
+  "organization": "California Department of Justice, Office of the Attorney General",
+  "name": "Attorney General's Honors Program",
+  "url": "https://oag.ca.gov/careers/honors",
+  "opens": "Unknown (recurring annual cycle)",
+  "deadline": "October 20, 2026 (received or postmarked); program begins September 2027",
+  "amount": "Salary not disclosed on the program page (contact aghonorsapps@doj.ca.gov); role is a paid state civil-service Deputy Attorney General-track position with standard state salary schedules (public sources place Deputy AG pay roughly in the $100K+ range depending on step)",
+  "other_benefits": "On-the-job training, career development programming, mentorship; placements in Sacramento, San Francisco, San Diego, Oakland, or Los Angeles across Civil Law, Criminal Law, or Public Rights Divisions",
+  "eligibility": "Third-year law students, students in their final year of other graduate law programs, newly admitted lawyers in their first year of practice, judicial clerks, or those completing government/academic/public-interest fellowships in September 2027; must be California Bar members or plan to sit for the July 2027 Bar exam",
+  "area": "State government public-interest law (Attorney General honors hiring program)",
+  "area_bucket": "Law",
+  "flags": [
+    "Exact starting salary not stated on the program's own page -- inferred from public Deputy Attorney General pay data, not stated at the source",
+    "Functions as an entry-level state attorney hiring track rather than a named stipend award, consistent with other state AG Honors/Fellowship programs already in the dataset"
+  ],
+  "notes": "Verified via oag.ca.gov/careers/honors page fetch: confirmed firm deadline of October 20, 2026, program start September 2027, eligibility criteria, and division placements. Salary amount itself not published on this page; supplemented with public Deputy AG salary data via search (Glassdoor/Salary.com) rather than an official figure. Checked live_urls.txt and fellowships.json -- no California AG Honors Program entry found (distinct from the New York, Massachusetts, Colorado, and Georgia AG programs already in the live dataset).",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "Not specified on page (entry-level attorney appointment)",
+  "location": "California (Sacramento, San Francisco, San Diego, Oakland, or Los Angeles)",
+  "grad_eligible": true,
+  "audience": [
+    "grad",
+    "professional"
+  ]
+},
+{
+  "id": "the-dedalus-foundation-senior-fellowship-in-art-history",
+  "organization": "The Dedalus Foundation",
+  "name": "Senior Fellowship in Art History",
+  "url": "https://dedalusfoundation.org/programs/fellowships-awards/view/senior-fellowship/",
+  "opens": "Not stated",
+  "deadline": "September 15, 2026 (annual deadline; this cycle's deadline has passed as of verification but the program recurs every year on/around this date)",
+  "amount": "Up to $30,000",
+  "other_benefits": "Nonresidential award; announcement mid-December",
+  "eligibility": "US citizens only; independent writers/scholars/critics/curators, not currently matriculated in a degree program; must have demonstrated prior accomplishment in the field",
+  "area": "20th-century painting, sculpture, and allied arts (art history)",
+  "area_bucket": "Humanities",
+  "flags": [
+    "2026 cycle deadline (Sept 15, 2026) has already passed relative to today (Sept 26, 2026); recurs annually each September per multi-year call history (2024, 2025, 2026 cycles documented) so next window opens ~Sept 2027",
+    "US citizens only"
+  ],
+  "notes": "Verified via WebFetch/WebSearch of dedalusfoundation.org (200 OK, curl-confirmed) and cross-referenced against arthist.net announcement archive showing repeated annual cycles. Distinct program from the Dedalus MFA Fellowship already in the live dataset (different URL/program).",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "Award period Jan 1 - Dec 31 of following year",
+  "location": "Nonresidential",
+  "grad_eligible": false,
+  "audience": [
+    "professional"
+  ]
+},
+{
+  "id": "university-of-oregon-libraries-special-collections-and-university-archives-le-guin-feminist-science-fiction-research-award",
+  "organization": "University of Oregon Libraries — Special Collections and University Archives",
+  "name": "Le Guin Feminist Science Fiction Research Award",
+  "url": "https://library.uoregon.edu/find-materials/special-collections-and-university-archives/research-awards/le-guin-feminist-science",
+  "opens": "Not stated",
+  "deadline": "January 8, 2027 (subject-based awards cycle, per library.uoregon.edu/special-collections/fellowships)",
+  "amount": "$3,000 award",
+  "other_benefits": "Access to feminist science fiction author papers (Ursula K. Le Guin and related collections) held in Special Collections and University Archives",
+  "eligibility": "Open to undergraduates, master's and doctoral students, postdoctoral scholars, faculty at every rank, and independent scholars working on feminist science fiction",
+  "area": "Literature — feminist science fiction / literary archival research",
+  "area_bucket": "Humanities",
+  "flags": [],
+  "notes": "Verified via WebSearch citing library.uoregon.edu award page and cross-referenced against UO Libraries fellowships listing page (200 OK, curl-confirmed) which states the current subject-based-award cycle deadline as Jan 8, 2027 -- a genuine future date.",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "Short-term (award supports a research visit; duration not fixed on page)",
+  "location": "Eugene, OR",
+  "grad_eligible": true,
+  "audience": [
+    "undergrad",
+    "grad",
+    "postdoc",
+    "professional"
+  ]
+},
+{
+  "id": "the-medici-archive-project-medici-archive-project-short-term-fellowships",
+  "organization": "The Medici Archive Project",
+  "name": "Medici Archive Project Short-Term Fellowships",
+  "url": "https://www.medici.org/fellowships/",
+  "opens": "Not stated",
+  "deadline": "July 15, 2026 deadline for Fall 2026/Spring 2027 fellowship terms (deadline has passed as of verification, but the awarded fellowship terms include Spring semester Jan 4 - Jul 20, 2027, which is still in the future; program recurs annually)",
+  "amount": "$8,000 stipend",
+  "other_benefits": "Twelve fellowships offered; fellows responsible for own travel/accommodation in Florence, Italy",
+  "eligibility": "Graduate and pre-doctoral students working on early modern Italy (preference for Tuscany-related topics); open to candidates of all nationalities",
+  "area": "Early modern Italian history / Renaissance archival research (Florence)",
+  "area_bucket": "Humanities",
+  "flags": [
+    "Application deadline (July 15, 2026) has passed, but the awarded fellowship period extends into Spring 2027 (Jan-Jul 2027), and the program is a well-documented recurring annual call (multiple years' H-Net/ArtHist.net announcements found)"
+  ],
+  "notes": "Verified via WebFetch/WebSearch of medici.org/fellowships/ (200 OK, curl-confirmed) and cross-referenced with H-Net and ArtHist.net announcement archives for multi-year recurrence and the $8,000 stipend figure.",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "Minimum 3 months, Fall or Spring semester in Florence, Italy",
+  "location": "Florence, Italy",
+  "grad_eligible": true,
+  "audience": [
+    "grad"
+  ]
+},
+{
+  "id": "university-of-notre-dame-de-nicola-center-for-ethics-and-culture-john-templeton-foundation-love-ethic-social-innovator-fellowships",
+  "organization": "University of Notre Dame, de Nicola Center for Ethics and Culture / John Templeton Foundation",
+  "name": "Love Ethic Social Innovator Fellowships",
+  "url": "https://ethics.nd.edu/fellowships-and-grants/social-innovator-fellowships/",
+  "opens": "Unknown (recurring annual cycle)",
+  "deadline": "December 11, 2026",
+  "amount": "Personal stipend covering housing/relocation; $15,000 to fellow's home organization to offset sabbatical costs; up to $50,000 in subgrant funds at conclusion of residency to pilot a love-based-ethics project",
+  "other_benefits": "Month-long residency in South Bend, IN at Notre Dame; relocation support; cohort of fellows and ongoing collaboration network",
+  "eligibility": "Leaders on the leadership team of a nonprofit, social-services, or public-sector organization with significant responsibility for public-facing leadership and project direction; grappling with ethical/social challenges",
+  "area": "Nonprofit/social-sector executive sabbatical residency funding a love-based-ethics organizational project",
+  "area_bucket": "Nonprofit Governance",
+  "flags": [
+    "Sabbatical/project-support fellowship rather than a pure governance-training program; thematic frame is 'love-based ethics' -- verify fit against F4F editorial intent before publishing"
+  ],
+  "notes": "Verified directly via curl+grep of live page text (not WebFetch alone): '2026 application cycle will close on December 11, 2026' and 'each fellow's home organization will receive $15,000... up to $50,000 in award funds to pilot the project' both confirmed in raw HTML. Page loaded 200. Not found in live_urls.txt or fellowships.json (checked 'ethics.nd.edu' and 'notre dame' -- no match).",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "One-month residency (sabbatical), with project execution afterward",
+  "location": "South Bend, Indiana (residency); fellow's home organization can be anywhere",
+  "grad_eligible": false,
+  "audience": [
+    "professional"
+  ]
+},
+{
+  "id": "the-encore-fellowships-network-los-angeles-program-los-angeles-encore-fellows-program-laef",
+  "organization": "The Encore Fellowships Network (Los Angeles Program)",
+  "name": "Los Angeles Encore Fellows Program (LAEF)",
+  "url": "https://encore.org/fellowships/laef/",
+  "opens": "Rolling / year-round",
+  "deadline": "Year-round (rolling applications, accepted for fellow candidates and nonprofit hosts year-round per program page)",
+  "amount": "$25,000 stipend for 1,000 hours of service",
+  "other_benefits": "Placement with an LA-area nonprofit host organization on a capacity-building assignment; professional network of experienced Encore Fellows",
+  "eligibility": "Experienced professionals transitioning from private-sector careers into nonprofit-sector 'encore' careers; evaluated on skills/expertise, commitment to nonprofit/community work, and readiness to switch sectors; open to outside applicants",
+  "area": "Nonprofit capacity-building / governance fellowship for experienced professionals (Los Angeles regional operator of the national Encore Fellowships Network)",
+  "area_bucket": "Nonprofit Governance",
+  "flags": [
+    "Program page returns HTTP 403 to automated fetch (same soft-block behavior as the network's already-listed NYC/Texas/Silicon Valley pages); treated as reachable per site-wide bot-blocking pattern, not a dead link",
+    "Distinct regional operator from the already-listed Silicon Valley (SVEF), New York City (NYEF), and Texas (TXEF) Encore programs -- confirmed separate LA-specific program page and separate geographic host area"
+  ],
+  "notes": "Verified via curl (HTTP 403, consistent site-wide block also seen on nyef/txef/svef pages already in the live dataset) plus corroborating search-result snippets quoting the live page text directly: '$25,000... 1,000 hours,' 'six to twelve months, half to full-time,' and 'Los Angeles Program accepts applications for fellow candidates and nonprofit work hosts year round.' Checked live_urls.txt and fellowships.json for 'laef' and 'los angeles encore' -- no match (only nyef/svef/txef present).",
+  "date_added": "2026-09-26",
+  "last_verified": "2026-09-26",
+  "duration": "6-12 months, half- to full-time (1,000 hours total)",
+  "location": "Los Angeles metro area",
+  "grad_eligible": false,
+  "audience": [
+    "professional"
+  ],
+  "url_check_note": "HTTP 403 (soft-block, consistent with other encore.org pages already accepted in the live dataset)"
 }
 ]
