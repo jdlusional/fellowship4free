@@ -12,10 +12,10 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>F4F — Jonathan Lin Davis</title>
-<meta name="description" content="Fellowships4Free: a free, open-data index of 400+ verified graduate and early-career fellowships. Because finding money shouldn't cost you money. No login, no paywall." />
+<meta name="description" content="Fellowships4Free: a free, open-data index of graduate and early-career fellowships. Because finding money shouldn't cost you money. No login, no paywall." />
 <meta property="og:type" content="website">
 <meta property="og:title" content="F4F — Jonathan Lin Davis">
-<meta property="og:description" content="Fellowships4Free: a free, open-data index of 400+ verified graduate and early-career fellowships. Because finding money shouldn't cost you money. No login, no paywall.">
+<meta property="og:description" content="Fellowships4Free: a free, open-data index of graduate and early-career fellowships. Because finding money shouldn't cost you money. No login, no paywall.">
 <meta property="og:url" content="https://fellowship4free.com/">
 <meta property="og:image" content="https://jonathanlindavis.com/Assets/og-image.png">
 <meta property="og:image:width" content="2400">
@@ -25,17 +25,17 @@
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="F4F — Jonathan Lin Davis">
-<meta name="twitter:description" content="Fellowships4Free: a free, open-data index of 400+ verified graduate and early-career fellowships. Because finding money shouldn't cost you money. No login, no paywall.">
+<meta name="twitter:description" content="Fellowships4Free: a free, open-data index of graduate and early-career fellowships. Because finding money shouldn't cost you money. No login, no paywall.">
 <meta name="twitter:image" content="https://jonathanlindavis.com/Assets/og-image.png">
 
 <meta name="robots" content="index, follow" />
 <link rel="canonical" href="https://fellowship4free.com/">
 <meta name="referrer" content="no-referrer" />
-<link rel="icon" type="image/png" href="assets/f4f-mark.png">
+<link rel="icon" type="image/png" href="assets/f4f-mark.png?v=74ff9a21c5">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="open-data-shared.css?v=0c00355c56">
+<link rel="stylesheet" href="open-data-shared.css?v=0c00355c56" integrity="sha384-gdkalsLL1UAYAscmvfNuUfPW1S26scJOhJzPPVIJnZ8bpgXssUgeTy+bGHzA9fKm">
 <style>
 :root{
   /* Family tokens live in open-data-shared.css (the warm print palette the whole
@@ -44,10 +44,15 @@
      into its lockup art. */
   --od-accent:#2f7fd1; --od-hilite:#bcd0eb; --accent:var(--od-accent);
   --rule-soft:#ddd5c3;
+  /* Page-local text token for accent-coloured TEXT (UI-24): 5.76:1 on --well and 5.11:1 on --paper,
+     where --od-accent reads 4.07:1 and 3.6:1. --od-accent stays for artwork and borders. */
+  --f4f-accent-text:#2566ad;
+  /* Sticky-masthead offset for in-page jumps and focus (UI-2); 96px until measured. */
+  scroll-padding-top:var(--f4f-mast-h,96px);
 }
 /* Base/reset, masthead, headings, search shell, count, states, and footer shell
    all come from open-data-shared.css. */
-a{color:var(--ink);text-decoration:none}
+/* No bare `a` rule here: the shared file owns `a` (UI-43). Links this page styles are named below. */
 
 /* ---- Hero ---- */
 .hero{max-width:1180px;margin:0 auto;padding:2.6rem 1.25rem 1rem;text-align:center;display:flex;flex-direction:column;align-items:center}
@@ -58,26 +63,43 @@ a{color:var(--ink);text-decoration:none}
 .layout{max-width:1180px;margin:0 auto;padding:1.5rem 1.25rem 4rem;display:grid;grid-template-columns:260px 1fr;gap:2rem;align-items:start}
 .layout>aside,.layout>main{min-width:0}
 @media(max-width:820px){.layout{grid-template-columns:1fr;gap:1rem}}
-.rail{position:sticky;top:66px;font-size:.9rem}
-@media(max-width:820px){.rail{position:static}}
-.search{width:100%;padding:.65rem .75rem;border:1.5px solid var(--ink);border-radius:0;font-family:var(--serif);font-size:.95rem;background:var(--well);color:var(--ink);margin-bottom:1rem;outline:none}
-.search:focus{outline:2px solid var(--ink);outline-offset:0}
-.facet{margin-bottom:1.1rem;border-top:1px solid var(--rule);padding-top:.85rem}
-.facet h3{font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--wash);margin:0 0 .55rem}
+/* The rail sticks directly under the masthead's measured height and scrolls on its own when it is
+   taller than the space left, so "Clear all filters" stays reachable on a 768 px laptop (UI-5). */
+.rail{position:sticky;top:var(--f4f-mast-h,66px);max-height:calc(100vh - var(--f4f-mast-h,66px));overflow-y:auto;overscroll-behavior:contain;font-size:.9rem;padding:3px 3px .75rem} /* 3px inset keeps focus outlines inside the scroll box */
+@media(max-width:820px){.rail{position:static;max-height:none;overflow:visible}}
+.f4f-search{width:100%;padding:.65rem .75rem;border:1.5px solid var(--ink);border-radius:0;font-family:var(--serif);font-size:.95rem;background:var(--well);color:var(--ink);margin-bottom:1rem;outline:none}
+.f4f-search:focus{outline:2px solid var(--ink);outline-offset:0}
+/* Each facet is a fieldset with a legend under a visually hidden "Filters" heading (UI-21). The
+   legend floats so it sits below the rule instead of inside the fieldset border. */
+.facet{margin:0 0 1.1rem;border:0;border-top:1px solid var(--rule);padding:.85rem 0 0;min-width:0}
+.facet legend{float:left;width:100%;padding:0;font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--wash);margin:0 0 .55rem}
+.facet legend+*{clear:both}
+.f4f-h1{margin:0;font-size:inherit;line-height:0;width:100%}
+/* Skip link: the first tab stop, off-screen until focused (UI-23). */
+.f4f-skip{position:absolute;left:.5rem;top:-4rem;z-index:100;background:var(--ink);color:var(--paper);padding:.6rem .9rem;font-family:var(--mono);font-size:.85rem;text-decoration:none}
+.f4f-skip:focus{top:.5rem}
+.f4f-vh{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .opt{display:flex;align-items:center;gap:.5rem;padding:.18rem 0;cursor:pointer;color:var(--wash);font-size:.88rem;font-family:var(--serif)}
 .opt:hover{color:var(--ink)}
 .opt input{accent-color:var(--ink);width:15px;height:15px;flex-shrink:0}
 .opt .n{margin-left:auto;font-family:var(--mono);font-size:.72rem;color:var(--wash)}
-.clearbtn{font-family:var(--mono);font-size:.74rem;color:var(--ink);background:none;border:none;cursor:pointer;padding:0;margin-top:.35rem}
+/* At least a 24 by 24 CSS px hit area (UI-25, WCAG 2.2 2.5.8); it rendered 121 by 16. */
+.clearbtn{font-family:var(--mono);font-size:.74rem;color:var(--ink);background:none;border:none;cursor:pointer;padding:.3rem 0;margin-top:.35rem;min-height:28px;min-width:24px;display:inline-flex;align-items:center}
 .clearbtn:hover{text-decoration:underline}
 .more-wrap{display:flex;justify-content:center;margin:1.5rem 0}
-#m-updated{white-space:nowrap} /* keep "Aug 2026" from breaking mid-date now the mast-note text is longer (Phase 2 pool-count addition) */
-.morebtn{font-family:var(--mono);font-size:.82rem;color:var(--accent);background:var(--well);border:1.5px solid var(--accent);border-radius:0;padding:.55rem 1.1rem;min-height:44px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
-.morebtn:hover{background:var(--accent);color:var(--well)}
+#m-updated{white-space:nowrap} /* keep "Aug 2026" from breaking mid-date */
+/* Counts sentence, moved out of the sticky masthead into the results column (UI-2). */
+.f4f-scope{font-family:var(--mono);font-size:.78rem;color:var(--wash);margin:0 0 .6rem;line-height:1.5}
+.f4f-scope strong{color:var(--ink);font-weight:500}
+/* The masthead's live height (--f4f-mast-h, measured on load and on resize by the script below)
+   drives the scroll offset set in :root above (UI-2) and the rail's sticky top (UI-5). */
+.morebtn{font-family:var(--mono);font-size:.82rem;color:var(--f4f-accent-text);background:var(--well);border:1.5px solid var(--f4f-accent-text);border-radius:0;padding:.55rem 1.1rem;min-height:44px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+.morebtn:hover{background:var(--f4f-accent-text);color:var(--well)}
+.mark .f4f-mark-accent{color:var(--f4f-accent-text)}
 
 .resbar{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:.75rem;flex-wrap:wrap}
-.resbar .count{font-family:var(--mono);font-size:.84rem;color:var(--wash)}
-.resbar .count b{color:var(--ink)}
+.resbar .f4f-count{font-family:var(--mono);font-size:.84rem;color:var(--wash)}
+.resbar .f4f-count b{color:var(--ink)}
 .sortsel{font-family:var(--mono);font-size:.84rem;padding:.32rem .45rem;border:1px solid var(--rule);border-radius:0;background:var(--well);color:var(--ink)}
 
 /* ---- Entry cards ---- */
@@ -90,11 +112,16 @@ a{color:var(--ink);text-decoration:none}
   margin-bottom:0;
   padding:1.1rem 0;
   display:block;
+  /* Off-screen cards skip layout and paint until scrolled near (UI-4); the size is an estimate
+     of a typical card so the scrollbar does not jump. */
+  content-visibility:auto;
+  contain-intrinsic-size:auto 640px;
 }
 .entry .head{display:flex;flex-direction:column;gap:.12rem}
 .entry .org{font-family:var(--mono);font-size:.82rem;text-transform:uppercase;letter-spacing:.07em;color:var(--wash)}
 .entry .name{font-family:var(--serif);font-size:1.45rem;font-weight:500;line-height:1.18;color:var(--ink)}
-.entry .name a{color:var(--ink)}
+.entry .name a{color:var(--ink);text-decoration:none}
+.f4f-ext{font-size:.7em;margin-left:.3em;color:var(--wash);vertical-align:.15em}
 .entry .name a:hover{color:var(--wash);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
 
 /* Symmetric Q&A rows - every entry gets the same 7 labeled fields in the same order */
@@ -108,7 +135,7 @@ a{color:var(--ink);text-decoration:none}
 .flags-row{display:flex;flex-wrap:wrap;gap:.35rem .45rem;margin-top:.35rem}
 .flag-chip{font-family:var(--mono);font-size:.76rem;padding:.18rem .48rem;border:1px solid var(--warn);border-radius:0;color:var(--warn);background:var(--well);white-space:normal;line-height:1.4}
 .aud-row{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.35rem}
-.aud-chip{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;padding:.14rem .45rem;border:1px solid var(--accent);border-radius:0;color:var(--accent);background:var(--well);white-space:nowrap}
+.aud-chip{font-family:var(--mono);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;padding:.14rem .45rem;border:1px solid var(--accent);border-radius:0;color:var(--f4f-accent-text);background:var(--well);white-space:nowrap}
 
 /* highlighted search match */
 mark{background:var(--od-hilite);color:var(--ink);border-radius:0;padding:0 1px}
@@ -119,8 +146,9 @@ mark{background:var(--od-hilite);color:var(--ink);border-radius:0;padding:0 1px}
 .deadline-val.urgent{color:var(--urgent);font-weight:600}
 .deadline-val.soon{color:var(--warn);font-weight:500}
 
-.empty{padding:3rem 1rem;text-align:center;color:var(--wash)}
-.empty b{display:block;font-family:var(--serif);font-size:1.35rem;color:var(--ink);margin-bottom:.35rem}
+.f4f-loading{padding:3rem 1rem;text-align:center;color:var(--wash);font-family:var(--mono);font-size:.85rem}
+.f4f-empty{padding:3rem 1rem;text-align:center;color:var(--wash)}
+.f4f-empty b{display:block;font-family:var(--serif);font-size:1.35rem;color:var(--ink);margin-bottom:.35rem}
 
 /* ---- Subscribe + Footer ---- */
 .connect{max-width:1180px;margin:0 auto;padding:2.5rem 1.25rem 3.5rem;border-top:2px solid var(--ink);text-align:center}
@@ -146,42 +174,48 @@ mark{background:var(--od-hilite);color:var(--ink);border-radius:0;padding:0 1px}
 </head>
 <body>
 <!-- writing-convention: general -->
+<a class="f4f-skip" href="#results-heading">Skip to results</a>
 
 <header class="masthead" data-mast-tier="mid">
   <div class="inner">
-    <a class="mark">Fellowships4<span>Free</span></a>
+    <a class="mark" href="/">Fellowships4<span class="f4f-mark-accent">Free</span></a>
     <button type="button" class="mast-toggle" hidden aria-hidden="true">Menu</button>
     <div class="mast-menu">
-      <!-- Static values are deliberately neutral placeholders, not numbers. Every figure here is
-           filled from data/fellowships.json on load. A hardcoded number drifts silently the moment
-           the corpus changes: this line read "948" against a real 3,721 and "Jun 2026" against a
-           July-to-August verification range, both wrong, both invisible because JS overwrote them
-           before anyone looked. A placeholder cannot be wrong; a stale number can. -->
-      <span class="mast-note"><strong id="m-count">&hellip;</strong> fellowships in full repository &middot; <strong id="m-pool-count">&hellip;</strong> in the open pool (upcoming deadline or Rolling), 50 shown at a time &middot; verified <strong id="m-updated">&hellip;</strong></span>
       <a class="mast-home" href="https://jonathanlindavis.com/">&larr; jonathanlindavis.com</a>
     </div>
   </div>
 </header>
 
-<header class="hero">
-  <img class="logo" src="assets/f4f-lockup.svg" alt="Fellowships4Free — the open fellowship index" width="1440" height="600">
+<div class="hero">
+  <h1 class="f4f-h1"><img class="logo" src="assets/f4f-lockup.svg?v=fe41730ce8" alt="Fellowships4Free — the open fellowship index" width="1440" height="600"></h1>
   <p class="od-pledge" style="margin-top:1.4rem">
     <span>Open data</span>
     <span>Open source</span>
-    <span>Verified links &amp; amounts</span>
-    <span>Refreshed weekly</span>
+    <span>Verification date on every record</span>
   </p>
-</header>
+</div>
 
 <div class="layout">
   <aside class="rail" id="rail">
-    <input class="search" id="search" type="search" placeholder="Search org, name, keyword&#8230;" aria-label="Search fellowships" />
+    <h2 class="f4f-vh">Filters</h2>
+    <input class="f4f-search" id="search" type="search" placeholder="Search org, name, keyword&#8230;" aria-label="Search fellowships" />
     <div id="facets"></div>
     <button class="clearbtn" id="clear">Clear all filters</button>
   </aside>
   <main>
+    <h2 id="results-heading" class="f4f-vh" tabindex="-1">Results</h2>
+    <!-- The counts sentence lives here, in the results bar, not in the sticky masthead (UI-2), so the
+         phone masthead holds only the wordmark and one link. Static values are deliberately neutral
+         placeholders, not numbers. Every figure here is filled from data/fellowships.json on load. A
+         hardcoded number drifts silently the moment the corpus changes: this line once read "948"
+         against a real 3,721 and "Jun 2026" against a July-to-August verification range, both wrong,
+         both invisible because JS overwrote them before anyone looked. A placeholder cannot be wrong;
+         a stale number can. -->
+    <p class="f4f-scope"><strong id="m-pool-count">&hellip;</strong> open fellowships for graduate students, from an index of <strong id="m-count">&hellip;</strong> &middot; verified <strong id="m-updated">&hellip;</strong></p>
+    <p id="f4f-skipped" class="f4f-scope" hidden></p>
     <div class="resbar">
-      <span class="count"><b id="r-count">0</b> matching fellowships</span>
+      <!-- Neutral placeholder until the data resolves (UI-18): a static "0" read as "no results". -->
+      <span class="f4f-count" role="status"><b id="r-count">&hellip;</b> matching fellowships</span>
       <select class="sortsel" id="sort" aria-label="Sort">
         <option value="deadline" selected>Sort: Deadline (soonest first)</option>
         <option value="org">Sort: Organization (A&#8211;Z)</option>
@@ -189,42 +223,50 @@ mark{background:var(--od-hilite);color:var(--ink);border-radius:0;padding:0 1px}
         <option value="area">Sort: Area</option>
       </select>
     </div>
-    <div id="results"></div>
+    <div id="results"><p class="f4f-loading">Loading the index&hellip;</p></div>
     <div id="more-wrap" class="more-wrap"></div>
   </main>
 </div>
 
 <section class="connect">
   <h2>Stay connected</h2>
-  <p>The full dataset, a weekly digest, and a running conversation about how to fund graduate work.</p>
+  <p>The full dataset and a running conversation about how to fund graduate work.</p>
   <div class="connect-tiles">
     <a href="https://jonathanlindavis.com/projects.html" target="_blank" rel="noopener" class="ctile ctile-web">
-      <span class="ctile-icon">&#127760;</span>
+      <span class="ctile-icon" aria-hidden="true">&#127760;</span>
       <span class="ctile-body">
         <span class="ctile-title">More projects</span>
         <span class="ctile-sub">See what else is built and coming</span>
       </span>
-      <span class="ctile-arrow">&#8599;</span>
+      <span class="ctile-arrow" aria-hidden="true">&#8599;</span><span class="f4f-vh"> (opens in a new tab)</span>
     </a>
     <a href="https://jonathanlindavis.com/contact.html" target="_blank" rel="noopener" class="ctile ctile-mail">
-      <span class="ctile-icon">&#9993;</span>
+      <span class="ctile-icon" aria-hidden="true">&#9993;</span>
       <span class="ctile-body">
         <span class="ctile-title">Get in touch</span>
         <span class="ctile-sub">Contact or sign up for updates</span>
       </span>
-      <span class="ctile-arrow">&#8599;</span>
+      <span class="ctile-arrow" aria-hidden="true">&#8599;</span><span class="f4f-vh"> (opens in a new tab)</span>
     </a>
   </div>
 </section>
 
 <footer><div class="wrap">
   <p>Fellowships4Free is an independent public good built by Jonathan Lin Davis. A free, open index of verified graduate and early-career fellowships: no login, no paywall, links and amounts checked against the source.</p>
-  <p>Data &middot; <a href="data/fellowships.json">fellowships.json</a> &middot; <a href="data/fellowships.csv">fellowships.csv</a> &middot; License &middot; CC BY 4.0 data, MIT code &middot; <a href="https://jonathanlindavis.com/contact.html">Get in touch</a></p>
+  <p>Data &middot; <a href="data/fellowships.json">fellowships.json</a> &middot; <a href="data/fellowships.csv">fellowships.csv</a> &middot; License &middot; <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> data, <a href="https://opensource.org/license/mit">MIT</a> code &middot; <a href="https://jonathanlindavis.com/contact.html">Get in touch</a></p>
   <p class="footer-improvements-wrap"><a class="footer-improvements" href="https://jonathanlindavis.com/system-change-log">System change log</a></p>
 </div></footer>
 
 <script>
-const state={data:[],pool:[],filtered:[],facets:{area:new Set(),restricted:false},q:"",sort:"deadline",visibleCount:0};
+/* Publish the sticky masthead's real height as --f4f-mast-h (UI-2, UI-5): the scroll offset and the
+   rail's sticky top follow it instead of a hand-set 66px. */
+(function(){
+  const m=document.querySelector('header.masthead');if(!m)return;
+  const set=()=>document.documentElement.style.setProperty('--f4f-mast-h',Math.round(m.getBoundingClientRect().height)+'px');
+  set();
+  if('ResizeObserver'in window)new ResizeObserver(set).observe(m);else addEventListener('resize',set);
+})();
+const state={data:[],pool:[],filtered:[],facets:{area:new Set(),audience:new Set(),restricted:false},q:"",sort:"deadline",visibleCount:0};
 const NOW=Date.now();
 
 /* ---- Utilities ---- */
@@ -232,9 +274,10 @@ function esc(s){return(s||"").replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':
 function isRolling(v){return/rolling/i.test(v||"");}
 
 /* ---- Area bucket ----
-   Faceting on the raw `area` field is impossible (~1,440 distinct strings). Every record now
-   carries an authoritative `area_bucket` (exactly one of the 14 core-taxonomy names), applied to
-   the data from area_collapse_proposal_v1.json. bucketOf() reads that field; the specific
+   Faceting on the raw `area` field is impossible (~1,440 distinct strings). Every record carries
+   an `area_bucket`, applied from area_collapse_proposal_v1.json and meant to be one of the 14
+   core-taxonomy names; the data also holds some values outside those 14 until STR-7 repairs them,
+   so the Area facet can list more than 14 options. bucketOf() reads that field; the specific
    free-text `area` stays visible on each card as the granular detail. */
 function bucketOf(r){return r.area_bucket||"Open Field";}
 
@@ -259,12 +302,20 @@ function verifiedRange(rows){
 }
 
 /* Parse a deadline string to a Date for sorting/urgency.
-   Handles: "Oct 29, 2026", "~Nov 10, 2026", "Jun 1, 2026 at 5 PM ET", "Rolling", "TBD".
+   Handles: "Oct 29, 2026", "~Nov 10, 2026", "Jun 1, 2026 at 5 PM ET", "2026-10-29", "Rolling", "TBD".
    Requires an explicit day-of-month - without one, JS's Date() will silently default to
-   Jan 1 for vague strings like "Fall 2026" or "Jan 2027", making them look falsely urgent. */
+   Jan 1 for vague strings like "Fall 2026" or "Jan 2027", making them look falsely urgent.
+   Interim (UI-14, retired when STR-8's typed deadline field lands): an ISO YYYY-MM-DD string is
+   read as a LOCAL calendar date. new Date("2026-10-29") would read it as UTC midnight, which is
+   the evening before in US time zones. */
 function parseDeadline(s){
   if(!s||isRolling(s)||/tbd|verify|biannual|continuous/i.test(s))return null;
   const clean=s.replace(/[~\u2019]/g,"").replace(/\bat\b.*/i,"").replace(/,\s*\d{1,2}:\d{2}.*$/,"").trim();
+  const iso=/^(\d{4})-(\d{2})-(\d{2})$/.exec(clean);
+  if(iso){
+    const d=new Date(+iso[1],+iso[2]-1,+iso[3]);
+    return (isNaN(d)||d.getMonth()!==+iso[2]-1)?null:d;
+  }
   if(!/^[A-Za-z]{3,9}\.?\s+\d{1,2},?\s+\d{4}$/.test(clean))return null;
   const d=new Date(clean);
   return isNaN(d)?null:d;
@@ -291,17 +342,60 @@ function deadlineClass(s){
   return'deadline-val';
 }
 
-/* Highlight search query in a string */
+/* Highlight search query in a string (UI-7). Match ranges are found on the RAW text, then each
+   segment is escaped on its own and only matched segments are wrapped in <mark>. Escaping first
+   and matching after split entities: the query "amp" turned "&amp;" into "&<mark>amp</mark>;". */
 function highlight(text,q){
   if(!q||!text)return esc(text);
-  const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
-  return esc(text).replace(re,'<mark>$1</mark>');
+  const lo=text.toLowerCase();let out="",i=0,j;
+  while((j=lo.indexOf(q,i))!==-1){
+    out+=esc(text.slice(i,j))+'<mark>'+esc(text.slice(j,j+q.length))+'</mark>';
+    i=j+q.length;
+  }
+  return out+esc(text.slice(i));
 }
 
 /* ---- Load ---- */
+/* A record the render needs: an object with a non-empty string name, text fields that are strings
+   (or absent), flags as a string or a list, audience as a list or a string. */
+const TEXT_FIELDS=['name','organization','url','amount','duration','eligibility','notes','area','area_bucket','location','deadline','opens','date_added','last_verified','other_benefits'];
+function recordProblem(r){
+  if(!r||typeof r!=='object'||Array.isArray(r))return'record';
+  if(typeof r.name!=='string'||!r.name.trim())return'name';
+  for(const k of TEXT_FIELDS)if(r[k]!=null&&typeof r[k]!=='string')return k;
+  if(r.flags!=null&&typeof r.flags!=='string'&&!Array.isArray(r.flags))return'flags';
+  if(r.audience!=null&&typeof r.audience!=='string'&&!Array.isArray(r.audience))return'audience';
+  return null;
+}
+function loadFailed(kind,cause,title,detail){
+  console.error(`F4F: the index failed to load (${kind})`,cause);
+  document.getElementById('r-count').textContent='0';
+  document.getElementById('results').innerHTML=`<div class="f4f-empty"><b>${title}</b>${detail} The raw data is also available as <a href="data/fellowships.csv">fellowships.csv</a>.</div>`;
+}
+
 async function load(){
-  const res=await fetch('data/fellowships.json',{cache:'no-store'});
-  state.data=await res.json();
+  // Default cache mode (UI-28, interim): a repeat visit sends a conditional request and gets a 304
+  // from the file's ETag instead of re-downloading about 1.15 MB. The pinned, integrity-checked
+  // fetch is STR-10's.
+  /* Four distinct failure branches (UI-19), each logging its cause with console.error and naming
+     the problem on the page with a link to the raw CSV: network failure, a non-200 status, a file
+     that does not parse, and individual malformed records, which are skipped and counted rather
+     than allowed to blank the page. An integrity-mismatch branch joins these when STR-10 lands. */
+  let res;
+  try{res=await fetch('data/fellowships.json');}
+  catch(e){return loadFailed('network',e,'Could not reach the index','Check your connection and reload the page.');}
+  if(!res.ok)return loadFailed('status',res.status,'The index is unavailable right now',`The server answered with status ${res.status}. Try again in a few minutes.`);
+  let raw;
+  try{raw=await res.json();if(!Array.isArray(raw))throw new Error('the top level is not a list');}
+  catch(e){return loadFailed('parse',e,'The index file could not be read','It may be incomplete or damaged.');}
+  const skipped=[];
+  state.data=raw.filter(r=>{const p=recordProblem(r);if(p)skipped.push({id:r&&r.id,field:p});return!p;});
+  if(skipped.length){
+    console.error(`F4F: skipped ${skipped.length} malformed record(s)`,skipped);
+    const note=document.getElementById('f4f-skipped');
+    note.textContent=`${skipped.length} record${skipped.length===1?'':'s'} could not be shown because a field was malformed.`;
+    note.hidden=false;
+  }
   /* flags is normally a semicolon-joined string, but some records store it as a list; every
      .trim()/.split() call site below assumes a string, so coerce once here rather than at each
      call site (SITE-1 crash fix, 2026-08-22 ultra plan Section 2.3/3.2). */
@@ -335,10 +429,10 @@ async function load(){
 }
 
 /* ---- Facets ----
-   Facet counts reflect the currently DISPLAYED set (state.filtered). The Area checkbox list
-   is built ONCE from the categories present in the fixed 50-item pool (not the full repository
-   and not the full taxonomy), so options don't appear/disappear as filters change; only their
-   counts update. */
+   Facet counts are disjunctive (see passes() and updateFacetCounts() below). The Area checkbox list
+   is built ONCE from the categories present in the open pool (not the full repository and not
+   the full taxonomy), so options don't appear/disappear as filters change; only their counts
+   update. */
 function catCounts(source){
   const m=new Map();
   source.forEach(r=>{const v=bucketOf(r);m.set(v,(m.get(v)||0)+1);});
@@ -348,13 +442,12 @@ function catCounts(source){
 function buildFacets(){
   const host=document.getElementById('facets');host.innerHTML="";
 
-  // Area filter - the 14 core-taxonomy buckets (area_bucket). Options are built ONCE from the
-  // fixed 50-item POOL (not the full repository), so a bucket with zero fellowships in the
-  // current display pool never gets a dead-end "0" checkbox in the first place. Still built
-  // once at load, not on every apply(), so options don't appear/disappear as OTHER filters
-  // toggle mid-interaction - only their counts, reflecting the currently displayed set, update
-  // live via updateFacetCounts(). Ordered by pool count (desc) then name.
-  const areaWrap=document.createElement('div');areaWrap.className='facet';areaWrap.innerHTML='<h3>Area</h3>';
+  // Area filter - the area_bucket values present in the open pool. Options are built ONCE from
+  // the POOL (not the full repository), so a bucket with zero fellowships in the pool never gets
+  // a dead-end "0" checkbox in the first place. Still built once at load, not on every apply(),
+  // so options don't appear/disappear as OTHER filters toggle mid-interaction - only their
+  // disjunctive counts update live via updateFacetCounts(). Ordered by pool count (desc) then name.
+  const areaWrap=document.createElement('fieldset');areaWrap.className='facet';areaWrap.innerHTML='<legend>Area</legend>';
   const dataCats=catCounts(state.pool);
   const areaValues=[...dataCats.keys()].sort((a,b)=>(dataCats.get(b)-dataCats.get(a))||a.localeCompare(b));
   areaValues.forEach(val=>{
@@ -367,8 +460,23 @@ function buildFacets(){
   });
   host.appendChild(areaWrap);
 
+  // Audience filter (UI-10): the four list tags, plus "Unspecified" only while the pool still holds
+  // records whose audience is free text.
+  const audWrap=document.createElement('fieldset');audWrap.className='facet';audWrap.innerHTML='<legend>Audience</legend>';
+  const audOpts=AUD_FACET.slice();
+  if(state.pool.some(r=>!Array.isArray(r.audience)))audOpts.push(['unspecified','Unspecified']);
+  audOpts.forEach(([val,label])=>{
+    const row=document.createElement('label');row.className='opt';
+    row.innerHTML=`<input type="checkbox" data-key="audience" value="${val}"><span>${label}</span><span class="n" data-aud-count="${val}">0</span>`;
+    row.querySelector('input').addEventListener('change',e=>{
+      const s=state.facets.audience;e.target.checked?s.add(val):s.delete(val);apply();
+    });
+    audWrap.appendChild(row);
+  });
+  host.appendChild(audWrap);
+
   // Restrictions filter
-  const rWrap=document.createElement('div');rWrap.className='facet';rWrap.innerHTML='<h3>Eligibility</h3>';
+  const rWrap=document.createElement('fieldset');rWrap.className='facet';rWrap.innerHTML='<legend>Eligibility</legend>';
   const rRow=document.createElement('label');rRow.className='opt';
   rRow.innerHTML=`<input type="checkbox" id="restrict-filter"><span>No restrictions only</span><span class="n" data-restrict-count>0</span>`;
   rRow.querySelector('input').addEventListener('change',e=>{state.facets.restricted=e.target.checked;apply();});
@@ -376,34 +484,51 @@ function buildFacets(){
   host.appendChild(rWrap);
 }
 
+/* Disjunctive counting (UI-6): each facet's option counts come from the pool filtered by the query
+   and every OTHER facet, never by that facet's own selection. Counting state.filtered instead made
+   every unticked Area read 0 the moment one Area was ticked, although ticking it adds results. */
+/* Audience tags (UI-10): the list vocabulary grad, postdoc, professional, undergrad. A record whose
+   audience is still free text (a string, until STR-7 repairs it) counts as "unspecified". */
+const AUD_FACET=[['grad','Graduate'],['postdoc','Postdoc'],['professional','Professional'],['undergrad','Undergraduate']];
+function audTags(r){return Array.isArray(r.audience)?r.audience:['unspecified'];}
+
+function passes(r,q,skip){
+  if(skip!=='area'&&state.facets.area.size&&!state.facets.area.has(bucketOf(r)))return false;
+  if(skip!=='audience'&&state.facets.audience.size&&!audTags(r).some(t=>state.facets.audience.has(t)))return false;
+  if(skip!=='restricted'&&state.facets.restricted&&r.flags&&r.flags.trim())return false;
+  if(q){
+    const hay=`${r.organization} ${r.name} ${r.eligibility} ${r.area} ${r.notes} ${r.flags} ${r.amount} ${r.other_benefits}`.toLowerCase();
+    if(!hay.includes(q))return false;
+  }
+  return true;
+}
+
 function updateFacetCounts(){
-  const areaCounts=catCounts(state.filtered);
+  const q=state.q.toLowerCase().trim();
+  const areaCounts=catCounts(state.pool.filter(r=>passes(r,q,'area')));
   document.querySelectorAll('[data-area-count]').forEach(el=>{
     el.textContent=areaCounts.get(el.getAttribute('data-area-count'))||0;
   });
-  const restrictedInDisplay=state.filtered.filter(r=>r.flags&&r.flags.trim()).length;
+  const audCounts=new Map();
+  state.pool.filter(r=>passes(r,q,'audience')).forEach(r=>audTags(r).forEach(t=>audCounts.set(t,(audCounts.get(t)||0)+1)));
+  document.querySelectorAll('[data-aud-count]').forEach(el=>{
+    el.textContent=audCounts.get(el.getAttribute('data-aud-count'))||0;
+  });
   const rEl=document.querySelector('[data-restrict-count]');
-  if(rEl)rEl.textContent=state.filtered.length-restrictedInDisplay;
+  if(rEl)rEl.textContent=state.pool.filter(r=>passes(r,q,'restricted')&&!(r.flags&&r.flags.trim())).length;
 }
 
 /* ---- Filter + Sort ---- */
-const DISPLAY_CAP=50; // the working universe is the 50 soonest-upcoming-deadline fellowships,
-                       // computed once in load(). Search/facets/sort all operate WITHIN this pool.
+const DISPLAY_CAP=50; // how many cards render at once; "Show more" adds this many again. The
+                       // working universe is the open pool computed once in load(), which is not
+                       // capped. Search/facets/sort all operate WITHIN that pool.
 
 function apply(){
   const q=state.q.toLowerCase().trim();
 
-  // Filter within the fixed 50-item pool (never the full repository). .filter() returns a
+  // Filter within the open pool (never the full repository). .filter() returns a
   // fresh array, so state.pool itself is never mutated or aliased.
-  const base=state.pool.filter(r=>{
-    if(state.facets.area.size&&!state.facets.area.has(bucketOf(r)))return false;
-    if(state.facets.restricted&&r.flags&&r.flags.trim())return false;
-    if(q){
-      const hay=`${r.organization} ${r.name} ${r.eligibility} ${r.area} ${r.notes} ${r.flags} ${r.amount} ${r.other_benefits}`.toLowerCase();
-      if(!hay.includes(q))return false;
-    }
-    return true;
-  });
+  const base=state.pool.filter(r=>passes(r,q,null));
 
   state.filtered=base;
   state.visibleCount=DISPLAY_CAP; // a new filter/search/facet change re-pages from the top
@@ -425,35 +550,53 @@ function sortRows(){
   });
 }
 
-/* ---- Render ---- */
-function render(){
+/* ---- Render ----
+   render() rebuilds the list after a filter, search or sort change. render(true), used by
+   "Show more", APPENDS only the new cards, so cards already on the page are never replaced
+   (UI-4): their DOM nodes, scroll position and focus survive. */
+function render(append){
   const q=state.q.toLowerCase().trim();
   document.getElementById('r-count').textContent=state.filtered.length;
   const host=document.getElementById('results');
   if(!state.filtered.length){
-    host.innerHTML='<div class="empty"><b>No matches</b>Try removing a filter or broadening your search.</div>';
+    host.innerHTML='<div class="f4f-empty"><b>No matches</b>Try removing a filter or broadening your search.</div>';
     document.getElementById('more-wrap').innerHTML='';
     return;
   }
 
   // Pagination: show state.visibleCount of the current filtered/sorted set at a time
   // (Phase 2 widening, 2026-08-23 - the pool itself can now hold 200+ eligible records).
-  const shown=state.filtered.slice(0,state.visibleCount);
   const moreWrap=document.getElementById('more-wrap');
   if(state.filtered.length>state.visibleCount){
     const remaining=state.filtered.length-state.visibleCount;
     moreWrap.innerHTML=`<button type="button" class="morebtn" id="show-more">Show ${Math.min(DISPLAY_CAP,remaining)} more (${remaining} not shown)</button>`;
     document.getElementById('show-more').addEventListener('click',()=>{
-      state.visibleCount+=DISPLAY_CAP;render();
+      state.visibleCount+=DISPLAY_CAP;render(true);
     });
   }else{
     moreWrap.innerHTML='';
   }
 
-  const AUD_LABELS={grad:'Grad',undergrad:'Undergrad',professional:'Professional',postdoc:'Postdoc'};
-  host.innerHTML=shown.map(r=>{
+  if(append){
+    const already=host.querySelectorAll('article.entry').length;
+    host.insertAdjacentHTML('beforeend',state.filtered.slice(already,state.visibleCount).map(r=>cardHtml(r,q)).join(''));
+    // Keyboard focus moves to the first new card's link rather than falling back to BODY (UI-23).
+    const firstNew=host.querySelectorAll('article.entry')[already];
+    if(firstNew){
+      const link=firstNew.querySelector('a[href]');
+      if(link)link.focus();else{firstNew.setAttribute('tabindex','-1');firstNew.focus();}
+    }
+  }else{
+    host.innerHTML=state.filtered.slice(0,state.visibleCount).map(r=>cardHtml(r,q)).join('');
+  }
+}
+
+const AUD_LABELS={grad:'Grad',undergrad:'Undergrad',professional:'Professional',postdoc:'Postdoc'};
+function cardHtml(r,q){
+  {
     const nameHtml=r.url
-      ?`<a href="${esc(r.url)}" target="_blank" rel="noopener">${highlight(r.name,q)}</a>`
+      // Outbound link: a visible arrow (hidden from screen readers) plus hidden text (UI-27).
+      ?`<a href="${esc(r.url)}" target="_blank" rel="noopener">${highlight(r.name,q)}<span class="f4f-ext" aria-hidden="true">&#8599;</span><span class="f4f-vh"> (opens in a new tab)</span></a>`
       :highlight(r.name,q);
 
     // Symmetric Q&A rows - every entry shows the same 7 labeled fields, always,
@@ -470,9 +613,10 @@ function render(){
       ?r.flags.split(';').map(f=>f.trim()).filter(Boolean).map(f=>`<span class="flag-chip">&#9888; ${esc(f)}</span>`).join('')
       :'';
 
+    // A free-text audience (a string) renders its own text instead of no chip at all (UI-10).
     const audChips=(Array.isArray(r.audience)&&r.audience.length)
       ?r.audience.map(a=>`<span class="aud-chip">${AUD_LABELS[a]||esc(a)}</span>`).join('')
-      :'';
+      :((typeof r.audience==='string'&&r.audience.trim())?`<span class="aud-chip">${esc(r.audience)}</span>`:'');
 
     const qaRows=[
       ['How Much?',esc(r.amount)||'Not specified'],
@@ -494,27 +638,30 @@ function render(){
       ${audChips?`<div class="aud-row">${audChips}</div>`:''}
       <div class="qa-grid">${qaRows}</div>
     </article>`;
-  }).join('');
+  }
 }
 
 
 
 
 /* ---- Events ---- */
-document.getElementById('search').addEventListener('input',e=>{state.q=e.target.value;apply();});
+/* Search is debounced (UI-8): typing updates state.q at once, but the filter and render run once,
+   200 ms after the last keystroke, in the next animation frame, so fast typing never queues a
+   full re-render per key. */
+let searchTimer=0;
+document.getElementById('search').addEventListener('input',e=>{state.q=e.target.value;clearTimeout(searchTimer);searchTimer=setTimeout(()=>requestAnimationFrame(apply),200);});
 document.getElementById('sort').addEventListener('change',e=>{state.sort=e.target.value;sortRows();render();});
 
 document.getElementById('clear').addEventListener('click',()=>{
-  state.q="";state.facets={area:new Set(),restricted:false};
+  state.q="";state.facets={area:new Set(),audience:new Set(),restricted:false};
   document.getElementById('search').value="";
   document.querySelectorAll('#facets input').forEach(i=>i.checked=false);
   apply();
 });
 
 
-load().catch(()=>{
-  document.getElementById('results').innerHTML='<div class="empty"><b>Could not load the index</b>Make sure data/fellowships.json is present.</div>';
-});
+// Last resort for an error none of the branches above anticipated: log it, never a blank page.
+load().catch(e=>loadFailed('unexpected',e,'Something went wrong while showing the index','Reload the page to try again.'));
 </script>
 </body>
 </html>
