@@ -1,6 +1,6 @@
 # Fellowships For Free (F4F)
 
-> **[fellowship4free.com](https://fellowship4free.com/) is the home of this project.**
+> **[fellowships4free.com](https://fellowships4free.com/) is the home of this project** (moved 2026-10-22 from fellowship4free.com, which 301s to it; the owner bought the new domain that night).
 > Corrected 2026-08-25 by owner ruling. This block previously said the opposite, that the
 > domain was being retired and the project consolidated onto `jonathanlindavis.com/f4f`.
 > That is stale and was contradicted by live behaviour: `jonathanlindavis.com/f4f` has
