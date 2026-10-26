@@ -58,6 +58,22 @@
 .hero{max-width:1180px;margin:0 auto;padding:2.6rem 1.25rem 1rem;text-align:center;display:flex;flex-direction:column;align-items:center}
 .hero .logo{width:100%;max-width:620px;height:auto;margin:0 auto;display:block}
 /* pledge strip: shared .od-pledge convention */
+/* The Award Letter prompt (FS25P-147, 2026-10-26): one line plus paired Substack and LinkedIn
+   subscribe buttons under the pledge strip, where a reader sees it before the results. The pair
+   follows links.html's .pair grid (two columns, one under 22rem) in this page's own tokens:
+   square corners, --ink border, --well fill, mono label, serif note, 44px minimum height. */
+.f4f-al{width:100%;max-width:480px;margin:1.5rem auto 0;text-align:center}
+.f4f-al-title{display:block;font-family:var(--serif);font-size:1.08rem;font-weight:600;color:var(--ink);line-height:1.3}
+.f4f-al-sub{display:block;font-family:var(--mono);font-size:12px;color:var(--wash);letter-spacing:.01em;margin-top:.2rem}
+.f4f-al-pair{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;margin-top:.7rem}
+.f4f-al-pair>a{min-width:0}
+@media(max-width:22rem){.f4f-al-pair{grid-template-columns:1fr}}
+.f4f-al-btn{display:block;min-height:44px;padding:.5rem .8rem;border:1.5px solid var(--ink);background:var(--well);color:var(--ink);text-decoration:none;text-align:left;transition:background-color .15s,color .15s}
+.f4f-al-btn:hover{background:var(--ink);color:var(--paper)}
+.f4f-al-btn:hover .f4f-al-note{color:var(--paper)}
+.f4f-al-name{display:block;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.f4f-al-note{display:block;font-family:var(--serif);font-size:.88rem;color:var(--wash);line-height:1.35}
+@media(prefers-reduced-motion:reduce){.f4f-al-btn{transition:none}}
 
 /* ---- Layout ---- */
 .layout{max-width:1180px;margin:0 auto;padding:1.5rem 1.25rem 4rem;display:grid;grid-template-columns:260px 1fr;gap:2rem;align-items:start}
@@ -193,6 +209,18 @@ mark{background:var(--od-hilite);color:var(--ink);border-radius:0;padding:0 1px}
     <span>Open source</span>
     <span>Verification date on every record</span>
   </p>
+  <div class="f4f-al" role="group" aria-labelledby="f4f-al-title">
+    <span id="f4f-al-title" class="f4f-al-title">Get it weekly: The Award Letter</span>
+    <span class="f4f-al-sub">Open fellowships from this index, sent once a week</span>
+    <div class="f4f-al-pair">
+      <a class="f4f-al-btn" data-channel="Substack" href="https://theawardletter.substack.com/subscribe?utm_source=fellowships4free&amp;utm_medium=referral&amp;utm_campaign=index" target="_blank" rel="noopener" aria-label="Subscribe to The Award Letter on Substack, by email (opens in a new tab)">
+        <span class="f4f-al-name">Substack</span>
+        <span class="f4f-al-note">By email</span></a>
+      <a class="f4f-al-btn" data-channel="LinkedIn" href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7476506679509999617" target="_blank" rel="noopener" aria-label="Subscribe to The Award Letter on LinkedIn (opens in a new tab)">
+        <span class="f4f-al-name">LinkedIn</span>
+        <span class="f4f-al-note">In your feed</span></a>
+    </div>
+  </div>
 </div>
 
 <div class="layout">
@@ -257,6 +285,17 @@ mark{background:var(--od-hilite);color:var(--ink);border-radius:0;padding:0 1px}
   <p class="footer-improvements-wrap"><a class="footer-improvements" href="https://jonathanlindavis.com/system-change-log">System change log</a></p>
 </div></footer>
 
+<script>
+/* The Award Letter prompt: one Analytics event per subscribe click, the same gtag event shape
+   jonathanlindavis.com's links page uses (link_name plus link_url). */
+document.querySelectorAll('.f4f-al-btn').forEach(function(a){
+  a.addEventListener('click', function(){
+    if(typeof gtag === 'function'){
+      gtag('event', 'newsletter_click', { link_name: 'The Award Letter: ' + a.getAttribute('data-channel'), link_url: a.href });
+    }
+  });
+});
+</script>
 <script>
 /* Publish the sticky masthead's real height as --f4f-mast-h (UI-2, UI-5): the scroll offset and the
    rail's sticky top follow it instead of a hand-set 66px. */
