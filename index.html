@@ -215,6 +215,13 @@ footer{display:flex;flex-direction:column;justify-content:center}
   .foot-mark{width:165px}
 }
 @media(prefers-reduced-motion:no-preference){.entry{animation:fade .25s ease both}@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}}
+  /* Site bar, owner option A (thread ea590643): labels never wrap; from 761 to 823 the spacing tightens so the one-line row fits (menu at 760 and below, DS28I-172) */
+  .bar a,.bar .tab,.bar .wm,.bar button{white-space:nowrap}
+  @media (min-width:761px) and (max-width:823px){
+    .bar .wrap,.bar .bar-wrap{gap:20px;padding:0 20px}
+    .bar .nav,.bar .bar-nav{gap:18px;margin-left:8px}
+    .bar .tools{gap:8px}
+  }
 </style>
 </head>
 <body>
