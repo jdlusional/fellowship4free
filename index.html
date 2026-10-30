@@ -146,8 +146,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
   content-visibility:auto;contain-intrinsic-size:auto 420px}
 .entry .org{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--wash);margin:0 0 8px}
 .entry .name{font:600 21px/1.3 var(--sans);color:var(--ink);margin:0 0 12px}
-.entry .name a{color:var(--ink);text-decoration:none}
-.entry .name a:hover{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:4px}
+.entry .name a{color:var(--ink);text-decoration:none;display:inline-flex;align-items:baseline}
+.entry .name .nm-ar{color:#8a6b1f;font:400 .8em/1 var(--sans);margin-right:12px;text-decoration:none}
+.entry .name .nm-tx{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
+.entry .name a:hover .nm-tx{text-decoration-color:var(--accent)}
 .qa-row{display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px;padding:6px 0;border-top:1px solid var(--rule);font:400 15px/1.5 var(--sans)}
 .qa-label{font:500 13px/1.6 var(--mono);color:var(--wash)}
 .qa-value{min-width:0;overflow-wrap:anywhere}
@@ -687,7 +689,7 @@ function render(append){
    view (#/f/<id>); that view carries the notes and the link to the official page. */
 function cardHtml(r,q,detail){
   const nameInner=highlight(r.name,q);
-  const nameHtml=(!detail&&r.id)?`<a href="#/f/${encodeURIComponent(r.id)}">${nameInner}</a>`:nameInner;
+  const nameHtml=(!detail&&r.id)?`<a href="#/f/${encodeURIComponent(r.id)}"><span class="nm-ar" aria-hidden="true">&rarr;</span><span class="nm-tx">${nameInner}</span></a>`:nameInner;
   const dl=r.deadline||"TBD";
   const dlDisplay=isRolling(dl)?'Rolling':esc(dl);
   const flagsInline=(r.flags&&r.flags.trim())
